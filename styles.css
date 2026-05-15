@@ -77,12 +77,14 @@ img { max-width: 100%; display: block; }
 button { font: inherit; cursor: pointer; }
 
 .skip-link {
-  position: absolute; left: -9999px; top: 0;
+  position: fixed; top: 0; left: 0;
+  transform: translateY(-100%);
   background: var(--c-yellow); color: var(--c-black);
   padding: var(--space-2) var(--space-4); border-radius: 0 0 var(--radius-md) 0;
   font-weight: 800; z-index: 1000;
+  transition: transform .15s ease;
 }
-.skip-link:focus { left: 0; }
+.skip-link:focus { transform: translateY(0); }
 
 /* 3. Layout primitives
    ------------------------------------------------------------ */
