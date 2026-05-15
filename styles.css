@@ -179,3 +179,20 @@ section { padding: var(--space-12) 0; }
 .pt-now { font-size: 22px; font-weight: 900; color: var(--c-black); }
 
 .pt-fineprint { text-align: center; color: var(--c-text-muted); font-size: 13px; margin-top: var(--space-5); }
+
+/* 8b. pricing — mobile (≤ 720px) ----------------------------- */
+@media (max-width: 720px) {
+  .pt-head { display: none; }
+  .pt-row { display: block; border-top: 0; margin-bottom: var(--space-4); background: var(--c-white); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .pt-row.pt-popular { box-shadow: 0 0 0 2px var(--c-yellow); }
+  .pt-size { background: var(--c-black); color: var(--c-white); padding: var(--space-4); flex-direction: row; align-items: center; justify-content: space-between; }
+  .pt-size strong { font-size: 22px; }
+  .pt-size small, .pt-tag { font-size: 12px; }
+  .pt-row .pt-cell { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-top: 1px solid var(--c-grey); background: var(--c-white) !important; }
+  .pt-row.pt-popular .pt-cell { background: var(--c-yellow-soft) !important; }
+  .pt-cell.pt-best { background: #FFF1B3 !important; }
+  .pt-cell::before { content: attr(data-qty); font-weight: 800; font-size: 16px; min-width: 56px; }
+  .pt-cell .pt-was { grid-column: 2; text-align: right; }
+  .pt-cell .pt-now { grid-column: 3; font-size: 20px; }
+  .pt-cell:not(:has(.pt-was)) .pt-now { grid-column: 2 / span 2; text-align: right; }
+}

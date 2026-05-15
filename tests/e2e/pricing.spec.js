@@ -32,4 +32,15 @@ test.describe('pricing table', () => {
     await expect(cell.locator('.pt-was')).toContainText('£3850');
     await expect(cell.locator('.pt-now')).toContainText('£2800');
   });
+
+  test('on mobile the table reflows to stacked cards', async ({ page, viewport }) => {
+    test.skip(viewport.width >= 720, 'mobile-only');
+    await page.goto('/');
+    const a4row = page.locator('#pricing .pt-row[data-size="A4"]');
+    await expect(a4row).toBeVisible();
+
+    // In the stacked layout, the row should display as block, not a 5-column grid.
+    const display = await a4row.evaluate(el => getComputedStyle(el).display);
+    expect(display).toBe('block');
+  });
 });
