@@ -1,1 +1,102 @@
-/* Cheapestprint.co.uk — styles. Sections added in later tasks. */
+/* =========================================================
+   Cheapestprint.co.uk — global stylesheet
+   Sections (top-to-bottom):
+     1. Design tokens
+     2. Resets & base typography
+     3. Layout primitives (container, section)
+     4. Buttons
+     5. Section: top-nav      (Task 4)
+     6. Section: hero          (Task 6)
+     7. Section: usps          (Task 7)
+     8. Section: pricing       (Tasks 8–10)
+     9. Section: how-it-works  (Task 11)
+    10. Section: gallery       (Task 12)
+    11. Section: lightbox      (Task 13)
+    12. Section: why-us        (Task 14)
+    13. Section: reviews       (Task 15)
+    14. Section: quote form    (Tasks 16–17)
+    15. Section: footer        (Task 18)
+   ========================================================= */
+
+/* 1. Design tokens
+   ------------------------------------------------------------ */
+:root {
+  --c-black: #111111;
+  --c-yellow: #FFD60A;
+  --c-yellow-soft: #FFF7C0;
+  --c-white: #FFFFFF;
+  --c-off-white: #FAFAFA;
+  --c-grey: #E5E5E5;
+  --c-text-muted: #555555;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-8: 48px;
+  --space-10: 64px;
+  --space-12: 80px;
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,.08);
+
+  --nav-height: 64px;
+  --maxw: 1120px;
+}
+
+/* 2. Resets & base typography
+   ------------------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--c-black);
+  background: var(--c-white);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.01em; line-height: 1.15; margin: 0 0 var(--space-3); }
+h1 { font-size: clamp(34px, 6vw, 56px); font-weight: 900; letter-spacing: -0.02em; }
+h2 { font-size: clamp(26px, 4vw, 38px); }
+h3 { font-size: clamp(18px, 2.4vw, 22px); }
+p { margin: 0 0 var(--space-3); }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+button { font: inherit; cursor: pointer; }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--c-yellow); color: var(--c-black);
+  padding: var(--space-2) var(--space-4); border-radius: 0 0 var(--radius-md) 0;
+  font-weight: 800; z-index: 1000;
+}
+.skip-link:focus { left: 0; }
+
+/* 3. Layout primitives
+   ------------------------------------------------------------ */
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--space-5); }
+section, header.top-nav, footer.site-footer { min-height: 1px; }
+section { padding: var(--space-12) 0; }
+.section-header { text-align: center; margin-bottom: var(--space-8); }
+.section-header p { color: var(--c-text-muted); max-width: 56ch; margin: 0 auto; }
+
+/* 4. Buttons
+   ------------------------------------------------------------ */
+.btn { display: inline-flex; align-items: center; gap: var(--space-2); padding: 14px 22px; border-radius: var(--radius-pill); font-weight: 800; text-decoration: none; border: 0; transition: transform .12s ease, background .12s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--c-yellow); color: var(--c-black); }
+.btn-ghost   { background: transparent; color: var(--c-white); border: 1.5px solid var(--c-white); }
+.btn-dark    { background: var(--c-black); color: var(--c-white); }
+.btn:focus-visible { outline: 3px solid var(--c-yellow); outline-offset: 2px; }
