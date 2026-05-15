@@ -57,4 +57,11 @@ test.describe('pricing table', () => {
     });
     expect(inView).toBe(true);
   });
+
+  test('clicking A4/20K cell pre-selects the form dropdowns', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('#pricing .pt-cell[data-size="A4"][data-qty="20K"]').click();
+    await expect(page.locator('#quote select[name="size"]')).toHaveValue('A4');
+    await expect(page.locator('#quote select[name="quantity"]')).toHaveValue('20K');
+  });
 });

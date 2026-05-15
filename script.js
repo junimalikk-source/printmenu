@@ -120,11 +120,67 @@ export function isUKPhone(input) {
   return false;
 }
 
+function initForm() {
+  const form = document.getElementById('quote-form');
+  if (!form) return;
+  const status = form.querySelector('.qf-status');
+  const phoneInput = form.querySelector('#qf-phone');
+  const honey = form.querySelector('[name="company_website"]');
+
+  const setStatus = (text, kind) => {
+    status.textContent = text;
+    status.hidden = false;
+    status.classList.remove('is-success', 'is-error');
+    if (kind) status.classList.add(`is-${kind}`);
+  };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Honeypot: pretend success, send nothing.
+    if (honey && honey.value.trim() !== '') {
+      setStatus("Thanks, we'll be in touch within 1 working hour.", 'success');
+      form.reset();
+      return;
+    }
+
+    // Native validation first
+    if (!form.checkValidity()) {
+      setStatus('Please fill in your name, phone, size and quantity.', 'error');
+      form.reportValidity();
+      return;
+    }
+
+    if (!isUKPhone(phoneInput.value)) {
+      setStatus('Please enter a valid UK phone number.', 'error');
+      phoneInput.focus();
+      return;
+    }
+
+    setStatus('Sending…', null);
+
+    try {
+      const action = form.getAttribute('action') || '';
+      const res = await fetch(action, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setStatus("Thanks, we'll be in touch within 1 working hour. For urgent quotes call 01274 305555.", 'success');
+      form.reset();
+    } catch (err) {
+      setStatus('Something went wrong. Please call us on 01274 305555 — sorry about that.', 'error');
+    }
+  });
+}
+
 // 5. boot ------------------------------------------------
 function boot() {
   initNav();
   initPricing();
   initLightbox();
+  initForm();
 }
 
 if (document.readyState === 'loading') {
