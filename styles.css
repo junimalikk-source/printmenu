@@ -148,3 +148,34 @@ section { padding: var(--space-12) 0; }
 @media (max-width: 420px) {
   .usps-grid { grid-template-columns: 1fr; }
 }
+
+/* 8. Section: pricing (desktop)
+   ------------------------------------------------------------ */
+.pricing { background: var(--c-off-white); }
+.pt-wrap { background: var(--c-white); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); overflow: hidden; }
+.pt-head, .pt-row { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); }
+.pt-head { background: var(--c-black); color: var(--c-white); }
+.pt-col { padding: var(--space-4); text-align: center; position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.pt-qty { font-size: 20px; font-weight: 900; }
+.pt-badge { font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; background: var(--c-yellow); color: var(--c-black); padding: 2px 8px; border-radius: var(--radius-pill); }
+.pt-badge-alt { background: var(--c-white); color: var(--c-black); }
+.pt-col.pt-best { background: var(--c-yellow); color: var(--c-black); }
+.pt-col.pt-best .pt-badge { background: var(--c-black); color: var(--c-yellow); }
+.pt-col-blank { background: transparent; padding: var(--space-4); }
+
+.pt-row { border-top: 1px solid var(--c-grey); align-items: stretch; }
+.pt-row.pt-popular { background: var(--c-yellow-soft); }
+.pt-size { padding: var(--space-4); background: var(--c-black); color: var(--c-white); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+.pt-size strong { font-size: 20px; font-weight: 900; }
+.pt-size small { font-size: 11px; opacity: .7; }
+.pt-tag { font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--c-yellow); margin-top: 4px; }
+
+.pt-cell { padding: var(--space-4); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; cursor: pointer; background: var(--c-white); transition: background .12s ease; }
+.pt-row.pt-popular .pt-cell { background: var(--c-yellow-soft); }
+.pt-cell.pt-best { background: #FFF1B3; }
+.pt-cell:hover { background: var(--c-grey); }
+.pt-cell:focus-visible { outline: 3px solid var(--c-yellow); outline-offset: -3px; }
+.pt-was { font-size: 12px; color: var(--c-text-muted); text-decoration: line-through; }
+.pt-now { font-size: 22px; font-weight: 900; color: var(--c-black); }
+
+.pt-fineprint { text-align: center; color: var(--c-text-muted); font-size: 13px; margin-top: var(--space-5); }
