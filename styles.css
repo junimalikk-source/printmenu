@@ -300,7 +300,7 @@ section { padding: var(--space-12) 0; }
 .footer-logo { font-weight: 900; font-size: 22px; letter-spacing: -0.01em; }
 .footer-logo span { background: var(--c-yellow); color: var(--c-black); padding: 2px 6px; border-radius: var(--radius-sm); }
 .footer-tag { color: #cccccc; margin-top: var(--space-2); }
-.site-footer h4 { font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: var(--c-yellow); margin-bottom: var(--space-3); }
+.site-footer h3 { font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: var(--c-yellow); margin-bottom: var(--space-3); }
 .site-footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
 .site-footer a { color: var(--c-white); text-decoration: none; }
 .site-footer a:hover { color: var(--c-yellow); }
