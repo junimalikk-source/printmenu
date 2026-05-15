@@ -1,0 +1,8 @@
+node_modules/
+.superpowers/
+.DS_Store
+dist/
+.env
+playwright-report/
+test-results/
+.vitest-cache/
