@@ -232,3 +232,19 @@ section { padding: var(--space-12) 0; }
 .lightbox-figure figcaption { color: var(--c-white); font-weight: 500; font-size: 14px; text-align: center; }
 .lightbox-close { position: absolute; top: var(--space-4); right: var(--space-4); width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--c-yellow); color: var(--c-black); font-size: 24px; font-weight: 900; line-height: 1; cursor: pointer; }
 .lightbox-close:focus-visible { outline: 3px solid var(--c-white); outline-offset: 2px; }
+
+/* 12. Section: why-us
+   ------------------------------------------------------------ */
+.why-us { background: var(--c-white); }
+.why-us-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-8); align-items: center; }
+.why-us-copy p { color: var(--c-text-muted); }
+.why-us-stats { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
+.stat { background: var(--c-yellow); color: var(--c-black); padding: var(--space-6); border-radius: var(--radius-md); text-align: center; }
+.stat-dark { background: var(--c-black); color: var(--c-yellow); }
+.stat-num { display: block; font-size: clamp(40px, 6vw, 64px); font-weight: 900; line-height: 1; letter-spacing: -0.02em; }
+.stat-label { display: block; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: var(--space-2); }
+
+@media (max-width: 720px) {
+  .why-us-grid { grid-template-columns: 1fr; gap: var(--space-6); }
+  .why-us-stats { grid-template-columns: 1fr 1fr; }
+}
