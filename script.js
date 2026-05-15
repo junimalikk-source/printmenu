@@ -68,10 +68,51 @@ function initPricing() {
   });
 }
 
+// 3. lightbox ------------------------------------------------
+function initLightbox() {
+  const lb = document.getElementById('lightbox');
+  const img = lb?.querySelector('img');
+  const cap = lb?.querySelector('figcaption');
+  const closeBtn = lb?.querySelector('.lightbox-close');
+  if (!lb || !img || !cap || !closeBtn) return;
+
+  let lastFocus = null;
+
+  const open = (src, caption) => {
+    lastFocus = document.activeElement;
+    img.src = src;
+    img.alt = caption || 'Menu image';
+    cap.textContent = caption || '';
+    lb.hidden = false;
+    lb.focus();
+    document.body.style.overflow = 'hidden';
+  };
+
+  const close = () => {
+    lb.hidden = true;
+    img.src = '';
+    document.body.style.overflow = '';
+    lastFocus?.focus?.();
+  };
+
+  document.querySelectorAll('#gallery .gallery-item').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      open(btn.dataset.src, btn.dataset.caption);
+    });
+  });
+
+  closeBtn.addEventListener('click', close);
+  lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lb.hidden && e.key === 'Escape') close();
+  });
+}
+
 // 5. boot ------------------------------------------------
 function boot() {
   initNav();
   initPricing();
+  initLightbox();
 }
 
 if (document.readyState === 'loading') {
