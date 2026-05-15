@@ -196,3 +196,16 @@ section { padding: var(--space-12) 0; }
   .pt-cell .pt-now { grid-column: 3; font-size: 20px; }
   .pt-cell:not(:has(.pt-was)) .pt-now { grid-column: 2 / span 2; text-align: right; }
 }
+
+/* 9. Section: how-it-works
+   ------------------------------------------------------------ */
+.how-it-works { background: var(--c-white); }
+.hiw-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+.hiw-step { background: var(--c-off-white); border-radius: var(--radius-md); padding: var(--space-6); }
+.hiw-num { background: var(--c-yellow); color: var(--c-black); width: 40px; height: 40px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 900; font-size: 20px; margin-bottom: var(--space-4); }
+.hiw-step h3 { margin-bottom: var(--space-2); }
+.hiw-step p { color: var(--c-text-muted); margin: 0; }
+
+@media (max-width: 720px) {
+  .hiw-grid { grid-template-columns: 1fr; }
+}
