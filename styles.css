@@ -248,3 +248,16 @@ section { padding: var(--space-12) 0; }
   .why-us-grid { grid-template-columns: 1fr; gap: var(--space-6); }
   .why-us-stats { grid-template-columns: 1fr 1fr; }
 }
+
+/* 13. Section: reviews
+   ------------------------------------------------------------ */
+.reviews { background: var(--c-off-white); }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+.review { background: var(--c-white); border-radius: var(--radius-md); padding: var(--space-5); margin: 0; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: var(--space-3); }
+.review .stars { color: var(--c-yellow); font-size: 18px; letter-spacing: 2px; }
+.review blockquote { margin: 0; font-size: 16px; line-height: 1.5; }
+.review cite { font-style: normal; font-weight: 700; color: var(--c-text-muted); font-size: 14px; }
+
+@media (max-width: 720px) {
+  .reviews-grid { grid-template-columns: 1fr; }
+}
