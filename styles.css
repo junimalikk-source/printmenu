@@ -115,6 +115,7 @@ section { padding: var(--space-12) 0; }
 .nav-hamburger { display: none; width: 40px; height: 40px; padding: 0; border: 0; background: transparent; flex-direction: column; gap: 5px; align-items: center; justify-content: center; margin-left: auto; }
 .nav-hamburger span { width: 22px; height: 2px; background: var(--c-black); transition: transform .2s ease, opacity .2s ease; }
 .nav-overlay { position: fixed; inset: var(--nav-height) 0 0 0; background: var(--c-black); color: var(--c-white); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-5); font-size: 22px; font-weight: 800; z-index: 99; }
+.nav-overlay[hidden] { display: none; }
 .nav-overlay a { text-decoration: none; color: var(--c-white); }
 
 @media (max-width: 960px) {
