@@ -1,0 +1,21 @@
+{
+  "name": "cheapestprint-co-uk",
+  "version": "0.1.0",
+  "description": "Lead-generation website for Cheapestprint.co.uk",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "http-server -p 8080 -c-1 -o .",
+    "serve": "http-server -p 8080 -c-1 .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "http-server": "^14.1.1",
+    "jsdom": "^29.1.1",
+    "vitest": "^4.1.6"
+  }
+}
