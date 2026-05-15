@@ -4,7 +4,7 @@
 //   1. nav        (Task 5)
 //   2. pricing    (Task 10)
 //   3. lightbox   (Task 13)
-//   4. form       (Task 17)
+//   4. form       (Tasks 16–17)
 //   5. boot
 // =========================================================
 
@@ -106,6 +106,18 @@ function initLightbox() {
   document.addEventListener('keydown', (e) => {
     if (!lb.hidden && e.key === 'Escape') close();
   });
+}
+
+// 4. form ----------------------------------------------------
+export function isUKPhone(input) {
+  if (typeof input !== 'string') return false;
+  const digits = input.replace(/[^\d]/g, '');
+  // Accept: 10 digits starting 0 (UK national), 11 digits starting 0,
+  // 11 digits starting 44 (international), 12 digits starting 0044.
+  if (/^0\d{9,10}$/.test(digits)) return true;
+  if (/^44\d{9,10}$/.test(digits)) return true;
+  if (/^0044\d{9,10}$/.test(digits)) return true;
+  return false;
 }
 
 // 5. boot ------------------------------------------------
