@@ -43,4 +43,18 @@ test.describe('pricing table', () => {
     const display = await a4row.evaluate(el => getComputedStyle(el).display);
     expect(display).toBe('block');
   });
+
+  test('clicking a price cell scrolls to form and pre-fills selects', async ({ page }) => {
+    await page.goto('/');
+    // The form's selects don't exist yet (they're added in Task 16).
+    // Until then, this test only asserts the cell is clickable + scrolls.
+    await page.locator('#pricing .pt-cell[data-size="A4"][data-qty="20K"]').click();
+    // Allow smooth scroll to complete
+    await page.waitForTimeout(800);
+    const inView = await page.locator('#quote').evaluate((el) => {
+      const { top, bottom } = el.getBoundingClientRect();
+      return top < window.innerHeight && bottom > 0;
+    });
+    expect(inView).toBe(true);
+  });
 });

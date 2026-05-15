@@ -33,9 +33,45 @@ function initNav() {
   onScroll();
 }
 
+// 2. pricing -------------------------------------------------
+export function selectionsFromCell(el) {
+  if (!el || !el.dataset) return null;
+  const { size, qty } = el.dataset;
+  if (!size || !qty) return null;
+  return { size, qty };
+}
+
+function applyPrefill({ size, qty }) {
+  const sizeSel = document.querySelector('#quote select[name="size"]');
+  const qtySel  = document.querySelector('#quote select[name="quantity"]');
+  if (sizeSel) sizeSel.value = size;
+  if (qtySel) qtySel.value = qty;
+}
+
+function initPricing() {
+  const cells = document.querySelectorAll('#pricing .pt-cell');
+  cells.forEach((cell) => {
+    cell.setAttribute('tabindex', '0');
+    cell.setAttribute('role', 'button');
+    cell.setAttribute('aria-label',
+      `Get a quote for ${cell.dataset.qty} ${cell.dataset.size} menus`);
+    const handler = () => {
+      const sel = selectionsFromCell(cell);
+      if (!sel) return;
+      applyPrefill(sel);
+      document.getElementById('quote')?.scrollIntoView({ behavior: 'smooth' });
+    };
+    cell.addEventListener('click', handler);
+    cell.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); }
+    });
+  });
+}
+
 // 5. boot ------------------------------------------------
 function boot() {
   initNav();
+  initPricing();
 }
 
 if (document.readyState === 'loading') {
