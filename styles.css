@@ -132,3 +132,19 @@ section { padding: var(--space-12) 0; }
 .hero h1 .accent { color: var(--c-yellow); }
 .hero-sub { color: #cccccc; font-size: clamp(15px, 1.6vw, 18px); max-width: 540px; margin: 0 auto var(--space-6); }
 .hero-cta { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; }
+
+/* 7. Section: usps
+   ------------------------------------------------------------ */
+.usps { background: var(--c-white); padding: var(--space-10) 0; }
+.usps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
+.usp { background: var(--c-off-white); border-radius: var(--radius-md); padding: var(--space-5); text-align: center; }
+.usp-icon { width: 32px; height: 32px; margin: 0 auto var(--space-3); color: var(--c-black); }
+.usp strong { display: block; font-size: 18px; font-weight: 800; margin-bottom: var(--space-1); }
+.usp p { color: var(--c-text-muted); font-size: 14px; margin: 0; }
+
+@media (max-width: 720px) {
+  .usps-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 420px) {
+  .usps-grid { grid-template-columns: 1fr; }
+}
