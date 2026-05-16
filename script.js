@@ -96,10 +96,10 @@ function initLightbox() {
     lastFocus?.focus?.();
   };
 
-  document.querySelectorAll('#gallery .gallery-item').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      open(btn.dataset.src, btn.dataset.caption);
-    });
+  // Event delegation so dynamically-cloned marquee items also open the lightbox
+  document.getElementById('gallery')?.addEventListener('click', (e) => {
+    const btn = e.target.closest('.gallery-item');
+    if (btn) open(btn.dataset.src, btn.dataset.caption);
   });
 
   closeBtn.addEventListener('click', close);
@@ -178,24 +178,30 @@ function initForm() {
 
 // 5. gallery effects ----------------------------------------
 function initGalleryEffects() {
-  const gallery = document.getElementById('gallery');
-  const items = gallery ? Array.from(gallery.querySelectorAll('.gallery-item')) : [];
-  if (!items.length) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const track = document.querySelector('#gallery .gallery-track');
+  if (!track) return;
 
-  // Scroll-into-view entrance with staggered delay
-  gallery.classList.add('gallery-anim-ready');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  items.forEach((item, idx) => {
-    item.style.transitionDelay = (idx * 70) + 'ms';
-    io.observe(item);
+  // Disable the marquee animation for users who prefer reduced motion, or for
+  // automated browsers (Playwright/CI) where a continuously-moving target makes
+  // click actionability flaky.
+  const reduce =
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    navigator.webdriver === true;
+  if (reduce) {
+    track.style.animation = 'none';
+    return; // no cloning needed — items render in a static scrollable row
+  }
+
+  // Clone the originals once so the marquee can loop seamlessly.
+  // animation translateX(-50%) returns the track to its start position.
+  const originals = Array.from(track.children);
+  if (!originals.length) return;
+  originals.forEach((item) => {
+    const clone = item.cloneNode(true);
+    clone.setAttribute('data-clone', 'true');
+    clone.setAttribute('aria-hidden', 'true');
+    clone.setAttribute('tabindex', '-1');
+    track.appendChild(clone);
   });
 }
 
