@@ -8,7 +8,7 @@ test.describe('lightbox', () => {
     await expect(lb).toBeHidden();
     await page.locator('#gallery .gallery-item').first().click();
     await expect(lb).toBeVisible();
-    await expect(lb.locator('img')).toHaveAttribute('src', /menu-placeholder-1/);
+    await expect(lb.locator('img')).toHaveAttribute('src', /menu-pizza/);
   });
 
   test('Escape closes the lightbox', async ({ page }) => {
