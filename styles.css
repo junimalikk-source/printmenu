@@ -408,6 +408,11 @@ section { padding: var(--space-12) 0; }
 .site-footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
 .site-footer a { color: var(--c-white); text-decoration: none; }
 .site-footer a:hover { color: var(--c-yellow); }
+.footer-guides { border-top: 1px solid rgba(255,255,255,.1); padding: var(--space-3) 0; font-size: 13px; }
+.footer-guides .container { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+.footer-guides-label { color: #999; text-transform: uppercase; letter-spacing: 0.5px; font-size: 11px; }
+.footer-guides a { color: #ccc; text-decoration: none; }
+.footer-guides a:hover { color: var(--c-yellow); }
 .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding: var(--space-4) 0; font-size: 13px; color: #999999; }
 
 @media (max-width: 720px) {
