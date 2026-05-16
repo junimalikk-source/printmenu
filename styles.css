@@ -298,14 +298,18 @@ section { padding: var(--space-12) 0; }
 .gallery-item:hover img {
   filter: drop-shadow(0 26px 40px rgba(0,0,0,.28));
 }
-/* Trifold is landscape — wider but shorter, sized to feel in line with the portraits */
-.gallery-item--wide img { max-width: 720px; max-height: 540px; }
+/* Per-item size variants */
+.gallery-item--md img   { max-width: 680px; max-height: 790px; }   /* +10%: pizza + japanese */
+.gallery-item--lg img   { max-width: 740px; max-height: 860px; }   /* +20%: indian (saffron) */
+.gallery-item--wide img { max-width: 580px; max-height: 430px; }   /* −20%: trifold */
 .gallery-item:focus-visible { outline: 3px solid var(--c-yellow); outline-offset: 8px; border-radius: var(--radius-md); }
 
 @media (max-width: 720px) {
   .gallery-track { animation-duration: 38s; gap: var(--space-6); }
   .gallery-item img       { max-height: 460px; max-width: 380px; }
-  .gallery-item--wide img { max-width: 460px; max-height: 340px; }
+  .gallery-item--md img   { max-width: 420px; max-height: 510px; }
+  .gallery-item--lg img   { max-width: 460px; max-height: 550px; }
+  .gallery-item--wide img { max-width: 370px; max-height: 280px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
