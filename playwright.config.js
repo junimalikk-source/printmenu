@@ -10,8 +10,8 @@ export default defineConfig({
     reducedMotion: 'reduce',
   },
   projects: [
-    { name: 'desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 800 } } },
-    { name: 'mobile',  use: { ...devices['iPhone 13'] } },
+    { name: 'desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 800 }, reducedMotion: 'reduce' } },
+    { name: 'mobile',  use: { ...devices['iPhone 13'], reducedMotion: 'reduce' } },
   ],
   webServer: {
     command: 'npx http-server -p 8080 -c-1 .',
