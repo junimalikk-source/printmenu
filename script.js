@@ -5,7 +5,8 @@
 //   2. pricing    (Task 10)
 //   3. lightbox   (Task 13)
 //   4. form       (Tasks 16–17)
-//   5. boot
+//   5. gallery effects (3D tilt + scroll entrance)
+//   6. boot
 // =========================================================
 
 // 1. nav -------------------------------------------------
@@ -175,12 +176,58 @@ function initForm() {
   });
 }
 
-// 5. boot ------------------------------------------------
+// 5. gallery effects ----------------------------------------
+function initGalleryEffects() {
+  const gallery = document.getElementById('gallery');
+  const items = gallery ? Array.from(gallery.querySelectorAll('.gallery-item')) : [];
+  if (!items.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Scroll-into-view entrance with staggered delay
+  gallery.classList.add('gallery-anim-ready');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  items.forEach((item, idx) => {
+    item.style.transitionDelay = (idx * 70) + 'ms';
+    io.observe(item);
+  });
+
+  // Mouse-follow tilt — desktop with a fine pointer only
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  items.forEach((item) => {
+    let raf = null;
+    item.addEventListener('mouseenter', () => item.classList.add('is-tilting'));
+    item.addEventListener('mousemove', (e) => {
+      const rect = item.getBoundingClientRect();
+      const dx = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+      const dy = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        item.style.setProperty('--ty', (dx * 9).toFixed(2) + 'deg');
+        item.style.setProperty('--tx', (-dy * 9).toFixed(2) + 'deg');
+      });
+    });
+    item.addEventListener('mouseleave', () => {
+      item.classList.remove('is-tilting');
+      item.style.setProperty('--tx', '0deg');
+      item.style.setProperty('--ty', '0deg');
+    });
+  });
+}
+
+// 6. boot ------------------------------------------------
 function boot() {
   initNav();
   initPricing();
   initLightbox();
   initForm();
+  initGalleryEffects();
 }
 
 if (document.readyState === 'loading') {
