@@ -414,6 +414,11 @@ section { padding: var(--space-12) 0; }
 .footer-guides a { color: #ccc; text-decoration: none; }
 .footer-guides a:hover { color: var(--c-yellow); }
 .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding: var(--space-4) 0; font-size: 13px; color: #999999; }
+.author-bio { border-top: 2px solid #eee; padding-top: var(--space-6); margin-top: var(--space-8); display: flex; gap: var(--space-4); align-items: flex-start; }
+.author-bio-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--c-black); color: var(--c-yellow); font-weight: 900; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.author-bio-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 4px; }
+.author-bio-name { font-weight: 800; font-size: 15px; margin-bottom: 4px; }
+.author-bio p { color: #555; font-size: 14px; margin: 0; line-height: 1.6; }
 
 @media (max-width: 720px) {
   .site-footer-grid { grid-template-columns: 1fr; }
