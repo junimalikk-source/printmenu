@@ -227,6 +227,17 @@ function initGalleryEffects() {
   });
 }
 
+// 5b. sale countdown -------------------------------------
+function initSaleCountdown() {
+  const el = document.querySelector('[data-sale-days]');
+  if (!el) return;
+  const now = new Date();
+  const year = now.getMonth() > 4 ? now.getFullYear() + 1 : now.getFullYear();
+  const end = new Date(year, 4, 31, 23, 59, 59); // May 31
+  const days = Math.max(0, Math.ceil((end - now) / 86400000));
+  el.textContent = days;
+}
+
 // 6. boot ------------------------------------------------
 function boot() {
   initNav();
@@ -234,6 +245,7 @@ function boot() {
   initLightbox();
   initForm();
   initGalleryEffects();
+  initSaleCountdown();
 }
 
 if (document.readyState === 'loading') {
