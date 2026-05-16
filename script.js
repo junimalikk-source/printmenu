@@ -161,11 +161,10 @@ function initForm() {
     setStatus('Sending…', null);
 
     try {
-      const action = form.getAttribute('action') || '';
-      const res = await fetch(action, {
+      const res = await fetch('/', {
         method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(form),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString(),
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setStatus("Thanks, we'll be in touch within 1 working hour. For urgent quotes call 01274 305555.", 'success');
