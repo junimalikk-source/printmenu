@@ -21,9 +21,11 @@
 /* 1. Design tokens
    ------------------------------------------------------------ */
 :root {
-  --c-black: #111111;
-  --c-yellow: #FFD60A;
-  --c-yellow-soft: #FFF7C0;
+  /* Brand: navy + cyan (from PrintMenu logo). Variable names kept as
+     --c-yellow/--c-yellow-soft for backward compatibility — values are now cyan. */
+  --c-black: #11295A;          /* deep navy from logo */
+  --c-yellow: #06B5E2;         /* brand cyan (was #FFD60A) */
+  --c-yellow-soft: #D9F2FB;    /* light cyan for highlight backgrounds */
   --c-white: #FFFFFF;
   --c-off-white: #FAFAFA;
   --c-grey: #E5E5E5;
@@ -109,7 +111,7 @@ section { padding: var(--space-12) 0; }
 .top-nav.is-scrolled { box-shadow: var(--shadow-md); border-bottom-color: var(--c-grey); }
 .nav-row { display: flex; align-items: center; gap: var(--space-5); height: var(--nav-height); }
 .nav-logo { font-weight: 900; font-size: 18px; text-decoration: none; color: var(--c-black); letter-spacing: -0.01em; }
-.nav-logo span { color: var(--c-yellow); background: var(--c-black); padding: 2px 6px; border-radius: var(--radius-sm); }
+.nav-logo span { color: var(--c-yellow); }
 .nav-links { display: flex; gap: var(--space-5); margin-left: auto; }
 .nav-links a { text-decoration: none; font-weight: 500; color: var(--c-black); }
 .nav-links a:hover { color: var(--c-text-muted); }
@@ -144,7 +146,7 @@ section { padding: var(--space-12) 0; }
 .usp strong { display: block; font-size: 18px; font-weight: 800; margin-bottom: var(--space-1); }
 .usp p { color: var(--c-text-muted); font-size: 14px; margin: 0; }
 
-.usp.usp-free { background: var(--c-yellow); box-shadow: 0 6px 18px rgba(255, 214, 10, 0.35); }
+.usp.usp-free { background: var(--c-yellow); box-shadow: 0 6px 18px rgba(6, 181, 226, 0.35); }
 .usp.usp-free p { color: var(--c-black); }
 .usp-pill {
   position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
@@ -402,7 +404,7 @@ section { padding: var(--space-12) 0; }
 .site-footer { background: var(--c-black); color: var(--c-white); padding: var(--space-10) 0 0; }
 .site-footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: var(--space-6); padding-bottom: var(--space-8); }
 .footer-logo { font-weight: 900; font-size: 22px; letter-spacing: -0.01em; }
-.footer-logo span { background: var(--c-yellow); color: var(--c-black); padding: 2px 6px; border-radius: var(--radius-sm); }
+.footer-logo span { color: var(--c-yellow); }
 .footer-tag { color: #cccccc; margin-top: var(--space-2); }
 .site-footer h3 { font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: var(--c-yellow); margin-bottom: var(--space-3); }
 .site-footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
@@ -561,13 +563,13 @@ section { padding: var(--space-12) 0; }
   margin-bottom: var(--space-4);
   font-weight: 700;
   font-size: 14px;
-  box-shadow: 0 4px 18px rgba(255,214,10,.35);
+  box-shadow: 0 4px 18px rgba(6,181,226,.35);
   transition: transform .15s ease, box-shadow .15s ease;
   animation: badge-bob 3.2s ease-in-out infinite;
 }
 .hero-sale-badge:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255,214,10,.5);
+  box-shadow: 0 8px 24px rgba(6,181,226,.5);
 }
 .hero-sale-badge-pct {
   background: var(--c-black);
