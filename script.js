@@ -5,7 +5,7 @@
 //   2. pricing    (Task 10)
 //   3. lightbox   (Task 13)
 //   4. form       (Tasks 16–17)
-//   5. gallery effects (3D tilt + scroll entrance)
+//   5. gallery effects (scroll-into-view entrance)
 //   6. boot
 // =========================================================
 
@@ -196,28 +196,6 @@ function initGalleryEffects() {
   items.forEach((item, idx) => {
     item.style.transitionDelay = (idx * 70) + 'ms';
     io.observe(item);
-  });
-
-  // Mouse-follow tilt — desktop with a fine pointer only
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  items.forEach((item) => {
-    let raf = null;
-    item.addEventListener('mouseenter', () => item.classList.add('is-tilting'));
-    item.addEventListener('mousemove', (e) => {
-      const rect = item.getBoundingClientRect();
-      const dx = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
-      const dy = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        item.style.setProperty('--ty', (dx * 9).toFixed(2) + 'deg');
-        item.style.setProperty('--tx', (-dy * 9).toFixed(2) + 'deg');
-      });
-    });
-    item.addEventListener('mouseleave', () => {
-      item.classList.remove('is-tilting');
-      item.style.setProperty('--tx', '0deg');
-      item.style.setProperty('--ty', '0deg');
-    });
   });
 }
 
