@@ -5,7 +5,7 @@
 //   2. pricing    (Task 10)
 //   3. lightbox   (Task 13)
 //   4. form       (Tasks 16–17)
-//   5. gallery effects (scroll-into-view entrance)
+//   5. gallery effects (marquee loop + 3D mouse-tilt)
 //   6. boot
 // =========================================================
 
@@ -178,24 +178,52 @@ function initForm() {
 
 // 5. gallery effects ----------------------------------------
 function initGalleryEffects() {
-  const gallery = document.getElementById('gallery');
-  const items = gallery ? Array.from(gallery.querySelectorAll('.gallery-item')) : [];
-  if (!items.length) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const track = document.querySelector('#gallery .gallery-track');
+  if (!track) return;
 
-  // Scroll-into-view entrance with staggered delay
-  gallery.classList.add('gallery-anim-ready');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        io.unobserve(entry.target);
-      }
+  // Stop the marquee animation for reduced-motion users and automated browsers
+  // (the moving target makes click actionability flaky in Playwright).
+  const reduce =
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    navigator.webdriver === true;
+
+  if (!reduce) {
+    // Clone the originals once so the marquee can loop seamlessly.
+    // animation translateX(-50%) returns the track to its start position.
+    const originals = Array.from(track.children);
+    originals.forEach((item) => {
+      const clone = item.cloneNode(true);
+      clone.setAttribute('data-clone', 'true');
+      clone.setAttribute('aria-hidden', 'true');
+      clone.setAttribute('tabindex', '-1');
+      track.appendChild(clone);
     });
-  }, { threshold: 0.2 });
-  items.forEach((item, idx) => {
-    item.style.transitionDelay = (idx * 100) + 'ms';
-    io.observe(item);
+  } else {
+    track.style.animation = 'none';
+  }
+
+  // 3D mouse-follow tilt — desktop with a fine pointer only
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  const allItems = Array.from(track.querySelectorAll('.gallery-item'));
+  allItems.forEach((item) => {
+    let raf = null;
+    item.addEventListener('mouseenter', () => item.classList.add('is-tilting'));
+    item.addEventListener('mousemove', (e) => {
+      const rect = item.getBoundingClientRect();
+      const dx = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+      const dy = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        item.style.setProperty('--ty', (dx * 9).toFixed(2) + 'deg');
+        item.style.setProperty('--tx', (-dy * 9).toFixed(2) + 'deg');
+      });
+    });
+    item.addEventListener('mouseleave', () => {
+      item.classList.remove('is-tilting');
+      item.style.setProperty('--tx', '0deg');
+      item.style.setProperty('--ty', '0deg');
+    });
   });
 }
 
