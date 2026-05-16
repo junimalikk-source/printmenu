@@ -252,7 +252,7 @@ section { padding: var(--space-12) 0; }
 .gallery-track {
   display: flex;
   align-items: center;
-  gap: var(--space-8);
+  gap: var(--space-4);
   width: max-content;
   padding: var(--space-3) var(--space-6);
   animation: gallery-marquee 50s linear infinite;
@@ -305,7 +305,7 @@ section { padding: var(--space-12) 0; }
 .gallery-item:focus-visible { outline: 3px solid var(--c-yellow); outline-offset: 8px; border-radius: var(--radius-md); }
 
 @media (max-width: 720px) {
-  .gallery-track { animation-duration: 38s; gap: var(--space-6); }
+  .gallery-track { animation-duration: 38s; gap: var(--space-3); }
   .gallery-item img       { max-height: 460px; max-width: 380px; }
   .gallery-item--md img   { max-width: 420px; max-height: 510px; }
   .gallery-item--lg img   { max-width: 460px; max-height: 550px; }
