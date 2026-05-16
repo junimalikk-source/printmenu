@@ -649,9 +649,13 @@ section { padding: var(--space-12) 0; }
   filter: grayscale(0%);
   transform: translateY(-2px);
 }
-.sp-logo--lg { height: 84px; max-width: 180px; }
+.sp-logo--lg       { height: 84px;  max-width: 180px; }
+.sp-logo--gdk      { height: 101px; max-width: 180px; }
+.sp-logo--freddies { height: 97px;  max-width: 180px; }
 @media (max-width: 720px) {
-  .sp-logo--lg { height: 64px; max-width: 140px; }
+  .sp-logo--lg       { height: 64px; max-width: 140px; }
+  .sp-logo--gdk      { height: 76px; max-width: 140px; }
+  .sp-logo--freddies { height: 73px; max-width: 140px; }
 }
 @keyframes sp-scroll {
   from { transform: translateX(0); }
