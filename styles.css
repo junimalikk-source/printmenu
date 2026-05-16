@@ -139,10 +139,19 @@ section { padding: var(--space-12) 0; }
    ------------------------------------------------------------ */
 .usps { background: var(--c-white); padding: var(--space-10) 0; }
 .usps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
-.usp { background: var(--c-off-white); border-radius: var(--radius-md); padding: var(--space-5); text-align: center; }
+.usp { position: relative; background: var(--c-off-white); border-radius: var(--radius-md); padding: var(--space-5); text-align: center; }
 .usp-icon { width: 32px; height: 32px; margin: 0 auto var(--space-3); color: var(--c-black); }
 .usp strong { display: block; font-size: 18px; font-weight: 800; margin-bottom: var(--space-1); }
 .usp p { color: var(--c-text-muted); font-size: 14px; margin: 0; }
+
+.usp.usp-free { background: var(--c-yellow); box-shadow: 0 6px 18px rgba(255, 214, 10, 0.35); }
+.usp.usp-free p { color: var(--c-black); }
+.usp-pill {
+  position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+  background: var(--c-black); color: var(--c-yellow);
+  font-size: 11px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
+  padding: 4px 10px; border-radius: var(--radius-pill);
+}
 
 @media (max-width: 720px) {
   .usps-grid { grid-template-columns: repeat(2, 1fr); }
@@ -154,6 +163,22 @@ section { padding: var(--space-12) 0; }
 /* 8. Section: pricing (desktop)
    ------------------------------------------------------------ */
 .pricing { background: var(--c-off-white); }
+.section-header p.includes-banner,
+.includes-banner {
+  display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: var(--space-2); column-gap: var(--space-3);
+  background: var(--c-black); color: var(--c-white);
+  padding: var(--space-3) var(--space-5); border-radius: var(--radius-pill);
+  font-size: 15px; margin: 0 auto var(--space-3); max-width: none;
+}
+.includes-banner strong { color: var(--c-yellow); font-weight: 800; }
+.includes-tick {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--c-yellow); color: var(--c-black);
+  font-weight: 900; font-size: 13px; line-height: 1;
+}
+.includes-sep { opacity: .35; }
 .pt-wrap { background: var(--c-white); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); overflow: hidden; }
 .pt-head, .pt-row { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); }
 .pt-head { background: var(--c-black); color: var(--c-white); }
@@ -308,4 +333,26 @@ section { padding: var(--space-12) 0; }
 
 @media (max-width: 720px) {
   .site-footer-grid { grid-template-columns: 1fr; }
+}
+
+/* 16. WhatsApp icon + floating button
+   ------------------------------------------------------------ */
+.btn-icon { width: 18px; height: 18px; vertical-align: middle; }
+
+.wa-float {
+  position: fixed; right: 20px; bottom: 20px; z-index: 150;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: #25D366; color: #FFFFFF;
+  display: inline-flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+  transition: transform .15s ease, box-shadow .15s ease;
+  text-decoration: none;
+}
+.wa-float:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 10px 24px rgba(0,0,0,.3); }
+.wa-float:focus-visible { outline: 3px solid var(--c-yellow); outline-offset: 3px; }
+.wa-float-icon { width: 32px; height: 32px; display: block; }
+
+@media (max-width: 720px) {
+  .wa-float { right: 16px; bottom: 16px; width: 56px; height: 56px; }
+  .wa-float-icon { width: 28px; height: 28px; }
 }
