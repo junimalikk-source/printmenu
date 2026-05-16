@@ -178,30 +178,24 @@ function initForm() {
 
 // 5. gallery effects ----------------------------------------
 function initGalleryEffects() {
-  const track = document.querySelector('#gallery .gallery-track');
-  if (!track) return;
+  const gallery = document.getElementById('gallery');
+  const items = gallery ? Array.from(gallery.querySelectorAll('.gallery-item')) : [];
+  if (!items.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  // Disable the marquee animation for users who prefer reduced motion, or for
-  // automated browsers (Playwright/CI) where a continuously-moving target makes
-  // click actionability flaky.
-  const reduce =
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-    navigator.webdriver === true;
-  if (reduce) {
-    track.style.animation = 'none';
-    return; // no cloning needed — items render in a static scrollable row
-  }
-
-  // Clone the originals once so the marquee can loop seamlessly.
-  // animation translateX(-50%) returns the track to its start position.
-  const originals = Array.from(track.children);
-  if (!originals.length) return;
-  originals.forEach((item) => {
-    const clone = item.cloneNode(true);
-    clone.setAttribute('data-clone', 'true');
-    clone.setAttribute('aria-hidden', 'true');
-    clone.setAttribute('tabindex', '-1');
-    track.appendChild(clone);
+  // Scroll-into-view entrance with staggered delay
+  gallery.classList.add('gallery-anim-ready');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  items.forEach((item, idx) => {
+    item.style.transitionDelay = (idx * 100) + 'ms';
+    io.observe(item);
   });
 }
 
