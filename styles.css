@@ -460,13 +460,13 @@ section { padding: var(--space-12) 0; }
 /* 14. Sale banner (sticky strip above nav)
    ------------------------------------------------------------ */
 .sale-banner {
-  background: var(--c-yellow);
-  color: var(--c-black);
+  background: linear-gradient(90deg, #DC2626 0%, #E11D48 50%, #BE185D 100%);
+  color: #FFFFFF;
   font-size: 15px;
-  border-bottom: 3px solid var(--c-black);
+  border-bottom: 3px solid #7F1D1D;
   position: relative;
   z-index: 101;
-  box-shadow: 0 2px 12px rgba(0,0,0,.12);
+  box-shadow: 0 2px 12px rgba(190,24,93,.35);
   overflow: hidden;
 }
 .sale-banner::before {
@@ -500,19 +500,19 @@ section { padding: var(--space-12) 0; }
 }
 .sale-live-dot {
   width: 8px; height: 8px; border-radius: 50%;
-  background: #ff3b30;
-  box-shadow: 0 0 0 0 rgba(255,59,48,.7);
+  background: #FFD60A;
+  box-shadow: 0 0 0 0 rgba(255,214,10,.8);
   animation: sale-dot 1.4s ease-out infinite;
 }
 @keyframes sale-dot {
-  0%   { box-shadow: 0 0 0 0 rgba(255,59,48,.7); }
-  70%  { box-shadow: 0 0 0 10px rgba(255,59,48,0); }
-  100% { box-shadow: 0 0 0 0 rgba(255,59,48,0); }
+  0%   { box-shadow: 0 0 0 0 rgba(255,214,10,.8); }
+  70%  { box-shadow: 0 0 0 10px rgba(255,214,10,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,214,10,0); }
 }
 .sale-headline {
   font-size: 16px;
   font-weight: 700;
-  color: var(--c-black);
+  color: #FFFFFF;
 }
 .sale-headline strong {
   font-weight: 900;
@@ -521,14 +521,14 @@ section { padding: var(--space-12) 0; }
 }
 .sale-countdown {
   display: inline-flex; align-items: center; gap: 6px;
-  color: var(--c-black);
+  color: #FFFFFF;
   font-weight: 600;
   font-size: 14px;
 }
 .sale-clock { font-size: 16px; }
 .sale-days-num {
-  background: var(--c-black);
-  color: var(--c-yellow);
+  background: #FFFFFF;
+  color: #BE185D;
   font-weight: 900;
   padding: 3px 8px;
   border-radius: 4px;
@@ -536,8 +536,8 @@ section { padding: var(--space-12) 0; }
   letter-spacing: 0.02em;
 }
 .sale-cta {
-  background: var(--c-black);
-  color: var(--c-yellow);
+  background: #FFFFFF;
+  color: #BE185D;
   font-weight: 900;
   text-decoration: none;
   padding: 8px 16px;
@@ -545,11 +545,12 @@ section { padding: var(--space-12) 0; }
   font-size: 14px;
   letter-spacing: 0.02em;
   transition: transform .15s ease, box-shadow .15s ease;
-  box-shadow: 0 2px 0 rgba(0,0,0,.15);
+  box-shadow: 0 2px 0 rgba(127,29,29,.3);
 }
 .sale-cta:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  box-shadow: 0 4px 12px rgba(127,29,29,.4);
+  background: #FFF1F2;
 }
 @media (max-width: 720px) {
   .sale-banner-inner { gap: var(--space-2) var(--space-3); padding: 10px var(--space-3); }
