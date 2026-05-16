@@ -400,7 +400,7 @@ section { padding: var(--space-12) 0; }
 /* 15. Section: footer
    ------------------------------------------------------------ */
 .site-footer { background: var(--c-black); color: var(--c-white); padding: var(--space-10) 0 0; }
-.site-footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--space-6); padding-bottom: var(--space-8); }
+.site-footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: var(--space-6); padding-bottom: var(--space-8); }
 .footer-logo { font-weight: 900; font-size: 22px; letter-spacing: -0.01em; }
 .footer-logo span { background: var(--c-yellow); color: var(--c-black); padding: 2px 6px; border-radius: var(--radius-sm); }
 .footer-tag { color: #cccccc; margin-top: var(--space-2); }
