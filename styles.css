@@ -103,6 +103,8 @@ section { padding: var(--space-12) 0; }
 .btn-primary { background: var(--c-yellow); color: var(--c-black); }
 .btn-ghost   { background: transparent; color: var(--c-white); border: 1.5px solid var(--c-white); }
 .btn-dark    { background: var(--c-black); color: var(--c-white); }
+.btn-whatsapp { background: #25D366; color: #FFFFFF; border: 0; }
+.btn-whatsapp:hover { background: #1EBE5C; }
 .btn:focus-visible { outline: 3px solid var(--c-yellow); outline-offset: 2px; }
 
 /* 5. Section: top-nav
