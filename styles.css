@@ -114,9 +114,9 @@ section { padding: var(--space-12) 0; }
 .nav-row { display: flex; align-items: center; gap: var(--space-5); height: var(--nav-height); }
 .nav-logo { font-weight: 900; font-size: 18px; text-decoration: none; color: var(--c-black); letter-spacing: -0.01em; display: inline-flex; align-items: center; }
 .nav-logo span { color: var(--c-yellow); }
-.nav-logo-img { height: 48px; width: auto; display: block; }
+.nav-logo-img { height: 62px; width: auto; display: block; }
 @media (max-width: 720px) {
-  .nav-logo-img { height: 40px; }
+  .nav-logo-img { height: 52px; }
 }
 .nav-links { display: flex; gap: var(--space-5); margin-left: auto; }
 .nav-links a { text-decoration: none; font-weight: 500; color: var(--c-black); }
