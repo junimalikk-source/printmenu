@@ -3,9 +3,17 @@
   <!-- Homepage -->
   <url>
     <loc>https://printmenu.co.uk/</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- Service areas index -->
+  <url>
+    <loc>https://printmenu.co.uk/service-areas.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <!-- Cuisine-specific pages -->
