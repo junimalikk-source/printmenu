@@ -16,8 +16,17 @@ function json(status, body) {
 export async function onRequestPost(context) {
   const { request, env } = context;
 
+  // Fail fast on missing env — opaque 500, no key leak.
+  if (!env?.STRIPE_SECRET_KEY || !env?.SITE_URL) {
+    return json(500, { error: 'misconfigured' });
+  }
+
   // Strict origin check (POST requires browser-origin match).
-  if (request.headers.get('Origin') !== env.SITE_URL) {
+  // Normalise SITE_URL via URL.origin so a trailing-slash typo in the
+  // dashboard doesn't 400 every legitimate request.
+  let expectedOrigin;
+  try { expectedOrigin = new URL(env.SITE_URL).origin; } catch { return json(500, { error: 'misconfigured' }); }
+  if (request.headers.get('Origin') !== expectedOrigin) {
     return json(400, { error: 'bad request' });
   }
 

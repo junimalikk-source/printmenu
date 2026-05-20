@@ -22,8 +22,8 @@
 - [ ] Apple Pay + Google Pay: enabled (Stripe handles domain verification automatically once first prod deploy is live)
 - [ ] VAT note in business profile: "Printed menus zero-rated under VAT Notice 701/10"
 
-### Smoke test on production (single £25 A5/10K order, then refund)
-- [ ] Buy one A5/10K order with a real card → confirm receipt arrives at customer inbox
+### Smoke test on production (smallest order: A5/10K = £200, then refund)
+- [ ] Buy one A5/10K order with a real card (£200) → confirm receipt arrives at customer inbox
 - [ ] Confirm merchant notification arrives at `hello@printmenu.co.uk`
 - [ ] Confirm order ref + custom-field "restaurantname" + metadata visible in Stripe Dashboard
 - [ ] Issue full refund from Stripe Dashboard → confirm refund notification arrives
@@ -34,6 +34,13 @@
 2. Cross-reference any new "Paid" payments in the last 24h against incoming `hello@printmenu.co.uk` artwork emails.
 3. For any paid order with no artwork email after 24h, send a manual chase from `hello@printmenu.co.uk` quoting the Stripe order ref (`cs_live_…`).
 4. Handle refunds, chargebacks, disputes manually in the Stripe Dashboard.
+
+## If the Stripe key leaks
+
+1. Roll `STRIPE_SECRET_KEY` in the Stripe Dashboard → Developers → API keys.
+2. Update the Cloudflare Pages production env var to the new key.
+3. Trigger a new deploy (push any empty commit, or hit "Retry deployment" in CF Pages).
+4. Confirm `/api/create-checkout-session` works with a new test purchase.
 
 ## When to upgrade to v1.1 (add webhook)
 

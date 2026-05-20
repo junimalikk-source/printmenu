@@ -11,6 +11,11 @@ function json(status, body) {
 
 export async function onRequestGet(context) {
   const { request, env } = context;
+  // Fail fast on missing env — opaque 500, no key leak.
+  if (!env?.STRIPE_SECRET_KEY || !env?.SITE_URL) {
+    return json(500, { error: 'misconfigured' });
+  }
+
   const url = new URL(request.url);
   const sessionId = url.searchParams.get('session_id');
 
@@ -24,7 +29,7 @@ export async function onRequestGet(context) {
   // if Origin is absent. If neither is present, accept (legitimate
   // first-party navigations sometimes drop both).
   let expectedOrigin;
-  try { expectedOrigin = new URL(env.SITE_URL).origin; } catch { expectedOrigin = env.SITE_URL; }
+  try { expectedOrigin = new URL(env.SITE_URL).origin; } catch { return json(500, { error: 'misconfigured' }); }
   const originHdr = request.headers.get('Origin');
   if (originHdr) {
     if (originHdr !== expectedOrigin) {
