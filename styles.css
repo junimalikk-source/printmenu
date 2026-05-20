@@ -754,3 +754,39 @@ section { padding: var(--space-12) 0; }
   .faq-item summary { padding: var(--space-3) var(--space-4); font-size: 15px; }
   .faq-item p { padding: 0 var(--space-4) var(--space-4); font-size: 14px; }
 }
+
+/* ============================================================
+   Section: order-success page
+   ============================================================ */
+.success-page {
+  padding: var(--space-10) var(--space-4);
+  max-width: 720px;
+  margin: 0 auto;
+}
+.success-page h1 { margin-bottom: var(--space-4); }
+.success-ref {
+  background: var(--c-yellow-soft);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+.success-ref-code {
+  font-family: 'SFMono-Regular', Menlo, monospace;
+  font-size: 14px;
+  padding: 2px 6px;
+  background: var(--c-white);
+  border-radius: var(--radius-sm);
+  word-break: break-all;
+}
+.success-copy-btn { margin-left: auto; }
+.success-cta {
+  display: inline-block;
+  font-size: 18px;
+  padding: var(--space-4) var(--space-6);
+  margin-top: var(--space-4);
+}
+.success-fallback-line { color: var(--c-text-muted); }
+.success-steps { line-height: 1.7; padding-left: var(--space-5); }
