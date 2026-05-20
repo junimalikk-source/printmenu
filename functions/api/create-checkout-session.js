@@ -105,7 +105,8 @@ export async function onRequestPost(context) {
             label: { type: 'custom', custom: 'Anything we should know? (optional)' },
             type: 'text',
             optional: true,
-            text: { maximum_length: 500 },
+            // Stripe caps custom_fields[].text.maximum_length at 255.
+            text: { maximum_length: 255 },
           },
         ],
         client_reference_id: attempt_id,

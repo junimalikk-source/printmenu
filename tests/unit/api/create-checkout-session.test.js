@@ -117,6 +117,28 @@ describe('POST /api/create-checkout-session', () => {
     expect(params.client_reference_id).toBe(UUID);
   });
 
+  it('custom_field text length caps stay within Stripe limits (≤ 255)', async () => {
+    // Regression: Stripe rejects custom_fields[].text.maximum_length > 255.
+    // Discovered via real-Stripe smoke test against Task 12.
+    const req = makeReq({ size: 'A4', qty: '20K', attempt_id: UUID });
+    await onRequestPost({ request: req, env: ENV });
+    const params = mockCreate.mock.calls[0][0];
+    for (const field of params.custom_fields) {
+      if (field.text?.maximum_length !== undefined) {
+        expect(field.text.maximum_length).toBeLessThanOrEqual(255);
+        expect(field.text.maximum_length).toBeGreaterThan(0);
+      }
+      if (field.text?.minimum_length !== undefined) {
+        expect(field.text.minimum_length).toBeGreaterThanOrEqual(1);
+      }
+    }
+    // Lock in the specific values too so changes are deliberate.
+    const restaurant = params.custom_fields.find(f => f.key === 'restaurantname');
+    expect(restaurant.text).toEqual({ minimum_length: 2, maximum_length: 80 });
+    const notes = params.custom_fields.find(f => f.key === 'notes');
+    expect(notes.text).toEqual({ maximum_length: 255 });
+  });
+
   it('uses absolute success/cancel URLs from env.SITE_URL', async () => {
     const req = makeReq({ size: 'A4', qty: '20K', attempt_id: UUID });
     await onRequestPost({ request: req, env: ENV });
