@@ -8,7 +8,7 @@
 
 ## 1. Goal
 
-Let a customer buy printed takeaway menus directly on `printmenu.co.uk` instead of submitting a quote and waiting for a manual reply. Pay on the site, receive a Stripe receipt, land on a page that tells them to email their artwork to `artwork@printmenu.co.uk`. PrintMenu fulfils the design + print as today.
+Let a customer buy printed takeaway menus directly on `printmenu.co.uk` instead of submitting a quote and waiting for a manual reply. Pay on the site, receive a Stripe receipt, land on a page that tells them to email their artwork to `hello@printmenu.co.uk`. PrintMenu fulfils the design + print as today.
 
 This is a **lead-gen → self-serve** change for the 16 fixed-price SKUs in the pricing matrix. The existing quote form stays in place for custom orders.
 
@@ -39,8 +39,8 @@ This is a **lead-gen → self-serve** change for the 16 fixed-price SKUs in the 
 8. Customer lands on `${SITE_URL}/order-success.html?session_id={CHECKOUT_SESSION_ID}`.
 9. Success page shows "Checking payment…", calls `GET /api/checkout-status?session_id=...`.
 10. Function retrieves session from Stripe, returns `{ payment_status, customer_email, amount_total, order_ref }`.
-11. If `payment_status === 'paid'`: page shows order ref, big "Email artwork" button (`mailto:`), plain-text fallback (`artwork@printmenu.co.uk` + copyable order ref).
-12. If anything else: neutral "We couldn't confirm your payment yet — please email us at orders@printmenu.co.uk and we'll sort it" message.
+11. If `payment_status === 'paid'`: page shows order ref, big "Email artwork" button (`mailto:`), plain-text fallback (`hello@printmenu.co.uk` + copyable order ref).
+12. If anything else: neutral "We couldn't confirm your payment yet — please email us at hello@printmenu.co.uk and we'll sort it" message.
 
 **Out-of-band ops (manual):** Junaid checks Stripe Dashboard daily for paid orders. Any paid order with no artwork email after 24–48h gets a manual chase.
 
@@ -279,21 +279,21 @@ Failure messages name the SKU directly (not a snapshot diff).
 
 - Page initial state shows: "Checking payment…" + spinner.
 - Reads `session_id` from `URL.searchParams`.
-- If missing: shows neutral fallback ("Looking for an order? Email orders@printmenu.co.uk").
+- If missing: shows neutral fallback ("Looking for an order? Email hello@printmenu.co.uk").
 - Else: `GET /api/checkout-status?session_id=...`.
 - If `payment_status === 'paid'`:
   - Big H1: "Order received — let's design your menu."
   - Order ref displayed in a copyable box.
-  - Big `<a class="btn btn-primary" href="mailto:artwork@printmenu.co.uk?subject=...&body=...">Email your artwork</a>`. Subject and body are short and URL-encoded via `URLSearchParams`. Body template:
+  - Big `<a class="btn btn-primary" href="mailto:hello@printmenu.co.uk?subject=...&body=...">Email your artwork</a>`. Subject and body are short and URL-encoded via `URLSearchParams`. Body template:
     ```
     Order ref: cs_xxx
     Restaurant name:
     Notes:
     ```
-  - Below the button, plain-text fallback: "Or email **artwork@printmenu.co.uk** quoting order ref **cs_xxx**." Order ref has a copy-to-clipboard button.
+  - Below the button, plain-text fallback: "Or email **hello@printmenu.co.uk** quoting order ref **cs_xxx**." Order ref has a copy-to-clipboard button.
   - "What happens next" sub-section (free design → approval → print → delivery).
 - If `payment_status !== 'paid'`:
-  - Neutral message: "We couldn't confirm your payment yet. If you've been charged, please email orders@printmenu.co.uk and we'll sort it."
+  - Neutral message: "We couldn't confirm your payment yet. If you've been charged, please email hello@printmenu.co.uk and we'll sort it."
   - No artwork-email instructions shown.
 
 ### 8.3 Pricing matrix copy change
@@ -331,7 +331,7 @@ So only `/api/*` requests invoke Functions; static pages skip the Functions runt
 ### 9.3 Stripe Dashboard config (manual, documented in runbook)
 
 - Enable "Successful payment" customer receipt emails.
-- Enable merchant payment notifications (orders@printmenu.co.uk).
+- Enable merchant payment notifications (hello@printmenu.co.uk).
 - Enable dispute / refund notifications.
 - Branding: upload PrintMenu logo, set colours (navy `#11295A`, cyan `#06B5E2`).
 
@@ -360,7 +360,7 @@ So only `/api/*` requests invoke Functions; static pages skip the Functions runt
 
 - If a customer successfully pays but never reaches `/order-success.html` (closes tab, network drop after 3DS), the site has no record of the order.
 - For these cases, **Stripe Dashboard is the source of truth**. Stripe's merchant-notification email + the Payments tab show all successful payments regardless of whether the customer returned.
-- **Junaid's daily ops task:** review Stripe Dashboard, cross-reference incoming `artwork@printmenu.co.uk` emails, chase any paid order with no artwork after 24–48h.
+- **Junaid's daily ops task:** review Stripe Dashboard, cross-reference incoming `hello@printmenu.co.uk` emails, chase any paid order with no artwork after 24–48h.
 - This is sustainable at low volume. If volume grows beyond ~10 orders/day, v1.1 should add a webhook + reminder email automation.
 
 Refunds, chargebacks, disputes: handled entirely in the Stripe Dashboard manually.
@@ -407,7 +407,8 @@ Agreed with Codex round 1:
 
 ## 15. Open questions for Junaid
 
-None blocking. Everything's been settled in two rounds with Codex. Two non-blocking confirmations:
+None blocking. Everything's been settled in two rounds with Codex. One non-blocking confirmation:
 
 - The Stripe Dashboard branding (logo, colours, business name) hasn't been done — that's a 10-minute job in the Dashboard before going live.
-- `artwork@printmenu.co.uk` and `orders@printmenu.co.uk` need to exist as deliverable inboxes before launch. Currently unverified.
+
+(`hello@printmenu.co.uk` confirmed set up — used for both artwork submission and merchant notifications.)
