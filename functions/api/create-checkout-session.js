@@ -111,6 +111,7 @@ export async function onRequestPost(context) {
         ],
         client_reference_id: attempt_id,
         metadata: {
+          source: 'printmenu.co.uk',
           sku: `${size}-${qty}`,
           size,
           qty,
