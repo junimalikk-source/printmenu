@@ -31,11 +31,13 @@ You also need a Stripe **test mode** secret key (`sk_test_…`) for local testin
 
 Run:
 ```bash
-npm i stripe@^17
-npm i -D wrangler@^3
+npm i stripe@latest
+npm i -D wrangler@latest
 ```
 
-Expected: `package.json` gains `"stripe"` under `dependencies` and `"wrangler"` under `devDependencies`. Lockfile updates.
+Expected: `package.json` gains `"stripe"` under `dependencies` (current major: ≥18) and `"wrangler"` under `devDependencies` (≥4). Lockfile updates.
+
+> **Why `@latest` rather than a pinned major?** Stripe explicitly does not backport fixes/features to older `stripe-node` majors, and Cloudflare's Wrangler v3 is on extended support only. Pin once you've shipped — for greenfield code, take current.
 
 - [ ] **Step 2: Add npm scripts for local Functions dev**
 
@@ -248,7 +250,9 @@ export function createStripeClient(env) {
   }
   return new Stripe(env.STRIPE_SECRET_KEY, {
     httpClient: Stripe.createFetchHttpClient(),
-    apiVersion: '2024-12-18.acacia',
+    // Intentionally omit apiVersion — let the SDK use its release-pinned
+    // version (current Stripe-node best practice for new code; pin only
+    // when you need to lock against a specific behaviour change).
   });
 }
 ```
@@ -293,7 +297,9 @@ Create `tests/unit/api/create-checkout-session.test.js`:
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 // --- Mock the stripe module BEFORE importing the route handler ---
-const mockCreate = vi.fn();
+// vi.hoisted is required so the mock fn exists at the moment the
+// hoisted vi.mock factory runs (Vitest 4 hoists vi.mock above imports).
+const { mockCreate } = vi.hoisted(() => ({ mockCreate: vi.fn() }));
 vi.mock('stripe', () => {
   function Stripe() {
     return { checkout: { sessions: { create: mockCreate } } };
@@ -423,6 +429,24 @@ describe('POST /api/create-checkout-session', () => {
     const res = await onRequestPost({ request: req, env: ENV });
     expect(res.status).toBe(502);
   });
+
+  it('rejects body over 1KB even without Content-Length header', async () => {
+    // Build an oversized body and strip Content-Length to confirm the
+    // server enforces the cap by actually reading bytes, not header trust.
+    const oversized = { size: 'A4', qty: '20K', attempt_id: UUID, junk: 'x'.repeat(2048) };
+    const json = JSON.stringify(oversized);
+    const req = new Request('https://printmenu.co.uk/api/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Origin': 'https://printmenu.co.uk',
+      },
+      body: json,
+    });
+    const res = await onRequestPost({ request: req, env: ENV });
+    expect(res.status).toBe(400);
+    expect(mockCreate).not.toHaveBeenCalled();
+  });
 });
 ```
 
@@ -466,14 +490,21 @@ export async function onRequestPost(context) {
     return json(400, { error: 'bad request' });
   }
 
-  const lenHdr = parseInt(request.headers.get('Content-Length') || '0', 10);
-  if (lenHdr > MAX_BODY_BYTES) {
+  // Read the body as text first so we can enforce a true byte cap.
+  // Don't trust Content-Length (browsers / proxies can omit it).
+  let raw;
+  try {
+    raw = await request.text();
+  } catch {
+    return json(400, { error: 'bad request' });
+  }
+  if (new TextEncoder().encode(raw).length > MAX_BODY_BYTES) {
     return json(400, { error: 'bad request' });
   }
 
   let body;
   try {
-    body = await request.json();
+    body = JSON.parse(raw);
   } catch {
     return json(400, { error: 'bad request' });
   }
@@ -502,6 +533,8 @@ export async function onRequestPost(context) {
       {
         mode: 'payment',
         payment_method_types: ['card'],
+        // Suppress Stripe Link wallet — "cards only" means cards only.
+        wallet_options: { link: { display: 'never' } },
         line_items: [{
           quantity: 1,
           price_data: {
@@ -521,12 +554,14 @@ export async function onRequestPost(context) {
             label: { type: 'custom', custom: 'Restaurant / business name' },
             type: 'text',
             optional: false,
+            text: { minimum_length: 2, maximum_length: 80 },
           },
           {
             key: 'notes',
             label: { type: 'custom', custom: 'Anything we should know? (optional)' },
             type: 'text',
             optional: true,
+            text: { maximum_length: 500 },
           },
         ],
         client_reference_id: attempt_id,
@@ -582,7 +617,8 @@ Create `tests/unit/api/checkout-status.test.js`:
 ```js
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-const mockRetrieve = vi.fn();
+// vi.hoisted is required for Vitest 4's hoisted vi.mock factories.
+const { mockRetrieve } = vi.hoisted(() => ({ mockRetrieve: vi.fn() }));
 vi.mock('stripe', () => {
   function Stripe() {
     return { checkout: { sessions: { retrieve: mockRetrieve } } };
@@ -670,6 +706,17 @@ describe('GET /api/checkout-status', () => {
     });
     expect(res.status).toBe(400);
   });
+
+  it('rejects suffix-spoofed Origin (regression for startsWith bug)', async () => {
+    const res = await onRequestGet({
+      request: makeReq(
+        `?session_id=${VALID_SESSION_ID}`,
+        { origin: 'https://printmenu.co.uk.evil.example' }
+      ),
+      env: ENV,
+    });
+    expect(res.status).toBe(400);
+  });
 });
 ```
 
@@ -706,10 +753,27 @@ export async function onRequestGet(context) {
     return json(400, { error: 'bad request' });
   }
 
-  // Soft origin check: if Origin is present and doesn't match SITE_URL, reject.
-  const origin = request.headers.get('Origin');
-  if (origin && !origin.startsWith(env.SITE_URL)) {
-    return json(400, { error: 'bad request' });
+  // Soft origin check.
+  // Exact origin match (no startsWith — that accepts spoofed suffixes
+  // like https://printmenu.co.uk.evil.example). Fall back to Referer
+  // if Origin is absent. If neither is present, accept (legitimate
+  // first-party navigations sometimes drop both).
+  let expectedOrigin;
+  try { expectedOrigin = new URL(env.SITE_URL).origin; } catch { expectedOrigin = env.SITE_URL; }
+  const originHdr = request.headers.get('Origin');
+  if (originHdr) {
+    if (originHdr !== expectedOrigin) {
+      return json(400, { error: 'bad request' });
+    }
+  } else {
+    const referer = request.headers.get('Referer');
+    if (referer) {
+      let refOrigin;
+      try { refOrigin = new URL(referer).origin; } catch { refOrigin = null; }
+      if (refOrigin !== expectedOrigin) {
+        return json(400, { error: 'bad request' });
+      }
+    }
   }
 
   const stripe = createStripeClient(env);
@@ -1471,6 +1535,11 @@ Push to GitHub `main` — Cloudflare Pages auto-deploys. Verify the live URL wor
 | §12 Test plan | Tasks 2, 4, 5, 11 |
 
 No gaps identified. No placeholders. Function/method names consistent across tasks (`createStripeClient`, `lookup`, `onRequestPost`, `onRequestGet`, `startCheckout`).
+
+**Codex review history:**
+- Round 1 (pre-spec) — caught absolute-URL P1, custom-field-key P1, no-webhook risk framing, broken Netlify form unrelated finding. Spec rewritten.
+- Round 2 (revised spec) — go, with checkout-status verification endpoint added.
+- Round 3 (plan review) — 3 P1s incorporated: `stripe@latest` / `wrangler@latest` (not pinned old majors), `vi.hoisted` for Vitest 4 mock factories, `apiVersion` omitted in `stripe.js`. 4 P2s also incorporated: `wallet_options.link.display='never'` (no Stripe Link wallet), `text.minimum_length/maximum_length` on custom fields, exact origin match (no `startsWith` suffix-spoof), `request.text()` + byte-length cap (no `Content-Length` trust). Two regression tests added.
 
 ---
 
