@@ -790,3 +790,22 @@ section { padding: var(--space-12) 0; }
 }
 .success-fallback-line { color: var(--c-text-muted); }
 .success-steps { line-height: 1.7; padding-left: var(--space-5); }
+
+/* Pricing cell busy state (checkout in flight) */
+.pt-cell { cursor: pointer; transition: opacity .12s ease; }
+.pt-cell:focus-visible {
+  outline: 2px solid var(--c-yellow);
+  outline-offset: 2px;
+}
+.pt-cell[aria-busy="true"] {
+  opacity: .55;
+  pointer-events: none;
+  cursor: progress;
+}
+.checkout-status {
+  margin-top: var(--space-4);
+  font-size: 14px;
+  color: var(--c-text-muted);
+  min-height: 1.5em;
+}
+.checkout-status:empty { display: none; }
