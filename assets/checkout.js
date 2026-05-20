@@ -37,7 +37,10 @@ import { selectionsFromCell } from '/script.js';
       });
       if (!res.ok) throw new Error('checkout-failed');
       const { url } = await res.json();
-      if (!url) throw new Error('no-url');
+      // Defence-in-depth: reject anything that isn't a Stripe HTTPS URL.
+      if (typeof url !== 'string' || !/^https:\/\/checkout\.stripe\.com\//.test(url)) {
+        throw new Error('bad-url');
+      }
       window.location.assign(url);
     } catch {
       cell.setAttribute('aria-busy', 'false');
