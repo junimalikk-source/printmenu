@@ -1,8 +1,8 @@
 import { createStripeClient } from '../lib/stripe.js';
 import { lookup, PRICE_VERSION, SALE_ENDS } from '../lib/pricing.js';
 
-const VALID_SIZES = ['A5', 'A4', 'A4+', 'A3'];
-const VALID_QTYS = ['10K', '20K', '40K', '100K'];
+const VALID_SIZES = ['A5', 'A4', 'A4+', 'A3', 'TEST'];
+const VALID_QTYS = ['10K', '20K', '40K', '100K', '1'];
 const UUID_V4_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const MAX_BODY_BYTES = 1024;
 
