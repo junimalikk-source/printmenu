@@ -1,5 +1,7 @@
 // assets/checkout.js — wires .pt-cell clicks to Stripe Checkout via
 // /api/create-checkout-session. Replaces the previous quote-prefill handler.
+import { selectionsFromCell } from '/script.js';
+
 (function () {
   const PHONE = '01274 305555';
 
@@ -18,9 +20,9 @@
 
   async function startCheckout(cell) {
     if (cell.getAttribute('aria-busy') === 'true') return;
-    const size = cell.dataset.size;
-    const qty = cell.dataset.qty;
-    if (!size || !qty) return;
+    const selections = selectionsFromCell(cell);
+    if (!selections) return;
+    const { size, qty } = selections;
 
     const status = ensureStatusRegion();
     cell.setAttribute('aria-busy', 'true');
