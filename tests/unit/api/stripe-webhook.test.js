@@ -132,6 +132,16 @@ describe('POST /api/stripe-webhook', () => {
     expect(res.status).toBe(200);
   });
 
+  it('returns 200 and skips email when payment_status is not paid', async () => {
+    mockConstructEventAsync.mockResolvedValue({
+      type: 'checkout.session.completed',
+      data: { object: { ...COMPLETED_SESSION, payment_status: 'unpaid' } },
+    });
+    const res = await onRequestPost({ request: makeReq('{}'), env: ENV });
+    expect(res.status).toBe(200);
+    expect(mockSendMerchantNotification).not.toHaveBeenCalled();
+  });
+
   it('returns 500 when STRIPE_WEBHOOK_SECRET is missing', async () => {
     const res = await onRequestPost({
       request: makeReq('{}'),

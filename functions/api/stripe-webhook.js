@@ -52,6 +52,12 @@ export async function onRequestPost(context) {
 
   const session = event.data.object;
 
+  // Guard against unpaid sessions (e.g. free checkouts, certain redirect flows).
+  if (session.payment_status !== 'paid') {
+    console.warn('[webhook] session completed but payment_status:', session.payment_status);
+    return json(200, { received: true });
+  }
+
   const order = {
     orderRef: session.id,
     sku: session.metadata?.sku ?? 'unknown',
