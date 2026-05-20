@@ -24,6 +24,15 @@ function makeReq(qs = '', opts = {}) {
   });
 }
 
+function makeReqNoOrigin(qs = '', opts = {}) {
+  const headers = {};
+  if (opts.referer) headers.Referer = opts.referer;
+  return new Request(`https://printmenu.co.uk/api/checkout-status${qs}`, {
+    method: 'GET',
+    headers,
+  });
+}
+
 beforeEach(() => {
   mockRetrieve.mockReset();
 });
@@ -99,5 +108,32 @@ describe('GET /api/checkout-status', () => {
       env: ENV,
     });
     expect(res.status).toBe(400);
+  });
+
+  it('accepts when both Origin and Referer are absent (first-party nav)', async () => {
+    mockRetrieve.mockResolvedValue({
+      id: VALID_SESSION_ID,
+      payment_status: 'paid',
+      amount_total: 55000,
+      customer_details: { email: 'a@b.co' },
+      custom_fields: [],
+      metadata: { sku: 'A4-20K' },
+    });
+    const res = await onRequestGet({
+      request: makeReqNoOrigin(`?session_id=${VALID_SESSION_ID}`),
+      env: ENV,
+    });
+    expect(res.status).toBe(200);
+  });
+
+  it('rejects suffix-spoofed Referer (Referer fallback regression)', async () => {
+    const res = await onRequestGet({
+      request: makeReqNoOrigin(`?session_id=${VALID_SESSION_ID}`, {
+        referer: 'https://printmenu.co.uk.evil.example/some/path',
+      }),
+      env: ENV,
+    });
+    expect(res.status).toBe(400);
+    expect(mockRetrieve).not.toHaveBeenCalled();
   });
 });
