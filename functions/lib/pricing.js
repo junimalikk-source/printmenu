@@ -22,6 +22,7 @@ export const PRICES = {
   'A3-20K':   { amount_pence:  85000, product_name: '20,000 × A3 Takeaway Menus, 130gsm, full colour both sides'   },
   'A3-40K':   { amount_pence: 150000, product_name: '40,000 × A3 Takeaway Menus, 130gsm, full colour both sides'   },
   'A3-100K':  { amount_pence: 300000, product_name: '100,000 × A3 Takeaway Menus, 130gsm, full colour both sides'  },
+  'TEST-1':   { amount_pence:    100, product_name: '£1 Test Order – Stripe live verification'                      },
 };
 
 export function lookup(size, qty) {
