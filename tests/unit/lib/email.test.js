@@ -50,6 +50,9 @@ describe('sendMerchantNotification', () => {
     expect(body.html).toContain('£425.00');
     expect(body.html).toContain("Tony's Pizza");
     expect(body.html).toContain('customer@example.com');
+    // Regression: must link to /checkout/sessions/ not /payments/ (cs_ IDs don't work at /payments/)
+    expect(body.html).toContain('dashboard.stripe.com/checkout/sessions/cs_live_abc123');
+    expect(body.html).not.toContain('dashboard.stripe.com/payments/cs_live_abc123');
 
     expect(result).toEqual({ ok: true });
   });

@@ -65,8 +65,8 @@ function buildHtml(order) {
 
   <p style="font-size:12px;color:#999;margin-top:24px">
     View in Stripe Dashboard:
-    <a href="https://dashboard.stripe.com/payments/${orderRef}">
-      https://dashboard.stripe.com/payments/${orderRef}
+    <a href="https://dashboard.stripe.com/checkout/sessions/${orderRef}">
+      https://dashboard.stripe.com/checkout/sessions/${orderRef}
     </a>
   </p>
 </body>
