@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order received — PrintMenu.co.uk</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="container success-page" role="main">
+    <section id="success-checking" aria-live="polite">
+      <h1>Checking your payment…</h1>
+      <p>One moment while we confirm the order.</p>
+    </section>
+
+    <section id="success-paid" hidden>
+      <h1>Order received — let's design your menu.</h1>
+      <p class="success-ref">
+        Your order reference:
+        <code id="order-ref" class="success-ref-code"></code>
+        <button type="button" id="copy-ref" class="btn btn-secondary success-copy-btn" aria-label="Copy order reference">Copy</button>
+      </p>
+
+      <p>
+        <a id="email-artwork" class="btn btn-primary success-cta" href="mailto:hello@printmenu.co.uk">
+          Email your artwork →
+        </a>
+      </p>
+
+      <p class="success-fallback-line">
+        Or email <strong>hello@printmenu.co.uk</strong> quoting order ref
+        <code id="order-ref-plain"></code>.
+      </p>
+
+      <h2>What happens next</h2>
+      <ol class="success-steps">
+        <li>Email us your menu items (or your current menu) plus any artwork or photos.</li>
+        <li>We design your menu free of charge and send you a proof for approval.</li>
+        <li>Once you approve, we print and deliver in 3–5 working days.</li>
+      </ol>
+    </section>
+
+    <section id="success-fallback" hidden>
+      <h1>We couldn't confirm your payment yet.</h1>
+      <p>If you've been charged, please email
+        <a href="mailto:hello@printmenu.co.uk">hello@printmenu.co.uk</a> and we'll sort it out.</p>
+    </section>
+  </main>
+  <script src="/assets/success.js" defer></script>
+</body>
+</html>
