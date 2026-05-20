@@ -44,24 +44,7 @@ test.describe('pricing table', () => {
     expect(display).toBe('block');
   });
 
-  test('clicking a price cell scrolls to form and pre-fills selects', async ({ page }) => {
-    await page.goto('/');
-    // The form's selects don't exist yet (they're added in Task 16).
-    // Until then, this test only asserts the cell is clickable + scrolls.
-    await page.locator('#pricing .pt-cell[data-size="A4"][data-qty="20K"]').click();
-    // Allow smooth scroll to complete
-    await page.waitForTimeout(800);
-    const inView = await page.locator('#quote').evaluate((el) => {
-      const { top, bottom } = el.getBoundingClientRect();
-      return top < window.innerHeight && bottom > 0;
-    });
-    expect(inView).toBe(true);
-  });
-
-  test('clicking A4/20K cell pre-selects the form dropdowns', async ({ page }) => {
-    await page.goto('/');
-    await page.locator('#pricing .pt-cell[data-size="A4"][data-qty="20K"]').click();
-    await expect(page.locator('#quote select[name="size"]')).toHaveValue('A4');
-    await expect(page.locator('#quote select[name="quantity"]')).toHaveValue('20K');
-  });
+  // Note: click-behavior tests (cell → form prefill) used to live here.
+  // Removed because cells now trigger Stripe Checkout instead of prefill;
+  // that flow is covered end-to-end in tests/e2e/checkout.spec.js.
 });

@@ -34,13 +34,7 @@ test('all gallery images have non-empty alt text', async ({ page }) => {
   for (const a of alts) expect(a.length).toBeGreaterThan(3);
 });
 
-test('every form field has an associated label', async ({ page }) => {
-  await page.goto('/');
-  const orphans = await page.evaluate(() => {
-    const fields = Array.from(document.querySelectorAll('#quote-form input, #quote-form select, #quote-form textarea'));
-    return fields.filter(f => f.type !== 'hidden')
-      .filter(f => !f.closest('label') && !document.querySelector(`label[for="${f.id}"]`))
-      .map(f => f.name || f.id);
-  });
-  expect(orphans).toEqual([]);
-});
+// Note: the "every form field has a label" test was removed when the
+// Netlify quote form was deleted (replaced with a static contact panel).
+// There are no `<form>` elements on the site anymore — Stripe Checkout is
+// hosted on Stripe's own domain, not embedded.

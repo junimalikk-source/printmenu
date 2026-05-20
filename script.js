@@ -1,11 +1,12 @@
 // =========================================================
 // Cheapestprint.co.uk — script.js
 // Sections:
-//   1. nav        (Task 5)
-//   2. pricing    (Task 10)
-//   3. lightbox   (Task 13)
-//   4. form       (Tasks 16–17)
+//   1. nav
+//   2. pricing helper (selectionsFromCell — used by assets/checkout.js)
+//   3. lightbox
+//   4. form — REMOVED (see comment below)
 //   5. gallery effects (marquee loop + 3D mouse-tilt)
+//   5b. sale countdown
 //   6. boot
 // =========================================================
 
@@ -83,71 +84,10 @@ function initLightbox() {
   });
 }
 
-// 4. form ----------------------------------------------------
-export function isUKPhone(input) {
-  if (typeof input !== 'string') return false;
-  const digits = input.replace(/[^\d]/g, '');
-  // Accept: 10 digits starting 0 (UK national), 11 digits starting 0,
-  // 11 digits starting 44 (international), 12 digits starting 0044.
-  if (/^0\d{9,10}$/.test(digits)) return true;
-  if (/^44\d{9,10}$/.test(digits)) return true;
-  if (/^0044\d{9,10}$/.test(digits)) return true;
-  return false;
-}
-
-function initForm() {
-  const form = document.getElementById('quote-form');
-  if (!form) return;
-  const status = form.querySelector('.qf-status');
-  const phoneInput = form.querySelector('#qf-phone');
-  const honey = form.querySelector('[name="company_website"]');
-
-  const setStatus = (text, kind) => {
-    status.textContent = text;
-    status.hidden = false;
-    status.classList.remove('is-success', 'is-error');
-    if (kind) status.classList.add(`is-${kind}`);
-  };
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    // Honeypot: pretend success, send nothing.
-    if (honey && honey.value.trim() !== '') {
-      setStatus("Thanks, we'll be in touch within 1 working hour.", 'success');
-      form.reset();
-      return;
-    }
-
-    // Native validation first
-    if (!form.checkValidity()) {
-      setStatus('Please fill in your name, phone, size and quantity.', 'error');
-      form.reportValidity();
-      return;
-    }
-
-    if (!isUKPhone(phoneInput.value)) {
-      setStatus('Please enter a valid UK phone number.', 'error');
-      phoneInput.focus();
-      return;
-    }
-
-    setStatus('Sending…', null);
-
-    try {
-      const res = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(new FormData(form)).toString(),
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      setStatus("Thanks, we'll be in touch within 1 working hour. For urgent quotes call 01274 305555.", 'success');
-      form.reset();
-    } catch (err) {
-      setStatus('Something went wrong. Please call us on 01274 305555 — sorry about that.', 'error');
-    }
-  });
-}
+// 4. form — REMOVED. The previous Netlify-bound quote form silently 404'd on
+//    Cloudflare Pages (the current host). The quote section is now a static
+//    contact panel (#quote in index.html); standard orders go through Stripe
+//    Checkout (assets/checkout.js). isUKPhone + initForm both removed.
 
 // 5. gallery effects ----------------------------------------
 function initGalleryEffects() {
@@ -215,7 +155,6 @@ function initSaleCountdown() {
 function boot() {
   initNav();
   initLightbox();
-  initForm();
   initGalleryEffects();
   initSaleCountdown();
 }
