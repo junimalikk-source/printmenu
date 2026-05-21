@@ -88,8 +88,12 @@ function buildCustomerHtml(order) {
 <html lang="en">
 <head><meta charset="UTF-8"><title>Order Confirmed</title></head>
 <body style="font-family:sans-serif;color:#222;max-width:600px;margin:0 auto;padding:24px">
+  <div style="margin-bottom:20px">
+    <img src="https://printmenu.co.uk/assets/logos/printmenu-logo.png"
+         alt="Print Menu" style="height:48px;width:auto;display:block">
+  </div>
   <h1 style="color:#1a1a2e;font-size:22px;margin-bottom:4px">Your order is confirmed</h1>
-  <p style="color:#555;margin-top:0">Hi ${firstName}, thank you for your order from <strong>Print Menu</strong>.</p>
+  <p style="color:#555;margin-top:0">Hi ${firstName}, thank you for your order.</p>
   <hr style="border:none;border-top:1px solid #e0e0e0;margin:16px 0">
 
   <table style="width:100%;border-collapse:collapse;font-size:15px">
@@ -110,12 +114,21 @@ function buildCustomerHtml(order) {
   <hr style="border:none;border-top:1px solid #e0e0e0;margin:16px 0">
 
   <h2 style="font-size:17px;margin-bottom:8px">What happens next?</h2>
-  <p style="font-size:15px;line-height:1.6;margin:0 0 12px">
-    <strong>1. Send us your artwork</strong><br>
-    Email your artwork files to
-    <a href="mailto:hello@printmenu.co.uk">hello@printmenu.co.uk</a>
-    with your order reference <strong>${orderRef}</strong> in the subject line.
-  </p>
+
+  <div style="background:#fff8e1;border:2px solid #f5a623;border-radius:8px;padding:16px;margin-bottom:16px">
+    <p style="margin:0 0 6px;font-size:16px;font-weight:700;color:#1a1a2e">
+      &#9993; Action required: Send your artwork
+    </p>
+    <p style="margin:0;font-size:15px;line-height:1.6">
+      Email your artwork files to
+      <a href="mailto:hello@printmenu.co.uk" style="color:#f5a623;font-weight:600">hello@printmenu.co.uk</a>
+      with your order reference in the subject line:
+    </p>
+    <p style="margin:10px 0 0;font-size:15px;background:#fff;padding:8px 12px;border-radius:4px;font-family:monospace;font-weight:700;color:#1a1a2e">
+      Artwork for order ${orderRef}
+    </p>
+  </div>
+
   <p style="font-size:15px;line-height:1.6;margin:0 0 12px">
     <strong>2. We check and approve</strong><br>
     We'll review your artwork and confirm it's print-ready. If anything needs adjusting we'll let you know.
