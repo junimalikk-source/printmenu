@@ -25,7 +25,10 @@ function initNav() {
 
   burger.addEventListener('click', () => setOpen(overlay.hidden));
   overlay.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A') setOpen(false);
+    if (e.target.tagName === 'A' || e.target.closest('.nav-overlay-close')) setOpen(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !overlay.hidden) setOpen(false);
   });
 
   const onScroll = () => {
