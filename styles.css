@@ -285,8 +285,8 @@ section { padding: var(--space-12) 0; }
   width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
 }
 @media (max-width: 560px) {
-  .pt-how-strip { flex-direction: column; align-items: flex-start; gap: var(--space-4); padding: var(--space-5); }
-  .pt-how-option { max-width: none; }
+  .pt-how-strip { flex-direction: column; align-items: stretch; gap: var(--space-4); padding: var(--space-5); }
+  .pt-how-option { max-width: none; display: flex; flex-direction: row; align-items: center; }
   .pt-how-or { align-self: center; }
 }
 
