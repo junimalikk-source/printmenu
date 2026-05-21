@@ -14,5 +14,5 @@ test('hero shows headline, subhead, and two CTAs', async ({ page }) => {
 
 test('whatsapp link uses the configured number', async ({ page }) => {
   const href = await page.locator('#hero a[href^="https://wa.me/"]').first().getAttribute('href');
-  expect(href).toBe('https://wa.me/447572574582');
+  expect(href).toBe('https://wa.me/447348952125');
 });
