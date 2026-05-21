@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "http-server -p 8080 -c-1 -o .",
     "serve": "http-server -p 8080 -c-1 .",
+    "dev:functions": "wrangler pages dev . --port 8788 --compatibility-date=2025-01-01",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
@@ -17,6 +18,10 @@
     "@playwright/test": "^1.60.0",
     "http-server": "^14.1.1",
     "jsdom": "^29.1.1",
-    "vitest": "^4.1.6"
+    "vitest": "^4.1.6",
+    "wrangler": "^4.93.0"
+  },
+  "dependencies": {
+    "stripe": "^22.1.1"
   }
 }
