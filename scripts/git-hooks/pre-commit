@@ -1,0 +1,23 @@
+#!/bin/sh
+# Inlines the shared head partial into all HTML files, re-stages any that changed,
+# then validates required head tags. Blocks commit on validation failure.
+
+set -e
+
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root"
+
+node scripts/build-head.js
+
+# Re-stage any HTML files the build touched (only those already staged).
+changed=$(git diff --name-only -- '*.html')
+if [ -n "$changed" ]; then
+  staged=$(git diff --name-only --cached -- '*.html')
+  for f in $changed; do
+    case " $staged " in
+      *" $f "*) git add "$f" ;;
+    esac
+  done
+fi
+
+node scripts/validate-html.js
