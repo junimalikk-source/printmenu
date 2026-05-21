@@ -1,4 +1,44 @@
+# robots.txt for printmenu.co.uk
+# The UK's takeaway menu printing specialist
+
+# Default rule for all crawlers
 User-agent: *
 Allow: /
+Disallow: /cdn-cgi/
+Disallow: /admin/
+Disallow: /draft/
+Disallow: /preview/
+Disallow: /*?preview=
+Disallow: /*?draft=
+Disallow: /thank-you/
+Disallow: /quote-received/
 
+# Allow major search engines explicit access
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Allow SEO research tools (so you can monitor your own rankings)
+User-agent: AhrefsBot
+Allow: /
+
+User-agent: SemrushBot
+Allow: /
+
+User-agent: rogerbot
+Allow: /
+
+User-agent: MJ12bot
+Allow: /
+
+
+# Sitemap location
 Sitemap: https://printmenu.co.uk/sitemap.xml
