@@ -255,6 +255,41 @@ section { padding: var(--space-12) 0; }
 }
 .pt-spec-note strong { color: var(--c-black); font-weight: 800; }
 
+/* two-path ordering strip */
+.pt-how-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  background: var(--c-white);
+  border: 2px solid var(--c-grey);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  margin-bottom: var(--space-5);
+}
+.pt-how-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 1;
+  max-width: 260px;
+}
+.pt-how-icon { font-size: 28px; flex-shrink: 0; }
+.pt-how-text { display: flex; flex-direction: column; gap: 2px; }
+.pt-how-text strong { font-size: 15px; font-weight: 800; color: var(--c-black); }
+.pt-how-text span { font-size: 13px; color: var(--c-text-muted); line-height: 1.4; }
+.pt-how-or {
+  font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--c-text-muted); flex-shrink: 0;
+  border: 1.5px solid var(--c-grey); border-radius: 50%;
+  width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+}
+@media (max-width: 560px) {
+  .pt-how-strip { flex-direction: column; align-items: flex-start; gap: var(--space-4); padding: var(--space-5); }
+  .pt-how-option { max-width: none; }
+  .pt-how-or { align-self: center; }
+}
+
 /* 8b. pricing — mobile (≤ 720px) ----------------------------- */
 @media (max-width: 720px) {
   .pt-head { display: none; }
