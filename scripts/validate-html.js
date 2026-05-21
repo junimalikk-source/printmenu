@@ -9,6 +9,8 @@ const htmlFiles = readdirSync(root).filter(f => f.endsWith('.html'));
 const checks = [
   { name: 'head-shared:start marker', test: s => s.includes('<!-- head-shared:start -->') },
   { name: 'head-shared:end marker', test: s => s.includes('<!-- head-shared:end -->') },
+  { name: 'body-start:start marker', test: s => s.includes('<!-- body-start:start -->') },
+  { name: 'body-start:end marker', test: s => s.includes('<!-- body-start:end -->') },
   { name: '<title>', test: s => /<title>[^<]+<\/title>/i.test(s) },
   { name: '<link rel="canonical">', test: s => /<link\s+rel=["']canonical["']/i.test(s) },
 ];
