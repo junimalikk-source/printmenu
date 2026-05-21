@@ -51,6 +51,8 @@ describe('pricing drift vs index.html matrix', () => {
 
   it('every pricing.js entry has a matching HTML cell', () => {
     for (const sku of Object.keys(PRICES)) {
+      // Skip dev-only SKUs (e.g. TEST-1) — these are internal and have no HTML cell.
+      if (sku.startsWith('TEST')) continue;
       // Split on the hyphen that precedes a digit (handles "A4+-20K").
       const [size, qty] = sku.split(/-(?=\d)/);
       const found = cells.some(c => c.dataset.size === size && c.dataset.qty === qty);

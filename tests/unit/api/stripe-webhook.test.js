@@ -15,11 +15,13 @@ vi.mock('stripe', () => {
 });
 
 // Mock email helper
-const { mockSendMerchantNotification } = vi.hoisted(() => ({
+const { mockSendMerchantNotification, mockSendCustomerConfirmation } = vi.hoisted(() => ({
   mockSendMerchantNotification: vi.fn(),
+  mockSendCustomerConfirmation: vi.fn(),
 }));
 vi.mock('../../../functions/lib/email.js', () => ({
   sendMerchantNotification: mockSendMerchantNotification,
+  sendCustomerConfirmation: mockSendCustomerConfirmation,
 }));
 
 import { onRequestPost } from '../../../functions/api/stripe-webhook.js';
@@ -71,6 +73,7 @@ function makeReq(body = '', sig = 'stripe-sig') {
 beforeEach(() => {
   mockConstructEventAsync.mockReset();
   mockSendMerchantNotification.mockReset();
+  mockSendCustomerConfirmation.mockReset();
 });
 
 describe('POST /api/stripe-webhook', () => {
@@ -100,16 +103,18 @@ describe('POST /api/stripe-webhook', () => {
     expect(mockSendMerchantNotification).not.toHaveBeenCalled();
   });
 
-  it('returns 200 and calls sendMerchantNotification for checkout.session.completed', async () => {
+  it('returns 200 and calls both email functions for checkout.session.completed', async () => {
     mockConstructEventAsync.mockResolvedValue({
       type: 'checkout.session.completed',
       data: { object: COMPLETED_SESSION },
     });
     mockSendMerchantNotification.mockResolvedValue({ ok: true });
+    mockSendCustomerConfirmation.mockResolvedValue({ ok: true });
 
     const res = await onRequestPost({ request: makeReq('{}'), env: ENV });
     expect(res.status).toBe(200);
     expect(mockSendMerchantNotification).toHaveBeenCalledOnce();
+    expect(mockSendCustomerConfirmation).toHaveBeenCalledOnce();
 
     const [apiKey, order] = mockSendMerchantNotification.mock.calls[0];
     expect(apiKey).toBe('re_test_xxx');
@@ -119,6 +124,10 @@ describe('POST /api/stripe-webhook', () => {
     expect(order.restaurantName).toBe("Tony's Pizza");
     expect(order.notes).toBe('Double-sided');
     expect(order.customerEmail).toBe('customer@example.com');
+
+    // Customer email goes to the customer's address
+    const [, customerOrder] = mockSendCustomerConfirmation.mock.calls[0];
+    expect(customerOrder.customerEmail).toBe('customer@example.com');
   });
 
   it('returns 200 even when email sending fails (Stripe must not retry)', async () => {
@@ -127,6 +136,7 @@ describe('POST /api/stripe-webhook', () => {
       data: { object: COMPLETED_SESSION },
     });
     mockSendMerchantNotification.mockResolvedValue({ ok: false, error: 'Resend 500' });
+    mockSendCustomerConfirmation.mockResolvedValue({ ok: false, error: 'Resend 500' });
 
     const res = await onRequestPost({ request: makeReq('{}'), env: ENV });
     expect(res.status).toBe(200);

@@ -1,5 +1,5 @@
 import { createStripeClient } from '../lib/stripe.js';
-import { sendMerchantNotification } from '../lib/email.js';
+import { sendMerchantNotification, sendCustomerConfirmation } from '../lib/email.js';
 
 function json(status, body) {
   return new Response(JSON.stringify(body), {
@@ -70,11 +70,13 @@ export async function onRequestPost(context) {
     shippingAddress: session.shipping_details?.address ?? null,
   };
 
-  // Send merchant notification — never fail the webhook on email error.
-  const emailResult = await sendMerchantNotification(env.RESEND_API_KEY, order);
-  if (!emailResult.ok) {
-    console.error('[webhook] email failed:', emailResult.error);
-  }
+  // Send both emails — never fail the webhook on email errors.
+  const [merchantResult, customerResult] = await Promise.all([
+    sendMerchantNotification(env.RESEND_API_KEY, order),
+    sendCustomerConfirmation(env.RESEND_API_KEY, order),
+  ]);
+  if (!merchantResult.ok) console.error('[webhook] merchant email failed:', merchantResult.error);
+  if (!customerResult.ok) console.error('[webhook] customer email failed:', customerResult.error);
 
   return json(200, { received: true });
 }
