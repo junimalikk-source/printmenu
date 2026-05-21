@@ -125,8 +125,11 @@ section { padding: var(--space-12) 0; }
 .nav-hamburger { display: none; width: 40px; height: 40px; padding: 0; border: 0; background: transparent; flex-direction: column; gap: 5px; align-items: center; justify-content: center; margin-left: auto; }
 .nav-hamburger span { width: 22px; height: 2px; background: var(--c-black); transition: transform .2s ease, opacity .2s ease; }
 .nav-overlay { position: fixed; inset: 0; background: var(--c-black); color: var(--c-white); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-4); padding: calc(var(--nav-height) + var(--space-4)) var(--space-4) var(--space-8); font-size: 22px; font-weight: 800; z-index: 200; overflow-y: auto; }
-.nav-overlay-close { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; color: var(--c-white); font-size: 36px; line-height: 1; cursor: pointer; font-family: inherit; }
+.nav-overlay-close { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; color: var(--c-white); font-size: 36px; line-height: 1; cursor: pointer; font-family: inherit; display: flex; align-items: center; justify-content: center; z-index: 1; }
 .nav-overlay-close:focus-visible { outline: 2px solid var(--c-yellow); outline-offset: 2px; border-radius: 4px; }
+body.nav-open .sale-banner,
+body.nav-open .top-nav,
+body.nav-open .wa-float { display: none; }
 .nav-overlay[hidden] { display: none; }
 .nav-overlay a { text-decoration: none; color: var(--c-white); }
 .nav-overlay-divider { width: 80px; height: 1px; background: rgba(255,255,255,.2); margin: var(--space-2) 0; }
