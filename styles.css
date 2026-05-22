@@ -327,15 +327,27 @@ body.nav-open .wa-float { display: none; }
 
 /* 9. Section: how-it-works
    ------------------------------------------------------------ */
-.how-it-works { background: var(--c-white); }
-.hiw-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
-.hiw-step { background: var(--c-off-white); border-radius: var(--radius-md); padding: var(--space-6); }
-.hiw-num { background: var(--c-yellow); color: var(--c-black); width: 40px; height: 40px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 900; font-size: 20px; margin-bottom: var(--space-4); }
-.hiw-step h3 { margin-bottom: var(--space-2); }
-.hiw-step p { color: var(--c-text-muted); margin: 0; }
+.how-it-works { background: var(--c-off-white); padding: var(--space-10) 0; }
+.hiw-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); margin-bottom: var(--space-8); }
+
+.hiw-step { background: var(--c-white); border-radius: var(--radius-md); padding: var(--space-6); border: 1px solid #e4e4ea; position: relative; overflow: hidden; }
+.hiw-step::before { content: attr(data-step); position: absolute; top: -10px; right: 12px; font-size: 96px; font-weight: 900; color: var(--c-black); opacity: .04; line-height: 1; pointer-events: none; }
+.hiw-step[data-step="1"]::before { content: "1"; }
+.hiw-step[data-step="2"]::before { content: "2"; }
+.hiw-step[data-step="3"]::before { content: "3"; }
+
+.hiw-step-top { display: flex; align-items: center; margin-bottom: var(--space-4); }
+.hiw-num { background: var(--c-black); color: var(--c-white); width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px; flex-shrink: 0; }
+.hiw-connector { flex: 1; height: 2px; background: repeating-linear-gradient(90deg, var(--c-yellow) 0, var(--c-yellow) 6px, transparent 6px, transparent 12px); margin-left: var(--space-3); }
+.hiw-icon { font-size: 36px; display: block; margin-bottom: var(--space-3); }
+.hiw-step h3 { font-size: 18px; font-weight: 800; color: var(--c-black); margin-bottom: var(--space-2); }
+.hiw-step p { color: var(--c-text-muted); margin: 0; line-height: 1.6; font-size: 15px; }
+
+.hiw-cta { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; }
 
 @media (max-width: 720px) {
   .hiw-grid { grid-template-columns: 1fr; }
+  .hiw-connector { display: none; }
 }
 
 /* 10. Section: gallery (marquee + 3D mouse-tilt)
