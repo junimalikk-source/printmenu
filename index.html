@@ -53,13 +53,18 @@
     "url": "https://printmenu.co.uk/",
     "logo": "https://printmenu.co.uk/assets/logos/printmenu-logo.png",
     "image": "https://printmenu.co.uk/assets/logos/printmenu-logo.png",
+    "description": "UK takeaway menu printing specialist since 2005. 10,000 full-colour A4 takeaway menus from £425 with free design and free UK delivery.",
     "telephone": "+441274305555",
     "email": "hello@printmenu.co.uk",
     "priceRange": "££",
-    "areaServed": "United Kingdom",
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Bradford",
+      "addressRegion": "West Yorkshire",
       "addressCountry": "GB"
     },
     "openingHoursSpecification": [{
@@ -67,6 +72,43 @@
       "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
       "opens": "09:00",
       "closes": "17:30"
+    }, {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Saturday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    }],
+    "foundingDate": "2005"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "PrintMenu.co.uk",
+    "url": "https://printmenu.co.uk/",
+    "logo": "https://printmenu.co.uk/assets/logos/printmenu-logo.png",
+    "foundingDate": "2005",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+44-1274-305555",
+      "contactType": "customer service",
+      "areaServed": "GB",
+      "availableLanguage": ["en"]
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://printmenu.co.uk/"
     }]
   }
   </script>
@@ -76,7 +118,7 @@
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "Takeaway Menu Printing",
-    "description": "Full-colour 130gsm takeaway menu printing with free design and free UK delivery. Sizes A5, A4, A4+ extended, and A3. Turnaround 3–5 working days.",
+    "description": "Full-colour 130gsm gloss takeaway menu printing on offset litho presses. Sizes A5, A4, A4+ extended, and A3. Includes free menu design and free UK delivery. Turnaround 3 to 5 working days from artwork approval.",
     "brand": {
       "@type": "Brand",
       "name": "PrintMenu.co.uk"
@@ -86,7 +128,7 @@
       "@type": "AggregateOffer",
       "priceCurrency": "GBP",
       "lowPrice": "200",
-      "highPrice": "2800",
+      "highPrice": "3000",
       "offerCount": "16",
       "availability": "https://schema.org/InStock",
       "url": "https://printmenu.co.uk/#pricing",
@@ -108,7 +150,7 @@
         "name": "What paper weight do you print takeaway menus on?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "All our takeaway menus are printed on 130gsm paper, full colour, both sides. It's the standard weight British takeaways have used for years — premium feel, posts well, and works for door-drops or in-store."
+          "text": "All our takeaway menus print on 130gsm gloss paper, full colour CMYK both sides. 130gsm is the standard weight British takeaways have used for two decades. It feels premium in the hand, posts cleanly through letterboxes, and works for door drops, counter handouts, and in-store use."
         }
       },
       {
@@ -116,7 +158,7 @@
         "name": "How long does takeaway menu printing take?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "3–5 working days from artwork approval to your door. We start production the day you sign off the design proof."
+          "text": "Standard turnaround is 3 to 5 working days from artwork approval to your door. Production starts the working day you sign off the digital proof. Free UK delivery is included on every order, with most menus arriving by next-day courier once dispatched."
         }
       },
       {
@@ -124,7 +166,7 @@
         "name": "Do you design the menu for me?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes — menu design is included free with every order. Send us your dishes, prices, logo and any branding, and we lay out a print-ready design for you to approve before we print."
+          "text": "Yes, menu design comes free with every order. Send us your dishes, prices, logo and any photos. Our in-house designers lay out a print-ready PDF with 3mm bleed and crop marks, then send a digital proof for you to approve. Revisions stay free until sign-off."
         }
       },
       {
@@ -132,7 +174,7 @@
         "name": "Do you deliver takeaway menus across the UK?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes — free UK delivery is included on every order, with no minimum. We post menus to takeaways anywhere in England, Scotland, Wales and Northern Ireland."
+          "text": "Yes, free UK delivery comes with every order, no minimum spend. We post takeaway menus to any postcode in England, Scotland, Wales, and Northern Ireland, including the Highlands and the Channel Islands. Most orders dispatch by next-day courier once printed."
         }
       },
       {
@@ -140,7 +182,7 @@
         "name": "What sizes of takeaway menu can you print?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A5, A4, A4+ extended, and A3. A4 is by far the most popular for takeaway menus. A5 suits compact menus, A3 is used for wall menus and large fold-outs."
+          "text": "A5 (148 x 210 mm), A4 (210 x 297 mm), A4+ extended, and A3 (297 x 420 mm). A4 is the most popular for UK takeaway menus by far. A5 suits compact menus with under 40 dishes. A3 works for wall menus and large fold-outs."
         }
       },
       {
@@ -148,7 +190,7 @@
         "name": "What is the minimum order for menu printing?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Our smallest run is 10,000 menus. Lower quantities aren't cost-effective for offset printing — and at 10,000 our prices already start at £200 (A5) or £425 (A4)."
+          "text": "Our minimum is 10,000 menus because that is where offset litho printing becomes properly cheap. Below 10,000, per-menu cost climbs sharply. Most UK takeaways order 10,000 for a single door drop round across a 2 to 3 mile radius, so it suits standard campaign sizes too."
         }
       },
       {
@@ -156,7 +198,7 @@
         "name": "Can I see a proof before you print?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. We send a digital proof for you to approve before anything goes to press. Revisions are free until you're happy."
+          "text": "Yes, every order includes a digital proof for your approval before anything reaches the press. We send a PDF preview after design, you check the dishes, prices, branding and layout, and we revise free of charge until you sign off. Then we print."
         }
       },
       {
@@ -164,7 +206,31 @@
         "name": "How much does it cost to print 10,000 A4 takeaway menus?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "£425 including free design and free UK delivery. With the current May Sale (ends 31 May) that's a 20% saving on the standard rate."
+          "text": "10,000 A4 takeaway menus cost £425 with free design and free UK delivery included. That works out to 4.25 pence per menu, full colour both sides on 130gsm gloss. The May Sale takes 20% off, ends 31 May."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many takeaway menus should I print for a door drop?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most UK takeaways print 5,000 to 15,000 menus for a single door drop campaign. A 2 to 3 mile radius around a typical UK postcode covers 8,000 to 12,000 households. Call or WhatsApp with your postcode and target area, we will help you size the run."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "A4 or A5, which size is best for a takeaway menu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A4 is the most popular by far. It fits a full menu (starters, mains, sides, deals, drinks) on both sides without crowding, and customers expect A4 through the letterbox. A5 suits compact menus under 40 dishes. A3 works for wall menus and large fold-outs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I pay VAT on takeaway menu printing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Printed takeaway menus are zero-rated for VAT in the UK under HMRC's VAT Notice 701/10 on printed matter. The prices we quote are the prices you pay, no VAT added. Always confirm with your accountant for your specific business setup, but the rule is standard."
         }
       }
     ]
