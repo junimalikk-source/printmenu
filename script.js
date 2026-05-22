@@ -20,6 +20,7 @@ function initNav() {
   const setOpen = (open) => {
     overlay.hidden = !open;
     burger.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('nav-open', open);
     document.body.style.overflow = open ? 'hidden' : '';
   };
 
