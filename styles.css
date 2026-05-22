@@ -176,6 +176,16 @@ body.nav-open .wa-float { display: none; }
   .usps-grid { grid-template-columns: 1fr; }
 }
 
+.built-for { background: var(--c-off-white); padding: var(--space-10) 0; }
+.built-for-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+.built-for-item { background: var(--c-white); border-radius: var(--radius-md); padding: var(--space-6); }
+.built-for-item h3 { font-size: 20px; font-weight: 800; margin: 0 0 var(--space-3); color: var(--c-black); }
+.built-for-item p { color: var(--c-text-muted); margin: 0; line-height: 1.55; }
+
+@media (max-width: 860px) {
+  .built-for-grid { grid-template-columns: 1fr; }
+}
+
 /* 8. Section: pricing (desktop)
    ------------------------------------------------------------ */
 .pricing { background: var(--c-off-white); }
