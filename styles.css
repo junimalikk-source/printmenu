@@ -889,3 +889,10 @@ body.nav-open .wa-float { display: none; }
   min-height: 1.5em;
 }
 .checkout-status:empty { display: none; }
+
+.toc { background: #f7f7f9; border-bottom: 1px solid #e4e4ea; padding: 10px 0; font-size: 14px; }
+.toc-label { display: inline-block; margin: 0 12px 0 0; color: #5a5a66; font-weight: 600; }
+.toc-list { display: inline-flex; flex-wrap: wrap; gap: 6px 18px; list-style: none; padding: 0; margin: 0; }
+.toc-list a { color: #11295A; text-decoration: none; }
+.toc-list a:hover { text-decoration: underline; }
+@media (max-width: 640px) { .toc { display: none; } }
