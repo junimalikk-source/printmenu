@@ -481,6 +481,7 @@ body.nav-open .wa-float { display: none; }
 .why-us-cta-order-btn:hover { background: #05a2ca; }
 .why-us-cta-btn { width: 100%; justify-content: center; }
 .why-us-cta-footnote { color: #576a87; font-size: 12px; margin: 0; }
+.why-us-cta-guarantee { background: #0d1e3d; border: 1px solid #2a4a7f; border-radius: var(--radius-md); padding: 12px 16px; color: #c8daf5; font-size: 15px; font-weight: 700; margin: 0; width: 100%; text-align: center; letter-spacing: 0.01em; }
 
 @media (max-width: 720px) {
   .why-us-grid { grid-template-columns: 1fr; gap: var(--space-6); }
