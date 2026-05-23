@@ -29,7 +29,7 @@ https://pay.vivawallet.com/printplus-uk-ltd
 Please note: design work and printing only begin after payment is confirmed.
 
 Any questions, just reply here. Thanks!
-— [Your name], Takeaway Menu Co.
+— Print-Menu.co.uk
 ```
 
 ---
@@ -73,11 +73,11 @@ Cheers!
 
 ### More formal
 > Replace the opener with: `Dear [Name], thank you for your enquiry. Please find your quote below:`
-> Replace the closer with: `Kind regards, [Your name]`
+> Replace the closer with: `Kind regards, Print-Menu.co.uk`
 
 ### More casual
 > Opener: `Hey [Name]! 🙌 Here's the quote for your order:`
-> Closer: `Cheers — [Your name] 🚀`
+> Closer: `Cheers — Print-Menu.co.uk 🚀`
 
 ---
 
