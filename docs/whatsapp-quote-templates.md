@@ -19,7 +19,7 @@ Hi [Name], thanks for your order! Here's your quote:
 
 💳 PAYMENT
 Secure payment link:
-[paste Stripe link]
+https://pay.vivawallet.com/printplus-uk-ltd
 
 📌 NEXT STEPS
 1. Once payment is received, we send your design proof within [24–48 hrs]
@@ -43,7 +43,7 @@ Quote for your reorder:
 • [Item + spec]
 • Total: £[amount]
 
-Pay here: [Stripe link]
+Pay here: https://pay.vivawallet.com/printplus-uk-ltd
 
 Once paid, we'll start the design proof — same turnaround as last time.
 
@@ -60,7 +60,7 @@ Hi [Name], confirming your reorder:
 • Same as last order: [Item + spec]
 • Total: £[amount]
 
-Pay: [Stripe link]
+Pay: https://pay.vivawallet.com/printplus-uk-ltd
 
 Print starts as soon as payment lands. No new proof needed unless you want changes — just reply if so.
 
@@ -95,6 +95,6 @@ Your order is now with our design team. We'll send your proof by [date/time].
 
 ## Tips
 
-- **Stripe links:** create a Payment Link per quote in your Stripe dashboard (or use a generic one and confirm the amount in chat). Apple Pay / Google Pay are enabled by default.
+- **Viva payment link:** https://pay.vivawallet.com/printplus-uk-ltd — customer enters the agreed amount at checkout. Confirm the £ total in the message so they know what to pay.
 - **Save customer details** after the first order so reorders are one message.
 - **Always state "work starts after payment"** — protects you from no-shows and sets expectations.
