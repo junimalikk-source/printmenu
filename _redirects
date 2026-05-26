@@ -8,5 +8,4 @@
 /account        https://printmenu.co.uk/  301
 /account/*      https://printmenu.co.uk/  301
 /pages/*        https://printmenu.co.uk/  301
-/blogs/*        https://printmenu.co.uk/  301
 /search         https://printmenu.co.uk/  301
