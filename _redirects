@@ -1,0 +1,12 @@
+# Old Shopify product URLs — redirect to pricing
+/products/*  https://printmenu.co.uk/#pricing  301
+
+# Old Shopify collection/cart/account URLs
+/collections/*  https://printmenu.co.uk/  301
+/cart           https://printmenu.co.uk/#pricing  301
+/cart/*         https://printmenu.co.uk/#pricing  301
+/account        https://printmenu.co.uk/  301
+/account/*      https://printmenu.co.uk/  301
+/pages/*        https://printmenu.co.uk/  301
+/blogs/*        https://printmenu.co.uk/  301
+/search         https://printmenu.co.uk/  301
