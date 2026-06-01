@@ -1008,10 +1008,10 @@ body.nav-open .wa-float { display: none; }
 .cuisine-card-link { color: #11295A; font-weight: 700; font-size: 14px; margin-top: auto; }
 
 /* Bottom CTA — overrides minimal cta rules already present */
-.cuisine-cta-section { background: #11295A; color: #fff; padding: 70px 0; text-align: center; }
+.cuisine-cta-section { background: #fff; color: #11295A; padding: 70px 0; text-align: center; border-top: 1px solid #e4e4ea; }
 .cuisine-cta-inner { max-width: 720px; margin: 0 auto; text-align: center; }
-.cuisine-cta-section h2 { color: #fff; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 900; margin: 0 0 16px; }
-.cuisine-cta-section p { color: #d6dff5; font-size: 17px; line-height: 1.6; margin: 0 0 28px; }
+.cuisine-cta-section h2 { color: #11295A; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 900; margin: 0 0 16px; }
+.cuisine-cta-section p { color: #4a4a55; font-size: 17px; line-height: 1.6; margin: 0 0 28px; }
 .cuisine-cta-section .hero-cta { justify-content: center; flex-wrap: wrap; }
 
 @media (max-width: 768px) {
