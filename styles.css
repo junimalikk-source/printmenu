@@ -952,7 +952,7 @@ body.nav-open .wa-float { display: none; }
 .cuisine-grid-section { background: var(--c-off-white); padding: var(--space-10) 0; }
 .cuisine-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
 .cuisine-card { background: var(--c-white); border-radius: var(--radius-md); padding: var(--space-6); border: 1px solid #e4e4ea; display: flex; flex-direction: column; }
-.cuisine-card-icon { font-size: 36px; margin-bottom: var(--space-3); display: block; }
+.cuisine-card-icon { width: 40px; height: 40px; margin-bottom: var(--space-3); display: block; }
 .cuisine-card h2 { font-size: 18px; font-weight: 800; color: var(--c-black); margin-bottom: var(--space-3); }
 .cuisine-card p { color: var(--c-text-muted); font-size: 15px; line-height: 1.6; margin: 0 0 var(--space-4); flex: 1; }
 .cuisine-card-link { font-weight: 700; color: var(--c-yellow); text-decoration: none; font-size: 14px; }
@@ -1002,7 +1002,7 @@ body.nav-open .wa-float { display: none; }
 .cuisine-card { background: #fff; border: 1px solid #e4e4ea; border-radius: 12px; padding: 28px; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease; cursor: pointer; }
 .cuisine-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(17,41,90,0.12); border-color: #11295A; }
 .cuisine-card:focus-visible { outline: 3px solid #11295A; outline-offset: 2px; }
-.cuisine-card-icon { font-size: 36px; display: block; margin-bottom: 14px; }
+.cuisine-card-icon { width: 40px; height: 40px; display: block; margin-bottom: 14px; }
 .cuisine-card h3 { color: #11295A; font-size: 1.25rem; font-weight: 800; margin: 0 0 12px; }
 .cuisine-card p { color: #4a4a55; font-size: 14.5px; line-height: 1.6; margin: 0 0 16px; flex: 1; }
 .cuisine-card-link { color: #11295A; font-weight: 700; font-size: 14px; margin-top: auto; }
