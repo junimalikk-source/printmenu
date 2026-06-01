@@ -1,3 +1,6 @@
+# Cuisine hub — non-trailing-slash to canonical trailing-slash
+/cuisine  https://printmenu.co.uk/cuisine/  301
+
 # Old Shopify product URLs — redirect to pricing
 /products/*  https://printmenu.co.uk/#pricing  301
 
