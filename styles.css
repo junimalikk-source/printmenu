@@ -979,6 +979,14 @@ body.nav-open .wa-float { display: none; }
 .breadcrumb a:hover { text-decoration: underline; }
 .breadcrumb li[aria-current="page"] { color: #5a5a66; font-weight: 600; }
 
+/* Breadcrumb inside hero — light on dark */
+.breadcrumb--hero { background: none; border: none; padding: 0; margin-bottom: 16px; }
+.breadcrumb--hero ol { justify-content: center; color: rgba(255,255,255,0.6); font-size: 13px; }
+.breadcrumb--hero li:not(:last-child)::after { color: rgba(255,255,255,0.3); }
+.breadcrumb--hero a { color: rgba(255,255,255,0.75); }
+.breadcrumb--hero a:hover { color: #fff; text-decoration: none; }
+.breadcrumb--hero li[aria-current="page"] { color: rgba(255,255,255,0.5); font-weight: 500; }
+
 /* Cuisine hero — overrides the minimal rules already present */
 .cuisine-hero { background: #11295A; color: #fff; padding: 60px 0 70px; text-align: center; }
 .cuisine-hero-inner { max-width: 880px; margin: 0 auto; text-align: center; }
