@@ -1,9 +1,24 @@
 #!/usr/bin/env node
-import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+
+const SKIP_DIRS = new Set(['_partials', 'node_modules', '.git', 'scripts', 'assets', 'functions']);
+
+function findHtmlFiles(dir) {
+  const results = [];
+  for (const entry of readdirSync(dir)) {
+    const full = join(dir, entry);
+    if (statSync(full).isDirectory()) {
+      if (!SKIP_DIRS.has(entry) && !entry.startsWith('.')) results.push(...findHtmlFiles(full));
+    } else if (entry.endsWith('.html')) {
+      results.push(full);
+    }
+  }
+  return results;
+}
 
 const partials = readdirSync(join(root, '_partials'))
   .filter(f => f.endsWith('.html'))
@@ -12,12 +27,11 @@ const partials = readdirSync(join(root, '_partials'))
     content: readFileSync(join(root, '_partials', f), 'utf8').trim(),
   }));
 
-const htmlFiles = readdirSync(root).filter(f => f.endsWith('.html'));
+const htmlFiles = findHtmlFiles(root);
 
 let totalUpdated = 0;
 
-for (const file of htmlFiles) {
-  const path = join(root, file);
+for (const path of htmlFiles) {
   let src = readFileSync(path, 'utf8');
   let fileUpdated = false;
 
@@ -51,7 +65,8 @@ for (const file of htmlFiles) {
   if (fileUpdated) {
     writeFileSync(path, src);
     totalUpdated++;
-    console.log(`updated: ${file}`);
+    const rel = path.replace(root + '/', '');
+    console.log(`updated: ${rel}`);
   }
 }
 
