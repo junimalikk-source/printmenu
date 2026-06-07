@@ -144,29 +144,13 @@ function initGalleryEffects() {
   });
 }
 
-// 5b. sale countdown -------------------------------------
-function initSaleCountdown() {
-  const el = document.querySelector('[data-sale-days]');
-  if (!el) return;
-  const now = new Date();
-  // June sale: if we're past June, count down to next year's sale.
-  const year = now.getMonth() > 5 ? now.getFullYear() + 1 : now.getFullYear();
-  const msPerDay = 86400000;
-  // Normalise to start-of-day so the count is purely calendar based and
-  // stays stable throughout the day instead of drifting with the clock.
-  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const endOfSale = new Date(year, 5, 30); // June 30
-  // Days remaining until the end date, not counting today.
-  const days = Math.max(0, Math.round((endOfSale - startOfToday) / msPerDay));
-  el.textContent = days;
-}
-
 // 6. boot ------------------------------------------------
+// NOTE: the sale countdown lives inline in index.html so it can never be
+// served from a stale cached copy of this file.
 function boot() {
   initNav();
   initLightbox();
   initGalleryEffects();
-  initSaleCountdown();
 }
 
 if (document.readyState === 'loading') {

@@ -747,5 +747,21 @@
 
   <script type="module" src="script.js?v=2026-06b"></script>
   <script type="module" src="/assets/checkout.js"></script>
+  <script>
+    // Sale countdown — inlined so it is tied to this page and can never be
+    // served from a stale cached script.js. Runs on load so it always wins,
+    // even over an older cached copy of script.js that ran earlier.
+    window.addEventListener('load', function () {
+      var el = document.querySelector('[data-sale-days]');
+      if (!el) return;
+      var now = new Date();
+      // June sale; once July arrives, count down to next year's sale.
+      var year = now.getMonth() > 5 ? now.getFullYear() + 1 : now.getFullYear();
+      var startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      var endOfSale = new Date(year, 5, 30); // June 30
+      // Days remaining until the end date, not counting today.
+      el.textContent = Math.max(0, Math.round((endOfSale - startOfToday) / 86400000));
+    });
+  </script>
 </body>
 </html>
