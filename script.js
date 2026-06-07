@@ -149,9 +149,15 @@ function initSaleCountdown() {
   const el = document.querySelector('[data-sale-days]');
   if (!el) return;
   const now = new Date();
-  const year = now.getMonth() > 4 ? now.getFullYear() + 1 : now.getFullYear();
-  const end = new Date(year, 4, 31, 23, 59, 59); // May 31
-  const days = Math.max(0, Math.ceil((end - now) / 86400000));
+  // June sale: if we're past June, count down to next year's sale.
+  const year = now.getMonth() > 5 ? now.getFullYear() + 1 : now.getFullYear();
+  const msPerDay = 86400000;
+  // Normalise to start-of-day so the count is purely calendar based and
+  // stays stable throughout the day instead of drifting with the clock.
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const endOfSale = new Date(year, 5, 30); // June 30
+  // Days remaining, inclusive of today (last day shows "1 day left").
+  const days = Math.max(0, Math.round((endOfSale - startOfToday) / msPerDay) + 1);
   el.textContent = days;
 }
 
