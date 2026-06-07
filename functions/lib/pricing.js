@@ -2,8 +2,8 @@
 // Amounts in pence (Stripe convention). Bidirectional drift test in
 // tests/unit/pricing.test.js asserts these match index.html .pt-cell data-price.
 
-export const PRICE_VERSION = '2026-05-sale';
-export const SALE_ENDS = '2026-05-31';
+export const PRICE_VERSION = '2026-06-sale';
+export const SALE_ENDS = '2026-06-30';
 
 export const PRICES = {
   'A5-10K':   { amount_pence:  20000, product_name: '10,000 × A5 Takeaway Menus, 130gsm, full colour both sides'   },

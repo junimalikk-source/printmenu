@@ -106,14 +106,14 @@ describe('POST /api/create-checkout-session', () => {
     expect(params.shipping_address_collection.allowed_countries).toEqual(['GB']);
   });
 
-  it('attaches metadata including vat_rate=0 and sale_ends=2026-05-31', async () => {
+  it('attaches metadata including vat_rate=0 and sale_ends=2026-06-30', async () => {
     const req = makeReq({ size: 'A4', qty: '20K', attempt_id: UUID });
     await onRequestPost({ request: req, env: ENV });
     const params = mockCreate.mock.calls[0][0];
     expect(params.metadata.sku).toBe('A4-20K');
     expect(params.metadata.vat_rate).toBe('0');
-    expect(params.metadata.sale_ends).toBe('2026-05-31');
-    expect(params.metadata.price_version).toBe('2026-05-sale');
+    expect(params.metadata.sale_ends).toBe('2026-06-30');
+    expect(params.metadata.price_version).toBe('2026-06-sale');
     expect(params.client_reference_id).toBe(UUID);
   });
 

@@ -14,11 +14,11 @@ const cells = [...new JSDOM(INDEX_HTML).window.document
 
 describe('pricing module', () => {
   it('exports the expected price version', () => {
-    expect(PRICE_VERSION).toBe('2026-05-sale');
+    expect(PRICE_VERSION).toBe('2026-06-sale');
   });
 
   it('exports the sale end date', () => {
-    expect(SALE_ENDS).toBe('2026-05-31');
+    expect(SALE_ENDS).toBe('2026-06-30');
   });
 
   it('lookup returns amount + name for valid SKU', () => {
