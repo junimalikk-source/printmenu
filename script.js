@@ -156,8 +156,8 @@ function initSaleCountdown() {
   // stays stable throughout the day instead of drifting with the clock.
   const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const endOfSale = new Date(year, 5, 30); // June 30
-  // Days remaining, inclusive of today (last day shows "1 day left").
-  const days = Math.max(0, Math.round((endOfSale - startOfToday) / msPerDay) + 1);
+  // Days remaining until the end date, not counting today.
+  const days = Math.max(0, Math.round((endOfSale - startOfToday) / msPerDay));
   el.textContent = days;
 }
 
