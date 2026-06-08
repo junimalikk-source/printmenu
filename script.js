@@ -147,10 +147,31 @@ function initGalleryEffects() {
 // 6. boot ------------------------------------------------
 // NOTE: the sale countdown lives inline in index.html so it can never be
 // served from a stale cached copy of this file.
+function initCuisineSlider() {
+  const wrap = document.querySelector('.cuisine-slider-wrap');
+  const prev = document.querySelector('.cuisine-slider-arrow--prev');
+  const next = document.querySelector('.cuisine-slider-arrow--next');
+  if (!wrap || !prev || !next) return;
+
+  const step = () => Math.round(wrap.clientWidth * 0.8);
+  prev.addEventListener('click', () => wrap.scrollBy({ left: -step(), behavior: 'smooth' }));
+  next.addEventListener('click', () => wrap.scrollBy({ left: step(), behavior: 'smooth' }));
+
+  const update = () => {
+    const max = wrap.scrollWidth - wrap.clientWidth - 1;
+    prev.disabled = wrap.scrollLeft <= 0;
+    next.disabled = wrap.scrollLeft >= max;
+  };
+  wrap.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+}
+
 function boot() {
   initNav();
   initLightbox();
   initGalleryEffects();
+  initCuisineSlider();
 }
 
 if (document.readyState === 'loading') {

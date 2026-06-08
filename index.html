@@ -536,8 +536,10 @@
           <p>Cuisine-specific layout and design included free with every order.</p>
         </div>
       </div>
-      <div class="cuisine-slider-wrap">
-        <div class="cuisine-slider">
+      <div class="cuisine-slider-outer">
+        <button type="button" class="cuisine-slider-arrow cuisine-slider-arrow--prev" aria-label="Scroll cuisines left">&larr;</button>
+        <div class="cuisine-slider-wrap">
+          <div class="cuisine-slider">
           <a href="https://printmenu.co.uk/cuisine/indian-takeaway" class="cuisine-slider-card">
             <img src="/assets/icons/cuisines/indian.svg" alt="" width="40" height="40">
             <span>Indian takeaway</span>
@@ -590,7 +592,9 @@
             <img src="/assets/icons/cuisines/bangladeshi.svg" alt="" width="40" height="40">
             <span>Bangladeshi takeaway</span>
           </a>
+          </div>
         </div>
+        <button type="button" class="cuisine-slider-arrow cuisine-slider-arrow--next" aria-label="Scroll cuisines right">&rarr;</button>
       </div>
       <div class="container cuisine-slider-cta">
         <a href="https://printmenu.co.uk/cuisine" class="btn btn-secondary">Browse all cuisines &rarr;</a>
