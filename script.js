@@ -152,6 +152,7 @@ function initMenuGallery() {
   const prev = document.querySelector('.menu-gallery-arrow--prev');
   const next = document.querySelector('.menu-gallery-arrow--next');
   const dots = document.querySelectorAll('.menu-gallery-dot');
+  const counter = document.querySelector('.menu-gallery-counter');
   if (!track || !prev || !next) return;
 
   const total = track.children.length;
@@ -161,6 +162,7 @@ function initMenuGallery() {
     current = (idx + total) % total;
     track.style.transform = `translateX(-${current * 100}%)`;
     dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
+    if (counter) counter.textContent = `${current + 1} / ${total}`;
     prev.disabled = current === 0;
     next.disabled = current === total - 1;
   };
@@ -168,8 +170,18 @@ function initMenuGallery() {
   prev.addEventListener('click', () => go(current - 1));
   next.addEventListener('click', () => go(current + 1));
   dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
+
+  // Swipe support on touch devices
+  let startX = 0;
+  track.parentElement.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+  track.parentElement.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50) go(dx < 0 ? current + 1 : current - 1);
+  });
+
   go(0);
 }
+
 
 function initCuisineSlider() {
   const wrap = document.querySelector('.cuisine-slider-wrap');

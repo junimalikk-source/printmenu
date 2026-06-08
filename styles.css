@@ -1054,24 +1054,29 @@ body.nav-open .wa-float { display: none; }
 }
 
 /* Menu gallery slider (cuisine spoke pages) */
-.menu-gallery-section { padding: 70px 0 60px; background: #11295A; }
-.menu-gallery-section .section-header { margin-bottom: 36px; }
+.menu-gallery-section { padding: 80px 0; background: linear-gradient(135deg, #0d1f45 0%, #11295A 60%, #1a3a7a 100%); position: relative; overflow: hidden; }
+.menu-gallery-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(6,181,226,0.08) 0%, transparent 60%); pointer-events: none; }
+.menu-gallery-section .section-header { margin-bottom: 40px; position: relative; }
 .menu-gallery-section .section-header h2 { color: #fff; }
-.menu-gallery-section .section-header p { color: rgba(255,255,255,0.7); }
-.menu-gallery-outer { position: relative; display: flex; align-items: center; gap: 16px; padding: 0 max(24px, calc((100vw - 1200px) / 2)); }
-.menu-gallery-track-wrap { overflow: hidden; border-radius: 12px; flex: 1; }
-.menu-gallery-track { display: flex; transition: transform 0.4s ease; }
-.menu-gallery-slide { flex: 0 0 100%; margin: 0; }
-.menu-gallery-slide img { width: 100%; height: 520px; object-fit: contain; background: #fff; display: block; border-radius: 12px; }
-.menu-gallery-arrow { flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff; font-size: 20px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s ease, border-color 0.15s ease; }
-.menu-gallery-arrow:hover { background: rgba(255,255,255,0.25); border-color: rgba(255,255,255,0.6); }
-.menu-gallery-arrow:disabled { opacity: 0.25; cursor: not-allowed; }
-.menu-gallery-dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
-.menu-gallery-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); transition: background 0.2s ease, transform 0.2s ease; }
-.menu-gallery-dot.is-active { background: #fff; transform: scale(1.3); }
+.menu-gallery-section .section-header p { color: rgba(255,255,255,0.65); }
+.menu-gallery-outer { position: relative; display: flex; align-items: center; gap: 20px; padding: 0 max(24px, calc((100vw - 1200px) / 2)); }
+.menu-gallery-track-wrap { overflow: hidden; border-radius: 16px; flex: 1; box-shadow: 0 24px 64px rgba(0,0,0,0.4); }
+.menu-gallery-track { display: flex; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); }
+.menu-gallery-slide { flex: 0 0 100%; margin: 0; position: relative; }
+.menu-gallery-slide img { width: 100%; height: 560px; object-fit: contain; background: #fff; display: block; border-radius: 16px; }
+.menu-gallery-slide figcaption { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 24px 16px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); color: #fff; font-size: 13px; font-weight: 600; border-radius: 0 0 16px 16px; opacity: 0; transition: opacity 0.2s ease; }
+.menu-gallery-slide:hover figcaption { opacity: 1; }
+.menu-gallery-arrow { flex-shrink: 0; width: 52px; height: 52px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); backdrop-filter: blur(8px); color: #fff; font-size: 18px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease; }
+.menu-gallery-arrow:hover { background: rgba(6,181,226,0.3); border-color: #06B5E2; transform: scale(1.08); }
+.menu-gallery-arrow:disabled { opacity: 0.2; cursor: not-allowed; transform: none; }
+.menu-gallery-dots { display: flex; justify-content: center; gap: 10px; margin-top: 28px; position: relative; }
+.menu-gallery-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.25); border: none; padding: 0; cursor: pointer; transition: background 0.2s ease, transform 0.2s ease, width 0.2s ease; }
+.menu-gallery-dot.is-active { background: #06B5E2; transform: scale(1.2); width: 24px; border-radius: 4px; }
+.menu-gallery-counter { text-align: center; margin-top: 14px; color: rgba(255,255,255,0.4); font-size: 13px; font-weight: 600; letter-spacing: 1px; }
 
 @media (max-width: 768px) {
   .menu-gallery-section { padding: 50px 0 40px; }
-  .menu-gallery-slide img { height: 320px; }
-  .menu-gallery-arrow { width: 38px; height: 38px; font-size: 16px; }
+  .menu-gallery-slide img { height: 340px; }
+  .menu-gallery-arrow { width: 40px; height: 40px; font-size: 15px; }
+}
 }
