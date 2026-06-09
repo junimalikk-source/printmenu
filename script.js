@@ -148,38 +148,39 @@ function initGalleryEffects() {
 // NOTE: the sale countdown lives inline in index.html so it can never be
 // served from a stale cached copy of this file.
 function initMenuGallery() {
+  const wrap = document.querySelector('.menu-gallery-track-wrap');
   const track = document.querySelector('.menu-gallery-track');
   const prev = document.querySelector('.menu-gallery-arrow--prev');
   const next = document.querySelector('.menu-gallery-arrow--next');
-  const dots = document.querySelectorAll('.menu-gallery-dot');
-  const counter = document.querySelector('.menu-gallery-counter');
-  if (!track || !prev || !next) return;
+  const dots = Array.from(document.querySelectorAll('.menu-gallery-dot'));
+  if (!wrap || !track || !prev || !next) return;
 
-  const total = track.children.length;
-  let current = 0;
+  const slides = Array.from(track.children);
+  const total = slides.length;
 
-  const go = (idx) => {
-    current = (idx + total) % total;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
-    if (counter) counter.textContent = `${current + 1} / ${total}`;
-    prev.disabled = current === 0;
-    next.disabled = current === total - 1;
+  const slideStep = () => {
+    if (slides.length < 2) return wrap.clientWidth;
+    return slides[1].getBoundingClientRect().left - slides[0].getBoundingClientRect().left;
   };
 
-  prev.addEventListener('click', () => go(current - 1));
-  next.addEventListener('click', () => go(current + 1));
-  dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
+  prev.addEventListener('click', () => wrap.scrollBy({ left: -slideStep(), behavior: 'smooth' }));
+  next.addEventListener('click', () => wrap.scrollBy({ left: slideStep(), behavior: 'smooth' }));
 
-  // Swipe support on touch devices
-  let startX = 0;
-  track.parentElement.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
-  track.parentElement.addEventListener('touchend', (e) => {
-    const dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 50) go(dx < 0 ? current + 1 : current - 1);
-  });
+  dots.forEach((d, i) => d.addEventListener('click', () => {
+    wrap.scrollTo({ left: i * slideStep(), behavior: 'smooth' });
+  }));
 
-  go(0);
+  const update = () => {
+    const step = slideStep();
+    const idx = step > 0 ? Math.round(wrap.scrollLeft / step) : 0;
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === Math.min(idx, total - 1)));
+    const max = wrap.scrollWidth - wrap.clientWidth - 1;
+    prev.disabled = wrap.scrollLeft <= 0;
+    next.disabled = wrap.scrollLeft >= max;
+  };
+  wrap.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
 }
 
 
