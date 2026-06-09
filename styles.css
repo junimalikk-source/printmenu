@@ -1052,3 +1052,26 @@ body.nav-open .wa-float { display: none; }
   .cuisine-slider-card { width: 150px; padding: 20px 16px; }
   .cuisine-slider-arrow { display: none; }
 }
+
+/* Menu gallery slider (cuisine spoke pages) */
+.menu-gallery-section { padding: 70px 0 60px; background: #11295A; }
+.menu-gallery-section .section-header { margin-bottom: 36px; }
+.menu-gallery-section .section-header h2 { color: #fff; }
+.menu-gallery-section .section-header p { color: rgba(255,255,255,0.7); }
+.menu-gallery-outer { position: relative; display: flex; align-items: center; gap: 16px; padding: 0 max(24px, calc((100vw - 1200px) / 2)); }
+.menu-gallery-track-wrap { overflow: hidden; border-radius: 12px; flex: 1; }
+.menu-gallery-track { display: flex; transition: transform 0.4s ease; }
+.menu-gallery-slide { flex: 0 0 100%; margin: 0; }
+.menu-gallery-slide img { width: 100%; height: 520px; object-fit: contain; background: #fff; display: block; border-radius: 12px; }
+.menu-gallery-arrow { flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff; font-size: 20px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s ease, border-color 0.15s ease; }
+.menu-gallery-arrow:hover { background: rgba(255,255,255,0.25); border-color: rgba(255,255,255,0.6); }
+.menu-gallery-arrow:disabled { opacity: 0.25; cursor: not-allowed; }
+.menu-gallery-dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+.menu-gallery-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); transition: background 0.2s ease, transform 0.2s ease; }
+.menu-gallery-dot.is-active { background: #fff; transform: scale(1.3); }
+
+@media (max-width: 768px) {
+  .menu-gallery-section { padding: 50px 0 40px; }
+  .menu-gallery-slide img { height: 320px; }
+  .menu-gallery-arrow { width: 38px; height: 38px; font-size: 16px; }
+}
