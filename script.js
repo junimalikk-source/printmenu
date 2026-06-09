@@ -163,12 +163,34 @@ function initMenuGallery() {
     return slides[1].getBoundingClientRect().left - slides[0].getBoundingClientRect().left;
   };
 
-  prev.addEventListener('click', () => wrap.scrollBy({ left: -slideStep(), behavior: 'smooth' }));
-  next.addEventListener('click', () => wrap.scrollBy({ left: slideStep(), behavior: 'smooth' }));
+  prev.addEventListener('click', () => { stopAuto(); wrap.scrollBy({ left: -slideStep(), behavior: 'smooth' }); });
+  next.addEventListener('click', () => { stopAuto(); wrap.scrollBy({ left: slideStep(), behavior: 'smooth' }); });
 
   dots.forEach((d, i) => d.addEventListener('click', () => {
+    stopAuto();
     wrap.scrollTo({ left: i * slideStep(), behavior: 'smooth' });
   }));
+
+  // Autoplay — advance every 4s, loop to start at the end
+  let autoTimer = null;
+  const tick = () => {
+    const step = slideStep();
+    const max = wrap.scrollWidth - wrap.clientWidth - 1;
+    if (wrap.scrollLeft >= max) {
+      wrap.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      wrap.scrollBy({ left: step, behavior: 'smooth' });
+    }
+  };
+  const startAuto = () => { if (!autoTimer) autoTimer = setInterval(tick, 4000); };
+  const stopAuto = () => { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } };
+  wrap.addEventListener('mouseenter', stopAuto);
+  wrap.addEventListener('mouseleave', startAuto);
+  wrap.addEventListener('touchstart', stopAuto, { passive: true });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopAuto(); else startAuto();
+  });
+  startAuto();
 
   const update = () => {
     const step = slideStep();
@@ -195,6 +217,7 @@ function initMenuGallery() {
     lbImg.alt = alt || '';
     lb.hidden = false;
     document.body.style.overflow = 'hidden';
+    stopAuto();
     lbClose?.focus();
   };
   const closeLb = () => {
@@ -202,6 +225,7 @@ function initMenuGallery() {
     lbImg.src = '';
     document.body.style.overflow = '';
     lastFocus?.focus?.();
+    startAuto();
   };
 
   track.addEventListener('click', (e) => {
