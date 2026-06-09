@@ -181,6 +181,38 @@ function initMenuGallery() {
   wrap.addEventListener('scroll', update, { passive: true });
   window.addEventListener('resize', update);
   update();
+
+  // Lightbox
+  const lb = document.getElementById('menu-lb');
+  const lbImg = lb?.querySelector('.menu-lb-img');
+  const lbClose = lb?.querySelector('.menu-lb-close');
+  if (!lb || !lbImg) return;
+
+  let lastFocus = null;
+  const openLb = (src, alt) => {
+    lastFocus = document.activeElement;
+    lbImg.src = src;
+    lbImg.alt = alt || '';
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+    lbClose?.focus();
+  };
+  const closeLb = () => {
+    lb.hidden = true;
+    lbImg.src = '';
+    document.body.style.overflow = '';
+    lastFocus?.focus?.();
+  };
+
+  track.addEventListener('click', (e) => {
+    const slide = e.target.closest('.menu-gallery-slide');
+    if (!slide) return;
+    const img = slide.querySelector('img');
+    if (img) openLb(img.src, img.alt);
+  });
+  lbClose?.addEventListener('click', closeLb);
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', (e) => { if (!lb.hidden && e.key === 'Escape') closeLb(); });
 }
 
 
