@@ -988,13 +988,18 @@ body.nav-open .wa-float { display: none; }
 .breadcrumb--hero li[aria-current="page"] { color: rgba(255,255,255,0.5); font-weight: 500; }
 
 /* Cuisine hero — overrides the minimal rules already present */
-.cuisine-hero { background: #11295A; color: #fff; padding: 60px 0 70px; text-align: center; }
-.cuisine-hero-inner { max-width: 880px; margin: 0 auto; text-align: center; }
-.cuisine-hero .hero-eyebrow { color: #9ab3ff; font-weight: 700; font-size: 14px; letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 12px; }
-.cuisine-hero h1 { color: #fff; font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 900; line-height: 1.1; margin: 0 0 12px; }
-.cuisine-hero .hero-sub-headline { color: #fff; font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 600; margin: 0 0 18px; opacity: 0.95; }
-.cuisine-hero .accent { color: #66c2ff; }
-.cuisine-hero-sub { color: #d6dff5; font-size: 17px; line-height: 1.6; max-width: 760px; margin: 0 auto 28px; }
+.cuisine-hero { background: #11295A; color: #fff; padding: 56px 0 72px; text-align: center; }
+.cuisine-hero-inner { max-width: 860px; margin: 0 auto; text-align: center; }
+.cuisine-hero .hero-eyebrow { color: #06B5E2; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 20px; }
+.cuisine-hero h1 { color: #fff; font-size: clamp(2.6rem, 5.5vw, 4.2rem); font-weight: 900; line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 20px; }
+.cuisine-hero .hero-sub-headline { color: #fff; font-size: clamp(1.15rem, 2.4vw, 1.5rem); font-weight: 700; line-height: 1.4; margin: 0 0 22px; }
+.cuisine-hero .accent { color: #06B5E2; }
+.cuisine-hero-sub { color: rgba(255,255,255,0.72); font-size: clamp(15px, 1.5vw, 17px); line-height: 1.7; max-width: 780px; margin: 0 auto 36px; }
+.cuisine-hero .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.cuisine-hero .btn-ghost { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.35); font-weight: 700; }
+.cuisine-hero .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+.cuisine-hero .btn-whatsapp { display: inline-flex; align-items: center; gap: 8px; }
+.cuisine-hero .btn-whatsapp::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #fff; opacity: 0.9; }
 
 /* Why cuisine matters */
 .cuisine-why { padding: 70px 0; background: #fff; }
