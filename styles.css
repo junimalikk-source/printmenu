@@ -1009,6 +1009,20 @@ body.nav-open .wa-float { display: none; }
 .cuisine-why-item h3 { color: #11295A; font-size: 1.15rem; font-weight: 800; margin: 0 0 10px; }
 .cuisine-why-item p { color: #4a4a55; font-size: 15px; line-height: 1.6; margin: 0; }
 
+/* Six sections anatomy — numbered cards */
+.menu-anatomy { padding: 80px 0; background: #f7f7f9; }
+.menu-anatomy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+.menu-anatomy-card { background: #fff; border: 1px solid #e4e4ea; border-radius: 14px; padding: 28px 26px; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+.menu-anatomy-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(17,41,90,0.1); border-color: #06B5E2; }
+.menu-anatomy-num { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: #11295A; color: #fff; font-weight: 800; font-size: 15px; margin-bottom: 18px; }
+.menu-anatomy-card h3 { color: #11295A; font-size: 1.15rem; font-weight: 800; margin: 0 0 12px; }
+.menu-anatomy-card p { color: #4a4a55; font-size: 15px; line-height: 1.65; margin: 0; }
+@media (max-width: 960px) { .menu-anatomy-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 620px) {
+  .menu-anatomy { padding: 50px 0; }
+  .menu-anatomy-grid { grid-template-columns: 1fr; gap: 16px; }
+}
+
 /* Two-column info section (dietary labelling + UK coverage) */
 .cuisine-info-section { padding: 80px 0; background: #fff; }
 .cuisine-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); }
