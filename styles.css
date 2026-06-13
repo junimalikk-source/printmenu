@@ -221,6 +221,15 @@ body.nav-open .wa-float { display: none; }
   font-weight: 900; font-size: 13px; line-height: 1;
 }
 .includes-sep { opacity: .35; }
+.includes-item { display: inline-flex; align-items: center; gap: 7px; }
+@media (max-width: 620px) {
+  .section-header p.includes-banner,
+  .includes-banner {
+    display: flex; flex-direction: column; align-items: flex-start;
+    border-radius: 14px; padding: 18px 20px; gap: 12px; width: 100%; box-sizing: border-box;
+  }
+  .includes-banner .includes-sep { display: none; }
+}
 .pt-wrap { background: var(--c-white); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); overflow: hidden; }
 .pt-head, .pt-row { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); }
 .pt-head { background: var(--c-black); color: var(--c-white); }
