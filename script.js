@@ -153,6 +153,7 @@ function initMenuGallery() {
   const prev = document.querySelector('.menu-gallery-arrow--prev');
   const next = document.querySelector('.menu-gallery-arrow--next');
   const dots = Array.from(document.querySelectorAll('.menu-gallery-dot'));
+  const counter = document.querySelector('.menu-gallery-counter');
   if (!wrap || !track || !prev || !next) return;
 
   const slides = Array.from(track.children);
@@ -194,8 +195,9 @@ function initMenuGallery() {
 
   const update = () => {
     const step = slideStep();
-    const idx = step > 0 ? Math.round(wrap.scrollLeft / step) : 0;
-    dots.forEach((d, i) => d.classList.toggle('is-active', i === Math.min(idx, total - 1)));
+    const idx = Math.min(step > 0 ? Math.round(wrap.scrollLeft / step) : 0, total - 1);
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+    if (counter) counter.textContent = `${idx + 1} / ${total}`;
     const max = wrap.scrollWidth - wrap.clientWidth - 1;
     prev.disabled = wrap.scrollLeft <= 0;
     next.disabled = wrap.scrollLeft >= max;
