@@ -54,6 +54,7 @@
   <meta property="og:image" content="https://printmenu.co.uk/assets/og-image.svg">
   <meta property="og:locale" content="en_GB">
 
+  <!-- ===================== SCHEMA 1: BreadcrumbList ===================== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -66,6 +67,108 @@
   }
   </script>
 
+  <!-- ===================== SCHEMA 2: Service (with nested LocalBusiness provider) ===================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Indian Takeaway Menu Printing",
+    "name": "Indian Takeaway Menu Printing UK",
+    "description": "Cuisine-specific Indian takeaway menu printing on 130gsm gloss paper, full colour CMYK both sides. Bengali, Urdu and Hindi typesetting included. Free design and free UK delivery on every order. Sizes A5, A4, A4+ extended and A3.",
+    "url": "https://printmenu.co.uk/cuisine/indian-takeaway",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "PrintMenu.co.uk",
+      "url": "https://printmenu.co.uk/",
+      "logo": "https://printmenu.co.uk/assets/logos/printmenu-logo.png",
+      "telephone": "+441274305555",
+      "email": "hello@printmenu.co.uk",
+      "priceRange": "££",
+      "foundingDate": "2005",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bradford",
+        "addressRegion": "West Yorkshire",
+        "addressCountry": "GB"
+      }
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Indian Takeaway Menu Sizes",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "A5 Indian Takeaway Menu Printing" },
+          "price": "200",
+          "priceCurrency": "GBP"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "A4 Indian Takeaway Menu Printing" },
+          "price": "425",
+          "priceCurrency": "GBP"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "A4+ Extended Indian Takeaway Menu Printing" },
+          "price": "475",
+          "priceCurrency": "GBP"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "A3 Indian Takeaway Menu Printing" },
+          "price": "525",
+          "priceCurrency": "GBP"
+        }
+      ]
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "GBP",
+      "lowPrice": "200",
+      "highPrice": "3000",
+      "offerCount": "16",
+      "availability": "https://schema.org/InStock",
+      "url": "https://printmenu.co.uk/cuisine/indian-takeaway#pricing"
+    }
+  }
+  </script>
+
+  <!-- ===================== SCHEMA 3: Article (for AEO / GEO / LLM citation) ===================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Indian Takeaway Menu Printing UK: Pricing, Sizes and Design Guide",
+    "description": "How Indian takeaway menu printing works in the UK. Pricing from £200, A4 and A5 sizes, Bengali and Urdu typesetting, halal and dietary labelling, reprint cycles and turnaround times for curry houses.",
+    "image": "https://printmenu.co.uk/assets/og-image.svg",
+    "author": {
+      "@type": "Organization",
+      "name": "PrintMenu Editorial Team",
+      "url": "https://printmenu.co.uk/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "PrintMenu.co.uk",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://printmenu.co.uk/assets/logos/printmenu-logo.png"
+      }
+    },
+    "datePublished": "2026-06-11",
+    "dateModified": "2026-06-13",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://printmenu.co.uk/cuisine/indian-takeaway"
+    }
+  }
+  </script>
+
+  <!-- ===================== SCHEMA 4: FAQPage ===================== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
