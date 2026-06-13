@@ -148,28 +148,99 @@ function initGalleryEffects() {
 // NOTE: the sale countdown lives inline in index.html so it can never be
 // served from a stale cached copy of this file.
 function initMenuGallery() {
+  const wrap = document.querySelector('.menu-gallery-track-wrap');
   const track = document.querySelector('.menu-gallery-track');
   const prev = document.querySelector('.menu-gallery-arrow--prev');
   const next = document.querySelector('.menu-gallery-arrow--next');
-  const dots = document.querySelectorAll('.menu-gallery-dot');
-  if (!track || !prev || !next) return;
+  const dots = Array.from(document.querySelectorAll('.menu-gallery-dot'));
+  const counter = document.querySelector('.menu-gallery-counter');
+  if (!wrap || !track || !prev || !next) return;
 
-  const total = track.children.length;
-  let current = 0;
+  const slides = Array.from(track.children);
+  const total = slides.length;
 
-  const go = (idx) => {
-    current = (idx + total) % total;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
-    prev.disabled = current === 0;
-    next.disabled = current === total - 1;
+  const slideStep = () => {
+    if (slides.length < 2) return wrap.clientWidth;
+    return slides[1].getBoundingClientRect().left - slides[0].getBoundingClientRect().left;
   };
 
-  prev.addEventListener('click', () => go(current - 1));
-  next.addEventListener('click', () => go(current + 1));
-  dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
-  go(0);
+  prev.addEventListener('click', () => { stopAuto(); wrap.scrollBy({ left: -slideStep(), behavior: 'smooth' }); });
+  next.addEventListener('click', () => { stopAuto(); wrap.scrollBy({ left: slideStep(), behavior: 'smooth' }); });
+
+  dots.forEach((d, i) => d.addEventListener('click', () => {
+    stopAuto();
+    wrap.scrollTo({ left: i * slideStep(), behavior: 'smooth' });
+  }));
+
+  // Autoplay — advance every 4s, loop to start at the end
+  let autoTimer = null;
+  const tick = () => {
+    const step = slideStep();
+    const max = wrap.scrollWidth - wrap.clientWidth - 1;
+    if (wrap.scrollLeft >= max) {
+      wrap.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      wrap.scrollBy({ left: step, behavior: 'smooth' });
+    }
+  };
+  const startAuto = () => { if (!autoTimer) autoTimer = setInterval(tick, 4000); };
+  const stopAuto = () => { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } };
+  wrap.addEventListener('mouseenter', stopAuto);
+  wrap.addEventListener('mouseleave', startAuto);
+  wrap.addEventListener('touchstart', stopAuto, { passive: true });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopAuto(); else startAuto();
+  });
+  startAuto();
+
+  const update = () => {
+    const step = slideStep();
+    const idx = Math.min(step > 0 ? Math.round(wrap.scrollLeft / step) : 0, total - 1);
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+    if (counter) counter.textContent = `${idx + 1} / ${total}`;
+    const max = wrap.scrollWidth - wrap.clientWidth - 1;
+    prev.disabled = wrap.scrollLeft <= 0;
+    next.disabled = wrap.scrollLeft >= max;
+  };
+  wrap.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+
+  // Lightbox
+  const lb = document.getElementById('menu-lb');
+  const lbImg = lb?.querySelector('.menu-lb-img');
+  const lbClose = lb?.querySelector('.menu-lb-close');
+  if (!lb || !lbImg) return;
+
+  let lastFocus = null;
+  const openLb = (src, alt) => {
+    lastFocus = document.activeElement;
+    lbImg.src = src;
+    lbImg.alt = alt || '';
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+    stopAuto();
+    lbClose?.focus();
+  };
+  const closeLb = () => {
+    lb.hidden = true;
+    lbImg.src = '';
+    document.body.style.overflow = '';
+    lastFocus?.focus?.();
+    startAuto();
+  };
+
+  track.addEventListener('click', (e) => {
+    const slide = e.target.closest('.menu-gallery-slide');
+    if (!slide) return;
+    const img = slide.querySelector('img');
+    if (img) openLb(img.src, img.alt);
+  });
+  lbClose?.addEventListener('click', closeLb);
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', (e) => { if (!lb.hidden && e.key === 'Escape') closeLb(); });
 }
+
 
 function initCuisineSlider() {
   const wrap = document.querySelector('.cuisine-slider-wrap');
