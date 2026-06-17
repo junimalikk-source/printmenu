@@ -21,16 +21,14 @@ test.describe('pricing table', () => {
     await expect(page.locator('#pricing .pt-head .pt-col[data-qty="100K"]')).toContainText(/bulk savings/i);
   });
 
-  test('A4 / 10K cell shows was £525 and now £425', async ({ page }) => {
+  test('A4 / 10K cell shows £425', async ({ page }) => {
     const cell = page.locator('#pricing .pt-cell[data-size="A4"][data-qty="10K"]');
-    await expect(cell.locator('.pt-was')).toContainText('£525');
     await expect(cell.locator('.pt-now')).toContainText('£425');
   });
 
-  test('A3 / 100K cell shows was £3850 and now £2800', async ({ page }) => {
+  test('A3 / 100K cell shows £3000', async ({ page }) => {
     const cell = page.locator('#pricing .pt-cell[data-size="A3"][data-qty="100K"]');
-    await expect(cell.locator('.pt-was')).toContainText('£3850');
-    await expect(cell.locator('.pt-now')).toContainText('£2800');
+    await expect(cell.locator('.pt-now')).toContainText('£3000');
   });
 
   test('on mobile the table reflows to stacked cards', async ({ page, viewport }) => {

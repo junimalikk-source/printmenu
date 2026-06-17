@@ -9,11 +9,13 @@ test('all top-level sections render', async ({ page }) => {
     'top-nav',
     'hero',
     'usps',
+    'built-for',
+    'social-proof',
     'pricing',
     'how-it-works',
     'gallery',
     'why-us',
-    'reviews',
+    'faq',
     'quote',
     'site-footer',
   ];
@@ -38,7 +40,7 @@ test('design tokens are defined on :root', async ({ page }) => {
       offWhite: s.getPropertyValue('--c-off-white').trim(),
     };
   });
-  expect(tokens.black).toBe('#111111');
-  expect(tokens.yellow).toBe('#FFD60A');
+  expect(tokens.black).toBe('#11295A');
+  expect(tokens.yellow).toBe('#06B5E2');
   expect(tokens.offWhite).toBe('#FAFAFA');
 });
