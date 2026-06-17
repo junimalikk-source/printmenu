@@ -4,7 +4,7 @@ test('footer shows contact details and legal links', async ({ page }) => {
   await page.goto('/');
   const footer = page.locator('#site-footer');
   await expect(footer).toContainText('Based in Bradford');
-  await expect(footer.locator('a[href="tel:01274305555"]')).toBeVisible();
+  await expect(footer.locator('a[href="tel:+447488279811"]')).toBeVisible();
   await expect(footer.locator('a[href^="https://wa.me/"]')).toBeVisible();
   await expect(footer.locator('a[href="privacy.html"]')).toBeVisible();
   await expect(footer.locator('a[href="terms.html"]')).toBeVisible();

@@ -12,7 +12,7 @@ test('SEO meta tags and structured data are present', async ({ page }) => {
   const data = JSON.parse(ld);
   expect(data['@type']).toBe('LocalBusiness');
   expect(data.name).toBe('Cheapestprint.co.uk');
-  expect(data.telephone).toBe('+441274305555');
+  expect(data.telephone).toBe('+447488279811');
   expect(data.address.addressLocality).toBe('Bradford');
   expect(data.areaServed).toBe('United Kingdom');
 });

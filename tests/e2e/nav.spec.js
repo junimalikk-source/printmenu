@@ -5,7 +5,7 @@ test.describe('top nav', () => {
 
   test('shows logo and the call-us button', async ({ page }) => {
     await expect(page.locator('.nav-logo')).toContainText(/cheapestprint/i);
-    await expect(page.locator('a.nav-call')).toContainText('01274 305555');
+    await expect(page.locator('a.nav-call')).toContainText('07488 279811');
   });
 
   test('desktop links include all anchors', async ({ page, viewport }) => {
