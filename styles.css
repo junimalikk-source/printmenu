@@ -481,7 +481,7 @@ body.nav-open .wa-float { display: none; }
 /* CTA card */
 .why-us-cta-card { border-radius: var(--radius-md); overflow: hidden; position: sticky; top: 90px; box-shadow: 0 8px 40px rgba(17,41,90,.18); }
 .why-us-cta-header { background: var(--c-yellow); padding: var(--space-4) var(--space-6); text-align: center; }
-.why-us-cta-eyebrow { display: block; font-size: 11px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--c-black); opacity: .7; margin-bottom: 2px; }
+.why-us-cta-eyebrow { display: block; font-size: 11px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--c-black); margin-bottom: 2px; }
 .why-us-cta-price { color: var(--c-black); font-size: 15px; font-weight: 700; margin: 0; }
 .why-us-cta-body { background: var(--c-black); padding: var(--space-6); display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
 .why-us-cta-big { color: var(--c-white); font-size: clamp(56px, 7vw, 88px); font-weight: 900; line-height: 1; margin: 0; letter-spacing: -0.04em; }
