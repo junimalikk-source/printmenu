@@ -3,7 +3,7 @@
 import { selectionsFromCell } from '/script.js';
 
 (function () {
-  const PHONE = '01274 305555';
+  const PHONE = '07488 279811';
 
   function ensureStatusRegion() {
     let el = document.getElementById('checkout-status');

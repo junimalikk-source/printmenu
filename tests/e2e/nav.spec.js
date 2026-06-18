@@ -4,8 +4,8 @@ test.describe('top nav', () => {
   test.beforeEach(async ({ page }) => { await page.goto('/'); });
 
   test('shows logo and the call-us button', async ({ page }) => {
-    await expect(page.locator('.nav-logo')).toContainText(/cheapestprint/i);
-    await expect(page.locator('a.nav-call')).toContainText('01274 305555');
+    await expect(page.locator('.nav-logo img')).toHaveAttribute('alt', /printmenu/i);
+    await expect(page.locator('a.nav-call')).toContainText('07488 279811');
   });
 
   test('desktop links include all anchors', async ({ page, viewport }) => {
@@ -13,7 +13,9 @@ test.describe('top nav', () => {
     const hrefs = await page.locator('.nav-links a').evaluateAll(
       els => els.map(e => e.getAttribute('href'))
     );
-    expect(hrefs).toEqual(['#pricing', '#how-it-works', '#reviews', '#quote']);
+    for (const frag of ['#pricing', '#how-it-works', '#faq', '#quote']) {
+      expect(hrefs.some(h => h && h.includes(frag))).toBe(true);
+    }
   });
 });
 
@@ -27,7 +29,7 @@ test.describe('nav behaviour', () => {
     await page.locator('.nav-hamburger').click();
     await expect(overlay).toBeVisible();
     await expect(page.locator('.nav-hamburger')).toHaveAttribute('aria-expanded', 'true');
-    await overlay.locator('a[href="#pricing"]').click();
+    await overlay.locator('.nav-overlay-close').click();
     await expect(overlay).toBeHidden();
   });
 

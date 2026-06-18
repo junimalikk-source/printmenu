@@ -263,6 +263,13 @@ function initCuisineSlider() {
 }
 
 function boot() {
+  // script.js is evaluated twice: once via the versioned <script> tag
+  // (script.js?v=...) and once via checkout.js's `import ... from '/script.js'`
+  // — different module URLs, so each instance runs boot(). Guard so init runs
+  // only once. Without this the hamburger got two click handlers that toggled
+  // in sequence (open then close), so the mobile menu never opened.
+  if (window.__pmBooted) return;
+  window.__pmBooted = true;
   initNav();
   initLightbox();
   initGalleryEffects();

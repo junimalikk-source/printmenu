@@ -74,7 +74,7 @@
         <a href="https://printmenu.co.uk/#quote">Contact</a>
       </nav>
 
-      <a href="tel:01274305555" class="btn btn-primary nav-call">Call 01274 305555</a>
+      <a href="tel:+447488279811" class="btn btn-primary nav-call">Call 07488 279811</a>
 
       <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-overlay">
         <span></span><span></span><span></span>
@@ -93,6 +93,19 @@
       <a href="tel:01274305555" class="btn btn-primary">Call 01274 305555</a>
     </div>
   </header>
+
+  <!-- Mobile nav overlay — kept OUTSIDE <header> so `body.nav-open .top-nav { display:none }`
+       can hide the bar without also hiding this overlay (it is the menu itself). -->
+  <div id="nav-overlay" class="nav-overlay" hidden>
+    <button type="button" class="nav-overlay-close" aria-label="Close menu">&times;</button>
+    <a href="https://printmenu.co.uk/#pricing">Pricing</a>
+    <a href="https://printmenu.co.uk/#how-it-works">How it works</a>
+    <a href="https://printmenu.co.uk/cuisine">Cuisines</a>
+    <a href="https://printmenu.co.uk/cuisine/indian-takeaway" class="nav-overlay-sub">Indian takeaway menus</a>
+    <a href="https://printmenu.co.uk/#faq">FAQ</a>
+    <a href="https://printmenu.co.uk/#quote">Contact</a>
+    <a href="tel:+447488279811" class="btn btn-primary">Call 07488 279811</a>
+  </div>
   <!-- site-header:end -->
   <main class="container" style="padding: 64px 24px; max-width: 720px;">
     <h1>Privacy Policy</h1>
@@ -105,7 +118,7 @@
     <h2>Cookies</h2>
     <p>This website does not set tracking cookies.</p>
     <h2>Contact</h2>
-    <p>If you have questions about this policy, email <a href="mailto:hello@printmenu.co.uk">hello@printmenu.co.uk</a> or call <a href="tel:01274305555">01274 305555</a>.</p>
+    <p>If you have questions about this policy, email <a href="mailto:hello@printmenu.co.uk">hello@printmenu.co.uk</a> or call <a href="tel:+447488279811">07488 279811</a>.</p>
   </main>
   <!-- site-footer:start -->
   <footer id="site-footer" class="site-footer">
@@ -113,12 +126,21 @@
       <div>
         <div class="footer-logo">Print<span>Menu</span>.co.uk</div>
         <p class="footer-tag">Based in Bradford, UK · Printing nationwide</p>
+        <div class="footer-map">
+          <iframe
+            title="Map showing PrintMenu's location at 2 Bolling Road, Bradford BD4 7BA"
+            src="https://maps.google.com/maps?q=2%20Bolling%20Road%2C%20Bradford%2C%20BD4%207BA&amp;z=15&amp;output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <address class="footer-address">
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=2%20Bolling%20Road%2C%20Bradford%20BD4%207BA" target="_blank" rel="noopener">2 Bolling Road, Bradford BD4 7BA</a>
+        </address>
       </div>
       <div>
         <h3>Contact</h3>
         <ul>
-          <li><a href="tel:01274305555">01274 305555</a></li>
-          <li><a href="https://wa.me/447348952125" target="_blank" rel="noopener">WhatsApp us</a></li>
+          <li><a href="tel:+447488279811">07488 279811</a></li>
+          <li><a href="https://wa.me/447488279811" target="_blank" rel="noopener">WhatsApp us</a></li>
           <li><a href="mailto:hello@printmenu.co.uk">hello@printmenu.co.uk</a></li>
         </ul>
       </div>
@@ -144,7 +166,7 @@
     </div>
   </footer>
 
-  <a href="https://wa.me/447348952125" class="wa-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <a href="https://wa.me/447488279811" class="wa-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
     <img src="/assets/icons/whatsapp.svg" alt="" class="wa-float-icon">
   </a>
   <!-- site-footer:end -->
