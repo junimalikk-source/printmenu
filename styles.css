@@ -1128,6 +1128,10 @@ body.nav-open .wa-float { display: none; }
 .menu-gallery-section .section-header { margin-bottom: 48px; position: relative; }
 .menu-gallery-section .section-header h2 { color: #fff; font-size: 36px; letter-spacing: -0.02em; }
 .menu-gallery-section .section-header p { color: rgba(255,255,255,0.7); font-size: 17px; }
+.menu-gallery-section--chinese { background: #DFDFDF; }
+.menu-gallery-section--chinese::before, .menu-gallery-section--chinese::after { display: none; }
+.menu-gallery-section--chinese .section-header h2 { color: var(--c-black); }
+.menu-gallery-section--chinese .section-header p { color: var(--c-text-muted); }
 .menu-gallery-outer { position: relative; }
 .menu-gallery-track-wrap { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; scroll-snap-type: x mandatory; padding: 8px max(24px, calc((100vw - 1200px) / 2)) 16px; scroll-padding-left: max(24px, calc((100vw - 1200px) / 2)); }
 .menu-gallery-track-wrap::-webkit-scrollbar { display: none; }
