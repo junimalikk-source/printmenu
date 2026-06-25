@@ -9,3 +9,5 @@ test-results/
 .claude/
 .dev.vars
 .wrangler/
+.agents/
+skills-lock.json
