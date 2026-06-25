@@ -8,6 +8,7 @@ repo_root=$(git rev-parse --show-toplevel)
 cd "$repo_root"
 
 node scripts/build-head.js
+node scripts/build-chinese-gallery.js
 
 # Re-stage any HTML files the build touched (only those already staged).
 changed=$(git diff --name-only -- '*.html')
