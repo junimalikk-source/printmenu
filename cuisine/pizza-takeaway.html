@@ -303,7 +303,8 @@
     .hero-trust svg{ width:18px; height:18px; color:var(--cyan-ink); flex-shrink:0; }
 
     /* Fanned menu stack */
-    .hero-stack{ position:relative; aspect-ratio:1/1; max-width:520px; margin-inline:auto; width:100%; }
+    .hero-media{ position:relative; max-width:520px; margin-inline:auto; width:100%; }
+    .hero-stack{ position:relative; aspect-ratio:1/1; width:100%; }
     .hero-card{ position:absolute; border-radius:16px; overflow:hidden; background:#fff; box-shadow:var(--shadow-lg);
       border:6px solid #fff; transition:transform .5s var(--ease); will-change:transform; }
     .hero-card img{ width:100%; height:100%; object-fit:cover; }
@@ -527,7 +528,7 @@
     /* ===================== RESPONSIVE ===================== */
     @media (max-width:980px){
       .hero-grid{ grid-template-columns:1fr; gap:48px; }
-      .hero-stack{ max-width:440px; }
+      .hero-media{ max-width:440px; }
       .bento{ grid-template-columns:repeat(2,1fr); }
       .bento-feature{ grid-column:span 2; grid-row:span 1; min-height:320px; }
       .anatomy-grid{ grid-template-columns:repeat(2,1fr); }
