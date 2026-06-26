@@ -289,13 +289,15 @@
     .hero-aura::after{ width:480px; height:480px; bottom:-200px; left:-140px; background:radial-gradient(circle,rgba(232,163,61,.26),transparent 70%); }
     .hero-grid{ position:relative; z-index:1; display:grid; grid-template-columns:1.04fr .96fr; gap:clamp(32px,5vw,68px); align-items:center; }
 
-    .hero-badge{ display:inline-flex; align-items:center; gap:9px; background:#fff; border:1px solid var(--line); border-radius:999px;
-      padding:7px 8px 7px 14px; font-size:13.5px; font-weight:600; color:var(--navy-ink); box-shadow:var(--shadow-sm); margin-bottom:22px; }
-    .hero-badge b{ display:inline-flex; align-items:center; gap:5px; background:var(--gold-soft); color:#8a5a12; padding:3px 10px; border-radius:999px; font-weight:800; font-size:12.5px; }
-    .hero-copy h1{ font-size:clamp(2.7rem,5.4vw,4.5rem); letter-spacing:-.03em; }
+    .hero-eyebrow{ display:inline-flex; align-items:center; gap:11px; font-weight:700; font-size:13px; letter-spacing:.04em;
+      text-transform:uppercase; color:var(--cyan-ink); margin-bottom:20px; }
+    .hero-eyebrow::before{ content:""; width:26px; height:2px; border-radius:2px; background:var(--gold); flex-shrink:0; }
+    .hero-copy h1{ font-size:clamp(2.5rem,5vw,4.1rem); letter-spacing:-.03em; }
     .hero-copy h1 .ital{ font-style:italic; font-weight:500; }
     .hero-copy h1 .mark{ color:var(--cyan-ink); }
-    .hero-sub{ margin-top:22px; font-size:clamp(16.5px,1.6vw,19px); color:var(--body); max-width:52ch; }
+    .hero-lead{ margin-top:20px; font-size:clamp(18px,2vw,22px); font-weight:700; color:var(--ink); letter-spacing:-.012em; }
+    .hero-lead strong{ color:#9a6510; font-weight:800; }
+    .hero-sub{ margin-top:16px; font-size:clamp(16px,1.55vw,18px); color:var(--body); max-width:56ch; }
     .hero-sub strong{ color:var(--ink); font-weight:700; }
     .hero-cta{ display:flex; flex-wrap:wrap; gap:13px; margin-top:30px; }
     .hero-trust{ display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:30px; }
@@ -624,9 +626,10 @@
       <div class="hero-aura" aria-hidden="true"></div>
       <div class="container hero-grid">
         <div class="hero-copy reveal in">
-          <span class="hero-badge">Pizza menu printing, UK-wide since 2005 <b>★ 20 yrs</b></span>
-          <h1>Pizza menus built to sell the <span class="ital mark">next order.</span></h1>
-          <p class="hero-sub">10,000 A4 pizza takeaway menus from <strong>£425</strong> — free deal-led design, size and topping grids that scan in seconds, and free UK delivery on every order.</p>
+          <p class="hero-eyebrow">Pizza takeaway menu printing · UK-wide since 2005</p>
+          <h1>Pizza Takeaway Menu Printing <span class="ital mark">in the UK.</span></h1>
+          <p class="hero-lead">10,000 A4 menus from <strong>£425</strong> — free design and free UK delivery.</p>
+          <p class="hero-sub">For over 20 years we've designed and printed pizza takeaway menus for independent pizzerias and fast-food pizza shops across the UK. Every menu is built around what sells pizza — bold meal deals, a clear size-and-topping grid and full allergen labelling — printed full colour on premium 130gsm gloss and delivered free, nationwide.</p>
           <div class="hero-cta">
             <a href="#pricing" class="btn btn-gold">See pizza menu prices</a>
             <a href="https://wa.me/447488279811?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20pizza%20takeaway%20menu%20printing." class="btn btn-whatsapp" target="_blank" rel="noopener">
