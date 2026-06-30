@@ -321,15 +321,27 @@
     .hero-chip--free{ bottom:1%; right:4%; }
     .hero-chip--free b{ color:var(--cyan-ink); font-size:17px; }
 
-    /* ===================== MARQUEE ===================== */
-    .marquee-wrap{ border-block:1px solid var(--line); background:var(--white); padding:26px 0; overflow:hidden; }
-    .marquee-label{ text-align:center; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:18px; }
-    .marquee{ display:flex; gap:56px; width:max-content; animation:marquee 34s linear infinite; align-items:center; }
-    .marquee-item{ display:inline-flex; align-items:center; gap:14px; font-family:"Fraunces",serif; font-size:21px; font-weight:600; color:var(--navy-ink); white-space:nowrap; opacity:.78; }
-    .marquee-item .dot{ width:6px; height:6px; border-radius:50%; background:var(--gold); }
-    .marquee-item img{ height:30px; width:auto; opacity:.7; filter:grayscale(1); }
-    @keyframes marquee{ to{ transform:translateX(-50%); } }
-    @media (prefers-reduced-motion:reduce){ .marquee{ animation:none; } }
+    /* ===================== TRUST STRIP ===================== */
+    .trust-strip{ border-block:1px solid var(--line); background:var(--white); padding:34px 0 30px; overflow:hidden; position:relative; }
+    .trust-label{ text-align:center; font-size:13px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--navy-ink); margin:0 0 26px; }
+    .trust-marquee{ position:relative; overflow:hidden;
+      mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);
+      -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%); }
+    .trust-track{ display:flex; align-items:center; gap:clamp(48px,7vw,88px); width:max-content; animation:trust-scroll 36s linear infinite; }
+    .trust-logo{ height:42px; width:auto; display:block; flex-shrink:0;
+      filter:grayscale(1) brightness(.55); opacity:.78; transition:filter .25s, opacity .25s; }
+    .trust-logo--lg{ height:48px; }
+    .trust-logo--xl{ height:54px; }
+    .trust-strip:hover .trust-track{ animation-play-state:paused; }
+    .trust-logo:hover{ filter:none; opacity:1; }
+    @keyframes trust-scroll{ to{ transform:translateX(-50%); } }
+    @media (prefers-reduced-motion:reduce){ .trust-track{ animation:none; } }
+    @media (max-width:760px){
+      .trust-logo{ height:34px; }
+      .trust-logo--lg{ height:38px; }
+      .trust-logo--xl{ height:44px; }
+      .trust-track{ gap:46px; }
+    }
 
     /* ===================== USP ===================== */
     .usp-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
@@ -668,24 +680,33 @@
       </div>
     </section>
 
-    <!-- ================= TRUST MARQUEE ================= -->
-    <div class="marquee-wrap" aria-label="Pizza takeaways we print for">
-      <p class="marquee-label">Trusted by independent pizzerias and pizza takeaways across the UK</p>
-      <div class="marquee" aria-hidden="true">
-        <span class="marquee-item">Tarantino Pizza <span class="dot"></span></span>
-        <span class="marquee-item">Gianni's Pizzeria <span class="dot"></span></span>
-        <span class="marquee-item">Raj Pizza Bar <span class="dot"></span></span>
-        <span class="marquee-item">Wood-fired &amp; American style <span class="dot"></span></span>
-        <span class="marquee-item">Calzones &amp; gourmet <span class="dot"></span></span>
-        <span class="marquee-item">Meal deals &amp; bundles <span class="dot"></span></span>
-        <span class="marquee-item">Tarantino Pizza <span class="dot"></span></span>
-        <span class="marquee-item">Gianni's Pizzeria <span class="dot"></span></span>
-        <span class="marquee-item">Raj Pizza Bar <span class="dot"></span></span>
-        <span class="marquee-item">Wood-fired &amp; American style <span class="dot"></span></span>
-        <span class="marquee-item">Calzones &amp; gourmet <span class="dot"></span></span>
-        <span class="marquee-item">Meal deals &amp; bundles <span class="dot"></span></span>
+    <!-- ================= TRUST STRIP (real client logos) ================= -->
+    <section class="trust-strip" aria-label="Takeaways who trust us">
+      <div class="container">
+        <p class="trust-label">Trusted by takeaways across the UK</p>
       </div>
-    </div>
+      <div class="trust-marquee">
+        <div class="trust-track" aria-hidden="true">
+          <img class="trust-logo" src="/assets/logos/gdk.png" alt="German Doner Kitchen" loading="lazy">
+          <img class="trust-logo" src="/assets/logos/chicken-cottage.svg" alt="Chicken Cottage" loading="lazy">
+          <img class="trust-logo trust-logo--lg" src="/assets/logos/mylahore.png" alt="MyLahore" loading="lazy">
+          <img class="trust-logo trust-logo--lg" src="/assets/logos/tops-pizza.png" alt="Tops Pizza" loading="lazy">
+          <img class="trust-logo" src="/assets/logos/pepes.png" alt="Pepe's Piri Piri" loading="lazy">
+          <img class="trust-logo" src="/assets/logos/howdies.png" alt="Howdies" loading="lazy">
+          <img class="trust-logo" src="/assets/logos/freddies.png" alt="Freddies" loading="lazy">
+          <img class="trust-logo trust-logo--xl" src="/assets/logos/papa-johns.svg" alt="Papa Johns" loading="lazy">
+          <!-- duplicated for seamless loop -->
+          <img class="trust-logo" src="/assets/logos/gdk.png" alt="" loading="lazy" aria-hidden="true">
+          <img class="trust-logo" src="/assets/logos/chicken-cottage.svg" alt="" loading="lazy" aria-hidden="true">
+          <img class="trust-logo trust-logo--lg" src="/assets/logos/mylahore.png" alt="" loading="lazy" aria-hidden="true">
+          <img class="trust-logo trust-logo--lg" src="/assets/logos/tops-pizza.png" alt="" loading="lazy" aria-hidden="true">
+          <img class="trust-logo" src="/assets/logos/pepes.png" alt="" loading="lazy" aria-hidden="true">
+          <img class="trust-logo" src="/assets/logos/howdies.png" alt="" loading="lazy" aria-hidden="true">
+          <img class="trust-logo" src="/assets/logos/freddies.png" alt="" loading="lazy" aria-hidden="true">
+          <img class="trust-logo trust-logo--xl" src="/assets/logos/papa-johns.svg" alt="" loading="lazy" aria-hidden="true">
+        </div>
+      </div>
+    </section>
 
     <!-- ================= USP CARDS ================= -->
     <section class="section">
