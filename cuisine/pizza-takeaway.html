@@ -335,7 +335,19 @@
     .trust-strip:hover .trust-track{ animation-play-state:paused; }
     .trust-logo:hover{ filter:none; opacity:1; }
     @keyframes trust-scroll{ to{ transform:translateX(-50%); } }
-    @media (prefers-reduced-motion:reduce){ .trust-track{ animation:none; } }
+    @media (prefers-reduced-motion:reduce){ .trust-track, .trust-text-track{ animation:none; } }
+
+    /* Text marquee underneath — scrolls the opposite direction for visual rhythm */
+    .trust-text-marquee{ margin-top:28px; padding-top:24px; border-top:1px solid var(--line); overflow:hidden; }
+    .trust-sublabel{ text-align:center; font-size:12.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0 0 18px; padding:0 20px; }
+    .trust-text-marquee{ position:relative;
+      mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);
+      -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%); }
+    .trust-text-track{ display:flex; align-items:center; gap:48px; width:max-content; animation:trust-text-scroll 38s linear infinite; }
+    .trust-text-item{ display:inline-flex; align-items:center; gap:18px; font-family:"Fraunces",serif; font-size:clamp(18px,2vw,22px); font-weight:600; font-style:italic; color:var(--navy-ink); white-space:nowrap; opacity:.78; }
+    .trust-text-item .dot{ width:5px; height:5px; border-radius:50%; background:var(--gold); }
+    .trust-strip:hover .trust-text-track{ animation-play-state:paused; }
+    @keyframes trust-text-scroll{ from{ transform:translateX(-50%); } to{ transform:translateX(0); } }
     @media (max-width:760px){
       .trust-logo{ height:34px; }
       .trust-logo--lg{ height:38px; }
@@ -704,6 +716,24 @@
           <img class="trust-logo" src="/assets/logos/howdies.png" alt="" loading="lazy" aria-hidden="true">
           <img class="trust-logo" src="/assets/logos/freddies.png" alt="" loading="lazy" aria-hidden="true">
           <img class="trust-logo trust-logo--xl" src="/assets/logos/papa-johns.svg" alt="" loading="lazy" aria-hidden="true">
+        </div>
+      </div>
+
+      <div class="trust-text-marquee" aria-label="Pizza takeaways and styles we print for">
+        <p class="trust-sublabel">Trusted by independent pizzerias and pizza takeaways across the UK</p>
+        <div class="trust-text-track" aria-hidden="true">
+          <span class="trust-text-item">Tarantino Pizza <span class="dot"></span></span>
+          <span class="trust-text-item">Gianni's Pizzeria <span class="dot"></span></span>
+          <span class="trust-text-item">Raj Pizza Bar <span class="dot"></span></span>
+          <span class="trust-text-item">Wood-fired &amp; American style <span class="dot"></span></span>
+          <span class="trust-text-item">Calzones &amp; gourmet <span class="dot"></span></span>
+          <span class="trust-text-item">Meal deals &amp; bundles <span class="dot"></span></span>
+          <span class="trust-text-item">Tarantino Pizza <span class="dot"></span></span>
+          <span class="trust-text-item">Gianni's Pizzeria <span class="dot"></span></span>
+          <span class="trust-text-item">Raj Pizza Bar <span class="dot"></span></span>
+          <span class="trust-text-item">Wood-fired &amp; American style <span class="dot"></span></span>
+          <span class="trust-text-item">Calzones &amp; gourmet <span class="dot"></span></span>
+          <span class="trust-text-item">Meal deals &amp; bundles <span class="dot"></span></span>
         </div>
       </div>
     </section>
