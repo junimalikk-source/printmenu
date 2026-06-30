@@ -328,12 +328,12 @@
       mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);
       -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%); }
     .trust-track{ display:flex; align-items:center; gap:clamp(48px,7vw,88px); width:max-content; animation:trust-scroll 36s linear infinite; }
-    .trust-logo{ height:42px; width:auto; display:block; flex-shrink:0;
-      filter:grayscale(1) brightness(.55); opacity:.78; transition:filter .25s, opacity .25s; }
-    .trust-logo--lg{ height:48px; }
-    .trust-logo--xl{ height:54px; }
+    .trust-logo{ height:54px; width:auto; max-width:200px; object-fit:contain; display:block; flex-shrink:0;
+      filter:grayscale(1); opacity:.72; transition:filter .25s, opacity .25s, transform .25s; }
+    .trust-logo--lg{ height:78px; max-width:180px; }
+    .trust-logo--xl{ height:84px; max-width:220px; }
     .trust-strip:hover .trust-track{ animation-play-state:paused; }
-    .trust-logo:hover{ filter:none; opacity:1; }
+    .trust-logo:hover{ filter:none; opacity:1; transform:translateY(-2px); }
     @keyframes trust-scroll{ to{ transform:translateX(-50%); } }
     @media (prefers-reduced-motion:reduce){ .trust-track, .trust-text-track{ animation:none; } }
 
@@ -349,9 +349,9 @@
     .trust-strip:hover .trust-text-track{ animation-play-state:paused; }
     @keyframes trust-text-scroll{ from{ transform:translateX(-50%); } to{ transform:translateX(0); } }
     @media (max-width:760px){
-      .trust-logo{ height:34px; }
-      .trust-logo--lg{ height:38px; }
-      .trust-logo--xl{ height:44px; }
+      .trust-logo{ height:42px; max-width:160px; }
+      .trust-logo--lg{ height:58px; max-width:140px; }
+      .trust-logo--xl{ height:64px; max-width:170px; }
       .trust-track{ gap:46px; }
     }
 
@@ -692,52 +692,6 @@
       </div>
     </section>
 
-    <!-- ================= TRUST STRIP (real client logos) ================= -->
-    <section class="trust-strip" aria-label="Takeaways who trust us">
-      <div class="container">
-        <p class="trust-label">Trusted by takeaways across the UK</p>
-      </div>
-      <div class="trust-marquee">
-        <div class="trust-track" aria-hidden="true">
-          <img class="trust-logo" src="/assets/logos/gdk.png" alt="German Doner Kitchen" loading="lazy">
-          <img class="trust-logo" src="/assets/logos/chicken-cottage.svg" alt="Chicken Cottage" loading="lazy">
-          <img class="trust-logo trust-logo--lg" src="/assets/logos/mylahore.png" alt="MyLahore" loading="lazy">
-          <img class="trust-logo trust-logo--lg" src="/assets/logos/tops-pizza.png" alt="Tops Pizza" loading="lazy">
-          <img class="trust-logo" src="/assets/logos/pepes.png" alt="Pepe's Piri Piri" loading="lazy">
-          <img class="trust-logo" src="/assets/logos/howdies.png" alt="Howdies" loading="lazy">
-          <img class="trust-logo" src="/assets/logos/freddies.png" alt="Freddies" loading="lazy">
-          <img class="trust-logo trust-logo--xl" src="/assets/logos/papa-johns.svg" alt="Papa Johns" loading="lazy">
-          <!-- duplicated for seamless loop -->
-          <img class="trust-logo" src="/assets/logos/gdk.png" alt="" loading="lazy" aria-hidden="true">
-          <img class="trust-logo" src="/assets/logos/chicken-cottage.svg" alt="" loading="lazy" aria-hidden="true">
-          <img class="trust-logo trust-logo--lg" src="/assets/logos/mylahore.png" alt="" loading="lazy" aria-hidden="true">
-          <img class="trust-logo trust-logo--lg" src="/assets/logos/tops-pizza.png" alt="" loading="lazy" aria-hidden="true">
-          <img class="trust-logo" src="/assets/logos/pepes.png" alt="" loading="lazy" aria-hidden="true">
-          <img class="trust-logo" src="/assets/logos/howdies.png" alt="" loading="lazy" aria-hidden="true">
-          <img class="trust-logo" src="/assets/logos/freddies.png" alt="" loading="lazy" aria-hidden="true">
-          <img class="trust-logo trust-logo--xl" src="/assets/logos/papa-johns.svg" alt="" loading="lazy" aria-hidden="true">
-        </div>
-      </div>
-
-      <div class="trust-text-marquee" aria-label="Pizza takeaways and styles we print for">
-        <p class="trust-sublabel">Trusted by independent pizzerias and pizza takeaways across the UK</p>
-        <div class="trust-text-track" aria-hidden="true">
-          <span class="trust-text-item">Tarantino Pizza <span class="dot"></span></span>
-          <span class="trust-text-item">Gianni's Pizzeria <span class="dot"></span></span>
-          <span class="trust-text-item">Raj Pizza Bar <span class="dot"></span></span>
-          <span class="trust-text-item">Wood-fired &amp; American style <span class="dot"></span></span>
-          <span class="trust-text-item">Calzones &amp; gourmet <span class="dot"></span></span>
-          <span class="trust-text-item">Meal deals &amp; bundles <span class="dot"></span></span>
-          <span class="trust-text-item">Tarantino Pizza <span class="dot"></span></span>
-          <span class="trust-text-item">Gianni's Pizzeria <span class="dot"></span></span>
-          <span class="trust-text-item">Raj Pizza Bar <span class="dot"></span></span>
-          <span class="trust-text-item">Wood-fired &amp; American style <span class="dot"></span></span>
-          <span class="trust-text-item">Calzones &amp; gourmet <span class="dot"></span></span>
-          <span class="trust-text-item">Meal deals &amp; bundles <span class="dot"></span></span>
-        </div>
-      </div>
-    </section>
-
     <!-- ================= USP CARDS ================= -->
     <section class="section">
       <div class="container">
@@ -1035,6 +989,52 @@
           <li><a href="https://printmenu.co.uk/cuisine">Chinese takeaway menu printing</a>with Chinese script typesetting</li>
           <li><a href="https://printmenu.co.uk/cuisine">Browse all cuisines</a>every cuisine menu printing option</li>
         </ul>
+      </div>
+    </section>
+
+    <!-- ================= TRUST STRIP (real client logos) ================= -->
+    <section class="trust-strip" aria-label="Takeaways who trust us">
+      <div class="container">
+        <p class="trust-label">Trusted by takeaways across the UK</p>
+      </div>
+      <div class="trust-marquee">
+        <div class="trust-track" aria-hidden="true">
+          <img class="trust-logo" src="/assets/logos/gdk.png" alt="German Doner Kitchen" loading="lazy">
+          <img class="trust-logo" src="/assets/logos/chicken-cottage.svg" alt="Chicken Cottage" loading="lazy">
+          <img class="trust-logo trust-logo--lg" src="/assets/logos/mylahore.png" alt="MyLahore" loading="lazy">
+          <img class="trust-logo trust-logo--lg" src="/assets/logos/tops-pizza.png" alt="Tops Pizza" loading="lazy">
+          <img class="trust-logo" src="/assets/logos/pepes.png" alt="Pepe's Piri Piri" loading="lazy">
+          <img class="trust-logo" src="/assets/logos/howdies.png" alt="Howdies" loading="lazy">
+          <img class="trust-logo" src="/assets/logos/freddies.png" alt="Freddies" loading="lazy">
+          <img class="trust-logo trust-logo--xl" src="/assets/logos/papa-johns.svg" alt="Papa Johns" loading="lazy">
+          <!-- duplicated for seamless loop -->
+          <img class="trust-logo" src="/assets/logos/gdk.png" alt="" loading="lazy" aria-hidden="true">
+          <img class="trust-logo" src="/assets/logos/chicken-cottage.svg" alt="" loading="lazy" aria-hidden="true">
+          <img class="trust-logo trust-logo--lg" src="/assets/logos/mylahore.png" alt="" loading="lazy" aria-hidden="true">
+          <img class="trust-logo trust-logo--lg" src="/assets/logos/tops-pizza.png" alt="" loading="lazy" aria-hidden="true">
+          <img class="trust-logo" src="/assets/logos/pepes.png" alt="" loading="lazy" aria-hidden="true">
+          <img class="trust-logo" src="/assets/logos/howdies.png" alt="" loading="lazy" aria-hidden="true">
+          <img class="trust-logo" src="/assets/logos/freddies.png" alt="" loading="lazy" aria-hidden="true">
+          <img class="trust-logo trust-logo--xl" src="/assets/logos/papa-johns.svg" alt="" loading="lazy" aria-hidden="true">
+        </div>
+      </div>
+
+      <div class="trust-text-marquee" aria-label="Pizza takeaways and styles we print for">
+        <p class="trust-sublabel">Trusted by independent pizzerias and pizza takeaways across the UK</p>
+        <div class="trust-text-track" aria-hidden="true">
+          <span class="trust-text-item">Tarantino Pizza <span class="dot"></span></span>
+          <span class="trust-text-item">Gianni's Pizzeria <span class="dot"></span></span>
+          <span class="trust-text-item">Raj Pizza Bar <span class="dot"></span></span>
+          <span class="trust-text-item">Wood-fired &amp; American style <span class="dot"></span></span>
+          <span class="trust-text-item">Calzones &amp; gourmet <span class="dot"></span></span>
+          <span class="trust-text-item">Meal deals &amp; bundles <span class="dot"></span></span>
+          <span class="trust-text-item">Tarantino Pizza <span class="dot"></span></span>
+          <span class="trust-text-item">Gianni's Pizzeria <span class="dot"></span></span>
+          <span class="trust-text-item">Raj Pizza Bar <span class="dot"></span></span>
+          <span class="trust-text-item">Wood-fired &amp; American style <span class="dot"></span></span>
+          <span class="trust-text-item">Calzones &amp; gourmet <span class="dot"></span></span>
+          <span class="trust-text-item">Meal deals &amp; bundles <span class="dot"></span></span>
+        </div>
       </div>
     </section>
 
