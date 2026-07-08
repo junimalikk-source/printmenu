@@ -40,4 +40,3 @@ test.describe('nav behaviour', () => {
     await expect(nav).toHaveClass(/is-scrolled/);
   });
 });
-
