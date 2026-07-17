@@ -44,6 +44,13 @@
   </url>
 
   <url>
+    <loc>https://printmenu.co.uk/cuisine/fish-and-chip-takeaway</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://printmenu.co.uk/terms</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>yearly</changefreq>
