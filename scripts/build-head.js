@@ -5,7 +5,9 @@ import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 
-const SKIP_DIRS = new Set(['_partials', 'node_modules', '.git', 'scripts', 'assets', 'functions']);
+// 'admin' holds staff-only tools — they carry no shared partials, no canonical
+// URL and deliberately no marketing tags, so they sit outside this pipeline.
+const SKIP_DIRS = new Set(['_partials', 'node_modules', '.git', 'scripts', 'assets', 'functions', 'admin']);
 
 function findHtmlFiles(dir) {
   const results = [];

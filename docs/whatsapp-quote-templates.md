@@ -1,6 +1,13 @@
 # WhatsApp Quote Templates
 
-Copy, fill in the `[brackets]`, paste into WhatsApp.
+**Quickest route:** open `/admin/whatsapp-quote.html` (locally: `npm run dev`, then
+http://localhost:8080/admin/whatsapp-quote.html). Pick a template, fill in the fields
+and it hands you a `wa.me` link that opens the customer's chat with the quote and the
+payment link already typed.
+
+The templates below are what that page renders — they live in
+`assets/whatsapp-templates.js`, so edit them there and mirror the wording here.
+To send one by hand instead: copy, fill in the `[brackets]`, paste into WhatsApp.
 
 ---
 

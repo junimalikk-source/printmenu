@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11295A">
+  <meta name="robots" content="noindex,nofollow">
+  <title>WhatsApp quote generator | PrintMenu.co.uk</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <!-- Internal tool: no GTM / Clarity / Ads tags — staff use shouldn't land in
+       the marketing analytics. That is also why admin/ is skipped by
+       scripts/build-head.js and scripts/validate-html.js. -->
+</head>
+<body class="wq-body">
+  <main class="wq container" role="main">
+    <header class="wq-head">
+      <h1>WhatsApp quote generator</h1>
+      <p class="wq-sub">
+        Fill in the blanks, then open WhatsApp with the quote and payment link already typed.
+        Templates are the ones in <code>docs/whatsapp-quote-templates.md</code>.
+      </p>
+    </header>
+
+    <div class="wq-grid">
+      <form class="wq-form" id="wq-form" autocomplete="off">
+        <div class="wq-field">
+          <label for="wq-template">Template</label>
+          <select id="wq-template"></select>
+        </div>
+
+        <div class="wq-field" data-for="full">
+          <label for="wq-tone">Tone</label>
+          <select id="wq-tone"></select>
+        </div>
+
+        <div class="wq-field">
+          <label for="wq-name">Customer name <span class="wq-req" aria-hidden="true">*</span></label>
+          <input type="text" id="wq-name" placeholder="Ali">
+        </div>
+
+        <div class="wq-field">
+          <label for="wq-phone">Customer WhatsApp number</label>
+          <input type="tel" id="wq-phone" placeholder="07700 900123">
+          <p class="wq-hint" id="wq-phone-hint">Leave blank to pick the contact inside WhatsApp.</p>
+        </div>
+
+        <div class="wq-field" data-for="full short reorder">
+          <label for="wq-sku">Quick-fill from the price list</label>
+          <select id="wq-sku"></select>
+          <p class="wq-hint">Fills the item and total below. Edit either afterwards for a custom job.</p>
+        </div>
+
+        <div class="wq-field" data-for="full short reorder">
+          <label for="wq-item">Item <span class="wq-req" aria-hidden="true">*</span></label>
+          <input type="text" id="wq-item" placeholder="5,000 × A5 menus">
+        </div>
+
+        <div class="wq-field" data-for="full short reorder">
+          <label for="wq-amount">Total (£, inc. VAT &amp; delivery) <span class="wq-req" aria-hidden="true">*</span></label>
+          <input type="text" inputmode="decimal" id="wq-amount" placeholder="450">
+        </div>
+
+        <div class="wq-field" data-for="full">
+          <label for="wq-spec">Spec</label>
+          <input type="text" id="wq-spec">
+        </div>
+
+        <div class="wq-field" data-for="full">
+          <label for="wq-finish">Finish</label>
+          <input type="text" id="wq-finish" placeholder="folded / flat">
+        </div>
+
+        <div class="wq-field" data-for="full">
+          <label for="wq-delivery">Delivery</label>
+          <input type="text" id="wq-delivery" placeholder="address or collection">
+        </div>
+
+        <div class="wq-field" data-for="full">
+          <label for="wq-proof-turnaround">Proof within</label>
+          <input type="text" id="wq-proof-turnaround" placeholder="24–48 hrs">
+        </div>
+
+        <div class="wq-field" data-for="full">
+          <label for="wq-delivery-days">Delivery in (working days)</label>
+          <input type="text" id="wq-delivery-days" placeholder="3–5">
+        </div>
+
+        <div class="wq-field" data-for="paid">
+          <label for="wq-proof-by">Proof by <span class="wq-req" aria-hidden="true">*</span></label>
+          <input type="text" id="wq-proof-by" placeholder="Thursday 5pm">
+        </div>
+
+        <div class="wq-field" data-for="full short reorder">
+          <label for="wq-payment-link">Payment link</label>
+          <input type="url" id="wq-payment-link">
+          <p class="wq-hint">Defaults to the Viva Wallet page. Paste a one-off link here instead if you have one.</p>
+        </div>
+      </form>
+
+      <div class="wq-out">
+        <h2 class="wq-out-title">Message preview</h2>
+        <pre class="wq-preview" id="wq-preview" aria-label="Message preview"></pre>
+
+        <p class="wq-missing" id="wq-missing" hidden></p>
+
+        <div class="wq-actions">
+          <a class="btn btn-whatsapp" id="wq-open" href="https://wa.me/" target="_blank" rel="noopener">
+            <img src="/assets/icons/whatsapp.svg" alt="" class="btn-icon"> Open in WhatsApp
+          </a>
+          <button type="button" class="btn btn-secondary" id="wq-copy">Copy message</button>
+          <button type="button" class="btn btn-secondary" id="wq-copy-link">Copy link</button>
+        </div>
+
+        <p class="wq-status" id="wq-status" role="status" aria-live="polite"></p>
+
+        <h2 class="wq-out-title">Shareable link</h2>
+        <p class="wq-url" id="wq-url" tabindex="0" role="region" aria-label="Shareable WhatsApp link"></p>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="/assets/whatsapp-quote.js?v=1"></script>
+</body>
+</html>
