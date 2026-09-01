@@ -1181,3 +1181,40 @@ body.nav-open .wa-float { display: none; }
   .menu-gallery-arrow--prev { left: 4px; }
   .menu-gallery-arrow--next { right: 4px; }
 }
+
+/* =========================================================
+   Internal tool: WhatsApp quote generator (/admin/whatsapp-quote.html)
+   Not linked from the public site — staff-facing, noindex.
+   ========================================================= */
+.wq-body { background: var(--c-off-white); }
+.wq { padding: 40px 0 80px; }
+.wq-head { margin-bottom: 32px; }
+.wq-head h1 { font-size: 30px; letter-spacing: -0.02em; margin: 0 0 8px; }
+.wq-sub { color: var(--c-text-muted); margin: 0; max-width: 62ch; }
+.wq-sub code { background: var(--c-grey); border-radius: var(--radius-sm); padding: 2px 6px; font-size: 13px; }
+
+.wq-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+
+.wq-form { background: var(--c-white); border: 1px solid var(--c-grey); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm); }
+.wq-field { margin-bottom: 18px; }
+.wq-field[hidden] { display: none; }
+.wq-field label { display: block; font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+.wq-req { color: #B3261E; }
+.wq-field input, .wq-field select { width: 100%; font: inherit; font-size: 15px; padding: 10px 12px; border: 1px solid #BDBDBD; border-radius: var(--radius-md); background: var(--c-white); color: inherit; }
+.wq-field input:focus-visible, .wq-field select:focus-visible { outline: 2px solid var(--c-black); outline-offset: 1px; }
+.wq-hint { margin: 6px 0 0; font-size: 13px; color: var(--c-text-muted); }
+
+.wq-out { position: sticky; top: 24px; }
+.wq-out-title { font-size: 15px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--c-text-muted); margin: 0 0 10px; }
+.wq-preview { background: var(--c-white); border: 1px solid var(--c-grey); border-radius: var(--radius-lg); padding: 20px; margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font-family: var(--font-sans); font-size: 15px; line-height: 1.55; min-height: 240px; box-shadow: var(--shadow-sm); }
+.wq-missing { margin: 12px 0 0; font-size: 14px; font-weight: 600; color: #B3261E; }
+
+.wq-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.wq-actions .is-disabled { opacity: 0.5; }
+.wq-status { margin: 12px 0 0; font-size: 14px; color: var(--c-text-muted); min-height: 20px; }
+.wq-url { background: var(--c-white); border: 1px solid var(--c-grey); border-radius: var(--radius-md); padding: 12px; margin: 0; font-size: 13px; overflow-wrap: anywhere; color: var(--c-text-muted); max-height: 150px; overflow-y: auto; }
+
+@media (max-width: 860px) {
+  .wq-grid { grid-template-columns: 1fr; }
+  .wq-out { position: static; }
+}

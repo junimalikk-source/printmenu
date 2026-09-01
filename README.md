@@ -49,6 +49,8 @@ Or drag-and-drop the entire folder onto Netlify's deploy page.
 | `script.js` | All JS (ES module). Sections: nav, pricing, lightbox, form. |
 | `privacy.html`, `terms.html` | Legal stub pages. |
 | `assets/` | Logos, icons, menu placeholder images, OG image. |
+| `admin/whatsapp-quote.html` | Staff-only WhatsApp quote generator (noindex, not linked from the site). |
+| `assets/whatsapp-templates.js` | The WhatsApp message templates + `wa.me` link builder. |
 | `tests/unit/` | Vitest pure-function tests. |
 | `tests/e2e/` | Playwright E2E tests. |
 | `docs/superpowers/specs/` | Design spec. |
